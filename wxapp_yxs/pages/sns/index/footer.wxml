@@ -1,0 +1,35 @@
+<template name="footer">
+	<view class="oy-footer-box">
+			<view class="oy-h100"></view>
+			<view class="oy-footer-bar flex">
+					<view class="oy-footer-bar-item flex-1 flex flex-col flex-center {{isFooter=='index'?'oy-active':''}}" data-key="index/index" bindtap='oyGoTo'>
+						<block wx:if="{{isFooter=='index'}}">
+							<image mode='aspectFill' class="oy-icon-img" src="/pages/sns/myIcon/home_red.png" ></image>
+						</block>
+						<block wx:else>
+							<image mode='aspectFill' class="oy-icon-img" src="/pages/sns/myIcon/home.png" ></image>
+						</block>		
+						<view class="oy-footer-bar-title">首页</view>
+					</view>
+					<view class="oy-footer-bar-item flex-1 flex flex-col flex-center {{isFooter=='allList'?'oy-active':''}}" data-key="index/allList" bindtap='oyGoTo'>
+						<block wx:if="{{isFooter=='allList'}}">
+							<image mode='aspectFill' class="oy-icon-img" src="/pages/sns/myIcon/list_red.png" ></image>
+						</block>
+						<block wx:else>
+							<image mode='aspectFill' class="oy-icon-img" src="/pages/sns/myIcon/list.png" ></image>
+						</block>
+						<view class="oy-footer-bar-title">版块</view>
+					</view>
+					<view class="oy-footer-bar-item flex-1 flex flex-col flex-center {{isFooter=='myHome'||isMy==1?'oy-active':''}}" data-key="myHome" bindtap='oyGoTo'>
+							<block wx:if="{{isFooter=='myHome'||isMy==1}}">
+								<image mode='aspectFill' class="oy-icon-img" src="/pages/sns/myIcon/user_red.png" ></image>
+							</block>
+							<block wx:else>
+								<image mode='aspectFill' class="oy-icon-img" src="/pages/sns/myIcon/user.png" ></image>
+							</block>
+							<view class="oy-footer-bar-title">我的</view>
+					</view>
+			</view>
+	</view>
+
+</template>

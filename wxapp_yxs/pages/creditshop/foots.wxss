@@ -1,0 +1,34 @@
+/* 底部tabbar */
+
+.view-tabbar {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  align-items: center;
+}
+
+.view-tabbar-content {
+  width: 33.3%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-tabbar-image {
+  width: 50rpx !important;
+  height: 50rpx !important;
+}
+
+.view-tabbar-text {
+  font-size: 25rpx;
+  color: #999;
+}
+.redtar{
+  color: red;
+}

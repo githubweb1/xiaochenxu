@@ -1,0 +1,175 @@
+<!--pages/globonus/register/index.wxml-->
+<import src="/utils/wxParse/wxParse.wxml" />
+<view>
+  <view>
+    <view>
+      <image src='{{list.set.regbg?list.set.regbg:"http://xcxvip.iiio.top/addons/wx_shop/plugin/app/static/images/bg.png"}}' style='width:100%;' mode='widthFix'></image>
+    </view>
+    <block wx:if="{{list.set.become==0}}">
+      <view class='xj-content'>
+        <image src='/static/images/icon/wait-128.png'></image>
+        <view wx:if="{{!list.set.noregdesc}}">想成为股东吗？请立即联系我们！</view>
+        <view wx:else>{{list.set.noregdesc}}</view>
+        <navigator open-type='switchTab' url='/pages/index/index'>去商城逛逛</navigator>
+      </view>
+    </block>
+    <block wx:else>
+      <block wx:if="{{list.member.partnerblack&&list.member.partnerblack!=0}}">
+        <view class='xj-content'>
+          <image src='/static/images/icon/wait-128.png'></image>
+          <view>禁止访问，请联系客服！</view>
+        <navigator open-type='switchTab' url='/pages/index/index'>去商城逛逛</navigator>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='xj-content' wx:if="{{list.set.become==2&&list.status==0}}">
+          <image src='/static/images/icon/wait-128.png'></image>
+          <view>友情提醒</view>
+          <view>本店累计消费满
+            <text>{{list.order_totalcount}}</text>次，才可成为
+            <text style='color:#f55'>{{list.shopname}}</text>购物中心{{list.set.texts.partner}}，您已消费次，请继续努力！
+            <text>{{list.order_count}}</text>次，请现在去购买吧！</view>
+        <navigator open-type='switchTab' url='/pages/index/index'>继续去购物</navigator>
+          
+        </view>
+        <view class='xj-content' wx:if="{{list.set.become==3&&list.status==0}}">
+          <image src='/static/images/icon/wait-128.png'></image>
+          <view>友情提醒</view>
+          <view>本店累计消费满
+            <text>{{list.money_totalcount}}</text>次，才可成为
+            <text style='color:#f55'>{{list.shopname}}</text>购物中心{{list.set.texts.partner}}，您已消费次，请继续努力！
+            <text>{{list.moneycount}}</text>次，请现在去购买吧！</view>
+        <navigator open-type='switchTab' url='/pages/index/index'>继续去购物</navigator>
+        </view>
+        <view class='xj-content' wx:if="{{list.set.become==4&&list.status==0&&list.member.ispartner==0}}">
+          <image src='/static/images/icon/wait-128.png'></image>
+          <view>友情提醒</view>
+          <view> {{list.buy_goods.title}}</view>
+          <view> {{list.buy_goods.marketprice}}</view>
+          <view>本店需购买此商品才可成为
+            <text style='color:#f55'>{{list.shopname}}</text>购物中心{{list.set.texts.partner}}</view>，请现在去购买吧！
+        <navigator open-type='switchTab' url='/pages/index/index'>现在就去购买</navigator>
+          
+        </view>
+        <view class='xj-content' wx:if="{{list.member.partnerstatus==1&&list.member.ispartner==1}}">
+          <image src='/static/images/label-green.png'></image>
+          <view>您的申请已经审核通过！</view>
+        <navigator open-type='switchTab' url='/pages/index/index'>进入商城</navigator>
+          
+        </view>
+        <view class='xj-content' wx:if="{{list.member.partnerstatus==0&&list.member.ispartner==1}}">
+          <image src='/static/images/icon/wait-128.png'></image>
+          <view>谢谢您的支持，请等待审核！</view>
+        <navigator open-type='switchTab' url='/pages/index/index'>去商城逛逛</navigator>
+        </view>
+        <block wx:if="{{list.member.partnerstatus==0&&list.member.ispartner==0&&list.set.become==1}}">
+          <view style='margin-top:10rpx;background:#fff;padding:0 20rpx;color:#666;'>
+            <view class='xj-info-header'>欢迎加入
+              <text>{{list.shopname}}</text>，请填写申请信息
+            </view>
+            <view class='xj-input'>
+              <view class="oy_form_list flex flex-ver">
+                <view class="oy_form_title flex flex-ver">
+                  <view>姓名</view>
+                </view>
+                <view class="flex-1 oy_form_right flex flex-ver">
+                  <view class="oy_form_pointer">*</view>
+                  <input type='tel' bindinput='inputChange' placeholder='请填写真实姓名，用于结算' class="flex-1 oy_form_input" maxlength='11' placeholder-class="oy_placeholder" data-type='realname' value='{{postData.realname}}'></input>
+                </view>
+              </view>
+              <view class="oy_form_list flex flex-ver">
+                <view class="oy_form_title flex flex-ver">
+                  <view>手机号</view>
+                </view>
+                <view class="flex-1 oy_form_right flex flex-ver">
+                  <view class="oy_form_pointer">*</view>
+                  <input type='number' bindinput='inputChange' placeholder='请输入你的手机号' class="flex-1 oy_form_input" maxlength='11' placeholder-class="oy_placeholder" data-type='mobile' value='{{postData.mobile}}'></input>
+                </view>
+              </view>
+              <view class="oy_form_list flex flex-ver">
+                <view class="oy_form_title flex flex-ver">
+                  <view>微信号</view>
+                </view>
+                <view class="flex-1 oy_form_right flex flex-ver">
+                  <input type='tel' bindinput='inputChange' placeholder='请填写微信号' style='margin-left:16rpx' class="flex-1 oy_form_input" placeholder-class="oy_placeholder" data-type='weixin' value='{{postData.weixin}}'></input>
+                </view>
+              </view>
+            </view>
+          </view>
+          <block wx:if="{{list.set.open_protocol==1}}">
+            <view class='check-box'>
+              <checkbox-group bindchange='checkChange'>
+                <label>
+                  <checkbox class="fui-checkbox-primary" wx:key="asd">我已经阅读并了解了
+                  </checkbox>
+                </label>
+              </checkbox-group>
+              <view class='checkbox-view'>
+                <text style="color:#337ab7;" bindtap='checkView'>【{{list.apply_set.applytitle}}】</text>
+              </view>
+            </view>
+          </block>
+          <view class='read {{num==1?"":"hidden"}}'>
+            <view>{{list.set.applytitle}}</view>
+            <view>{{list.set.applycontent}}</view>
+            <view bindtap='content' class=' btn'>我已阅读</view>
+          </view>
+          <view class='view-eno-bg {{num==1?"":"hidden"}}' bindtap='content'>
+          </view>
+          <view class='xj-btn'>
+            <button type='warn' form-type='submit' bindtap='submit'>{{choose}}</button>
+          </view>
+
+          <block wx:if="{{list.set.register_bottom==0}}">
+            <view style='font-size:26rpx;padding:20rpx;background:#fff;margin-top:20rpx;color:#666'>
+              <view class='xj-top'>
+                <image src='/static/images/icon/vip.png'></image>
+                <view style='margin-left:20rpx;'>{{list.set.texts.partner}}特权</view>
+              </view>
+              <view class='xj-bottom'>
+                <image src='/static/images/icon-red/money.png'></image>
+                <view class='xj-bottom-become'>
+                  <view>坐享分红</view>
+                  <view>成为{{list.set.texts.partner}}后，您可以享受平台营业额的{{list.set.texts.bonus}}收益</view>
+                </view>
+              </view>
+            </view>
+          </block>
+          <block wx:if="{{list.set.register_bottom==1}}">
+            <view class='xj-bottom' wx:if="{{list.set.register_bottom_title1!=''||list.set.register_bottom_content1!=''}}">
+              <image src='/static/images/icon-red/money.png'></image>
+              <view class='xj-bottom-become'>
+                <view>{{list.set.register_bottom_title1}}</view>
+                <view>{{list.set.register_bottom_content1}}</view>
+              </view>
+            </view>
+
+            <view class='xj-bottom' wx:if="{{list.set.register_bottom_title2!=''||list.set.register_bottom_content2!=''}}">
+              <image src='/static/images/icon-red/money.png'></image>
+              <view class='xj-bottom-become'>
+                <view>{{list.set.register_bottom_title2}}</view>
+                <view>{{list.set.register_bottom_content2}}</view>
+              </view>
+            </view>
+          </block>
+          <block wx:if="{{list.set.register_bottom==2}}">
+            <view>{{list.set.register_bottom_content}}</view>
+          </block>
+        </block>
+      </block>
+    </block>
+  </view>
+</view>
+<!-- 覆盖层 -->
+<view class='bg {{checkhide?"":"hide"}}'>
+  <image class='bg-img' bindtap='clickimg' mode='aspectFit' src='/pages/img/round_close.png'></image>
+  <view class='bg-view'>
+    <view class='bg-title'>{{list.set.applytitle}}</view>
+    <view class='bg-content'>
+      <view class='bg-content-text'>
+        <template is='wxParse' data='{{ wxParseData:wxParseData.nodes }}' />
+      </view>
+    </view>
+    <view class='bg-btn' bindtap='clickimg'>我已阅读</view>
+  </view>
+</view>

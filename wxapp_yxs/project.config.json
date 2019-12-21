@@ -1,0 +1,202 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.0",
+	"appid": "wxf090f2267b344c0f",
+	"projectname": "5420",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 24,
+			"list": [
+				{
+					"id": -1,
+					"name": "会员中心",
+					"pathName": "pages/member/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "会员资料",
+					"pathName": "pages/member/info/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "绑定手机",
+					"pathName": "pages/member/bind/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的优惠券",
+					"pathName": "pages/sale/coupon/my/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "优惠券",
+					"pathName": "pages/sale/coupon/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "余额提现",
+					"pathName": "pages/member/withdraw/index",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "qwe",
+					"pathName": "pages/creditshop/index/index",
+					"query": "id=26"
+				},
+				{
+					"id": 7,
+					"name": "qwe",
+					"pathName": "pages/globonus/index/index",
+					"query": "openid:sns_wa_o91fH5aqcUVevk2456O1FWcpqfUE"
+				},
+				{
+					"id": 8,
+					"name": "merch",
+					"pathName": "pages/merch/index/index",
+					"query": "merchid=109"
+				},
+				{
+					"id": -1,
+					"name": "merch",
+					"pathName": "pages/task/index/index",
+					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "task",
+					"pathName": "pages/task/index/index",
+					"query": "rid=26"
+				},
+				{
+					"id": 11,
+					"name": "exchange",
+					"pathName": "pages/exchange/detail/index",
+					"query": "key=077816195585209126&groupid=13&group=1"
+				},
+				{
+					"id": 12,
+					"name": "bargain",
+					"pathName": "pages/bargain/index/index",
+					"query": ""
+				},
+				{
+					"id": 13,
+					"name": "board",
+					"pathName": "pages/sns/index/index",
+					"query": "merchid=109"
+				},
+				{
+					"id": 14,
+					"name": "groups",
+					"pathName": "pages/groups/index/index",
+					"query": "merchid=109"
+				},
+				{
+					"id": -1,
+					"name": "ddd",
+					"pathName": "pages/exchange/common/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ddd",
+					"pathName": "pages/member/cart/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ddd",
+					"pathName": "pages/exchange/common/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ddd",
+					"pathName": "pages/exchange/common/index",
+					"query": ""
+				},
+				{
+					"id": 19,
+					"name": "pay",
+					"pathName": "pages/order/pay/peerpaydetail",
+					"query": "id=681"
+				},
+				{
+					"id": -1,
+					"name": "fenxiao",
+					"pathName": "pages/index/index",
+					"query": "mid=2924"
+				},
+				{
+					"id": 21,
+					"name": "评论",
+					"pathName": "pages/creditshop/comment/index",
+					"query": "goodsid=51&logid=772"
+				},
+				{
+					"id": 22,
+					"name": "exchange",
+					"pathName": "pages/exchange/detail/index",
+					"query": "key=37975448&groupid=34&sta=1"
+				},
+				{
+					"id": 23,
+					"name": "exchange",
+					"pathName": "pages/seckill/seckill",
+					"query": ""
+				},
+				{
+					"id": 24,
+					"name": "exchange",
+					"pathName": "pages/merch/index/index",
+					"query": ""
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,20 @@
+<template name="list">
+	<navigator class="oy-qa-list flex" url="{{'/pages/sns/index/boardDetail?id='+item.id}}" wx:for="{{list}}"  wx:key="">
+		<image mode='aspectFill' class="oy-qa-list-img" src="{{item.logo}}"></image>
+		<view class="flex-1 oy-qa-list-right">
+					<view class="oy-row-text flex flex-ver">
+							<view class="flex-1 oy-row-title">{{item.title}}</view>
+							<view class="oy-qa-head-right flex flex-ver"></view>
+					</view>
+					<view class="oy-title flex flex-baseline">
+						<view>话题数: </view>
+						<text class="oy-red-title">{{item.postcount}}</text>
+						<view> 关注数: </view>
+						<text class="oy-red-title"> {{item.followcount}} </text>
+					</view>
+					<view class="oy-title flex flex-baseline">
+							{{item.desc}}
+					</view>
+		</view>
+	</navigator>
+</template>

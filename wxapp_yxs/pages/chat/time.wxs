@@ -1,0 +1,23 @@
+// 支持es4语法
+var filter = {
+  numberToFixed: function (value,value1) {
+    if (parseInt(value1) - parseInt(value)>1000){
+      return true;
+    }else{
+      return false;
+    }
+    
+  },
+  newDate:function(t1,t2){
+     if(parseInt(t2)- parseInt(t1[t1.length-1].times)>1000){
+       return true;
+     }else{
+       return false;
+     }
+  }
+}
+// 导出对外暴露的属性
+module.exports = {
+  numberToFixed: filter.numberToFixed,
+  newDate: filter.newDate
+}

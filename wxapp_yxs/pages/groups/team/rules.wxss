@@ -1,0 +1,7 @@
+/* pages/groups/team/rules.wxss */
+.page{background: #f6f6f6;}
+.fui-page{font-size:31rpx;
+padding:0 60rpx;
+margin-top:40rpx;
+}
+.fui-content{margin-top: 20rpx;}

@@ -1,0 +1,184 @@
+<!--pages/merch/merchuser/index.wxml-->
+<!-- 搜索 -->
+<view style='background:#f7f7f8;padding:30rpx;'>
+  <image class='view-input-image' src='../../../static/images/icon/search.png' bindtap='search'> </image>
+  <input placeholder='输入关键字...' class='view-input' bindinput='searchinput'></input>
+</view>
+<view>
+  <view class='view-lie'>
+    <view class='view-lie-style {{num==1 ? "active" : ""}}' data-num='1' bindtap='tapstyle'>{{name}}
+      <text class='view-lie-style-icon {{num==1 ? "rightRotate" : ""}} goBack'>  </text> </view>
+
+    <view class='view-lie-area {{num==2 ? "active" : ""}}' data-num='2' bindtap='taparea'>{{cate}}
+      <text class='view-lie-area-icon {{num==2 ? "rightRotate" : ""}} goBack'>  </text> </view>
+
+    <view class='view-lie-sort {{num==3 ? "active" : ""}}' data-num='3' bindtap='tapsort'>{{sort}}
+      <text class='view-lie-sort-icon {{num==3 ? "rightRotate" : ""}} goBack'>  </text> </view>
+  </view>
+  <!-- 隐藏 -->
+  <view class='view-hide-context'>
+    <view class='view-style-context {{num==1 ? "contectBlocl" : ""}}'>
+      <view class='contectActive ' bindtap='range' data-range='500' data-name='附近'>附近</view>
+      <view bindtap='range' data-range='0.5' data-name='500米'>500米</view>
+      <view bindtap='range' data-range='1' data-name='1000米'>1000米</view>
+      <view bindtap='range' data-range='2' data-name='2000米'>2000米</view>
+      <view bindtap='range' data-range='5' data-name='5000米'>5000米</view>
+      <view bindtap='range' data-range='10000' data-name='5000米以上'>5000米以上</view>
+    </view>
+    <view class='view-area-context {{num==2 ? "contectBlocl" : ""}}'>
+      <view bindtap='cate' data-cateid='0' data-cate='全部分类'>全部分类</view>
+      <block wx:for="{{list.category}}" wx:key="dsd">
+        <view bindtap='cate' data-cateid='{{item.id}}' data-cate='{{item.catename}}'>
+          <image mode='aspectFit' style='width:50rpx;height:50rpx' src='{{item.thumb}}'></image> {{item.catename}}
+        </view>
+      </block>
+    </view>
+    <view class='view-sort-context {{num==3 ? "contectBlocl" : ""}}'>
+      <view bindtap='sorttype' data-sorttype='0' data-sort='距离最近'>智能排序</view>
+      <view bindtap='sorttype' data-sorttype='0' data-sort='距离最近'>距离最近 </view>
+      <view bindtap='sorttype' data-sorttype='1' data-sort='最近入驻'>最近入驻 </view>
+    </view>
+  </view>
+  <!-- 推荐商家 -->
+  <view>
+    <!-- <block wx:if="{{link.list.length>0}}">
+      <view class='xj-all-cate' hover-class='none'>
+        <view>推荐商家</view>
+      </view>
+      <block wx:for="{{link.list}}" wx:key="assd">
+          <view class='xj-cata-shopcontent'>
+        <navigator class='xj-cate-all-shopcontent' bindtap='store' data-id='{{item.id}}' url='/pages/merch/mystore/index?merchid={{item.id}}'>
+            <image src='{{item.logo}}'></image>
+            <view class='xj-cata-center'>
+              <view style='font-size:32rpx;font-size:34rpx;'>{{item.merchname}}</view>
+              <block wx:if="{{item.address!=''}}">
+                <view>地址:{{item.address}}</view>
+              </block>
+              <block wx:if="{{item.tel!=''}}">
+                <view>电话:{{item.tel}}</view>
+              </block>
+              <block wx:if="{{item.catename!=''}}">
+                <view>分类:{{item.catename}}</view>
+              </block>
+              <block wx:if="{{item.distance!=''}}">
+                <view style="color:green;">距离您:{{item.distance}}km</view>
+              </block>
+            </view>
+        </navigator>
+            <view style='display:flex;flex-direction:column;margin-right:20rpx;margin-left:20rpx;border-left:1rpx solid #ddd;padding:20rpx'>
+          <navigator url='/pages/order/store/map?merchuserid={{item.id}}' hover-class='none'>
+            <image src='/static/images/icon-red/location.png' mode='aspectFill' style='width:50rpx;height:50rpx; margin-top: 10rpx'></image>
+          </navigator>
+          <block wx:if="{{item.tel!=''}}">
+            <image src='/static/images/icon-red/tel.png' bindtap='iphone' data-phone='{{item.tel}}' mode='aspectFill' style='width:50rpx;height:50rpx;margin-top: 10rpx'></image>
+          </block>
+        </view>
+          </view>
+      </block> -->
+    <block wx:if="{{link.list.length>0}}">
+      <view class='xj-all-cate' hover-class='none'>
+        <view>推荐商家</view>
+      </view>
+      <block wx:for="{{link.list}}" wx:key="assd">
+        <view class='xj-cata-shopcontent'>
+          <navigator class='xj-cate-all-shopcontent' bindtap='store' data-id='{{item.id}}' url='/pages/merch/mystore/index?merchid={{item.id}}'>
+            <!-- <image src='{{item.logo}}'></image> -->
+            <view class='xj-cata-center'>
+              <view class="households">
+                <image src='{{item.logo}}'></image>
+                <view class="sh-name">
+                  <view style='font-size:32rpx;font-size:34rpx;color:#000000;'>{{item.merchname}}</view>
+                  <block wx:if="{{item.distance!=''}}">
+                    <view style="color:orange;"><image src='/static/images/Group.png' data-phone='{{item.tel}}' mode='aspectFill' style='width:30rpx;height:30rpx;margin-right:10rpx;'></image>距离您:{{item.distance}}km</view>
+                  </block>
+                </view>
+               
+              </view>
+              <!-- <view style='font-size:32rpx;font-size:34rpx;'>{{item.merchname}}</view> -->
+              <block wx:if="{{item.address!=''}}">
+                <navigator url='/pages/order/store/map?merchuserid={{item.id}}' hover-class='none'>
+                  <view class="address-dz">
+                    <image src='/static/images/icon-test.png' mode='aspectFill' style='width:40rpx;height:40rpx; '></image>
+                    地址:{{item.address}}</view>
+                </navigator>
+              </block>
+              <block wx:if="{{item.tel!=''}}">
+
+                <view class="iphone-sj" bindtap='iphone'>
+                  <image src='/static/images/weibiaoti-.png' bindtap='iphone' data-phone='{{item.tel}}' mode='aspectFill' style='width:40rpx;height:40rpx;'></image>电话:{{item.tel}}</view>
+
+              </block>
+              <!-- <block wx:if="{{item.catename!=''}}">
+                <view>分类:{{item.catename}}</view>
+              </block> -->
+              <!-- <block wx:if="{{item.distance!=''}}">
+                <view style="color:green;">距离您:{{item.distance}}km</view>
+              </block> -->
+              <block>
+                <view class="service">
+                  <image src='/static/images/gengduo.png' bindtap='iphone' data-phone='{{item.tel}}' mode='aspectFill' style='width:40rpx;height:40rpx;'></image>
+                  <text>WI-FI</text>
+                  <text>停车位</text>
+                  <text>支付宝支付</text>
+                  <text>微信支付</text>
+                </view>
+              </block>
+              <block>
+                 <view class="store">
+                 <image src='/static/images/tupian.png' bindtap='iphone' data-phone='{{item.tel}}' mode='aspectFill' style='width:40rpx;height:40rpx;'></image>
+                 店铺图片
+                 </view>
+              </block>
+              <block>
+              <view class="store-img">
+              <view wx:for="{{item.img}}" wx:for-item="storeImg" wx:key="storeImg">
+               <image src='{{storeImg}}'></image>
+              </view>
+              </view>
+              </block>
+              <block>
+              <view class="store">
+                 <image src='/static/images/tupian.png' bindtap='iphone' data-phone='{{item.tel}}' mode='aspectFill' style='width:40rpx;height:40rpx;'></image>
+                 商户介绍
+                 </view>
+              </block>
+              <block>
+                <view class="store-introduce">
+                    <image src='{{item.imgs[0]}}'></image>
+                </view>
+              </block>
+            </view>
+          </navigator>
+           <view class="contact">
+                <navigator url="/pages/chat/chat?id={{item.id}}&name={{item.merchname}}">
+                <image src='/static/images/icon-red/wx.png' data-phone='{{item.tel}}' mode='aspectFill' style='width:60rpx;height:60rpx;'></image>
+                <view>联系商家</view>
+                </navigator>
+                </view>
+          <!-- <view style='display:flex;flex-direction:column;margin-right:20rpx;margin-left:20rpx;border-left:1rpx solid #ddd;padding:20rpx'>
+          <navigator url='/pages/order/store/map?merchuserid={{item.id}}' hover-class='none'>
+            <image src='/static/images/icon-red/location.png' mode='aspectFill' style='width:50rpx;height:50rpx; margin-top: 10rpx'></image>
+          </navigator>
+          <block wx:if="{{item.tel!=''}}">
+            <image src='/static/images/icon-red/tel.png' bindtap='iphone' data-phone='{{item.tel}}' mode='aspectFill' style='width:50rpx;height:50rpx;margin-top: 10rpx'></image>
+          </block>
+        </view> -->
+        </view>
+      </block>
+      <!-- 加载更多 -->
+      <view bindtap='moreinfo' style='padding:20rpx;text-align:center;font-size:30rpx;color:orange;margin-bottom:100rpx'>
+        {{more==0?"点击加载更多":"没有更多信息"}}
+      </view>
+    </block>
+    <block wx:else>
+      <view style=' display: flex;flex-direction: column;justify-items: center;align-items: center;color:#ccc'>
+        <image style='width:300rpx;height:300rpx;margin-bottom:30rpx' src='/static/images/icon/lights-128.png'></image>
+        <view>暂时没有商家</view>
+        <navigator style='width:30%;background:transparent;margin-top:30rpx;color:#666 !important;background:white;border:1rpx solid #ccc;border-radius:10rpx;padding:10rpx 0;text-align:center;' hover-class='none' open-type='switchTab' url='/pages/index/index'>到处逛逛</navigator>
+      </view>
+    </block>
+  </view>
+
+</view>
+<view class='view-hide-bg {{num==1||num==2||num==3? "" : "hidden"}}' bindtap='bg' data-num='0'>
+</view>

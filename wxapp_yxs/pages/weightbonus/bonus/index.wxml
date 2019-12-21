@@ -1,0 +1,53 @@
+<!--pages/globonus/bonus/index.wxml-->
+<!-- 头部 -->
+<view>
+  <view class='xj-header'>
+    <block wx:if="{{list.status==1}}">
+      <view>{{list.set.texts.bonus_pay}}</view>
+      <view style='color:#000'>+
+        <text>{{total}}</text>元</view>
+    </block>
+    <block wx:if="{{list.status==2}}">
+      <view>{{list.set.texts.bonus_lock}}</view>
+      <view style='color:#000'>+
+        <text>{{ok}}</text>元</view>
+    </block>
+    <block wx:if="{{list.status==0}}">
+      <view>{{list.set.texts.bonus_total}}</view>
+      <view style='color:#000'>+
+        <text>{{lock}}</text>元</view>
+    </block>
+  </view>
+  <view class='view-wine-nav-bg'>
+    <view class='view-wine-nav'>
+      <text class='view-wine-nav-wait {{status==0?"blue":""}}' data-status='0' bindtap='tapwait'>全部</text>
+      <text class='view-wine-nav-go {{status==2?"blue":""}}' data-status='2' bindtap='tapwait'>待结算</text>
+      <text class='{{status==1?"blue":""}}' data-status='1' bindtap='tapwait'>已结算</text>
+    </view>
+  </view>
+  <block wx:if="{{list.lenght==0||list}}">
+    <view class='xj-bottom'>
+      <image src='/static/images/icon/fenhong1.png'></image>
+      <view>暂时没有任何数据</view>
+    </view>
+  </block>
+  <block wx:for-items="{{list1.list}}" wx:key="asd">
+    <view class='xj-content'>
+      <view class='xj-content-left'>
+        <text style='color:#333'>{{item.payno}}</text>
+        <text style='color:#666'>{{list.set.texts.bonus}}比例:{{item.bonus}}</text>
+        <block wx:if="{{item.chargemoney>0}}">
+          <text style='color:#666'>{{list.set.texts.bonus_charge}}:{{item.chargemoney}}</text>
+        </block>
+      </view>
+      <view>
+        <view class='xj-content-right'>+{{item.paymoney}}</view>
+        <view>{{item.statusstr}}</view>
+      </view>
+    </view>
+    <!-- 加载更多 -->
+<view bindtap='moreinfo' style='padding:20rpx;text-align:center;font-size:30rpx;color:orange;margin-bottom:100rpx'>
+      {{more==0?"点击加载更多":"没有更多信息"}}
+</view>
+ </block>
+</view>

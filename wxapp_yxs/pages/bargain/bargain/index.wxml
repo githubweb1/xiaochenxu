@@ -1,0 +1,179 @@
+<!--pages/bargain/bargain/index.wxml-->
+<import src="/utils/wxParse/wxParse.wxml" />
+<view>
+  <!-- 头部 -->
+  <view class='xj-header'>
+    <image src='{{list.res.head_image}}' class='xj-header-image' mode='aspectFit'></image>
+    <view class='xj-header-center'>
+      <view>{{list.res.nickname}}</view>
+      <view class='xj-header-time'>开砍时间:{{list.res.created_time}}</view>
+    </view>
+    <navigator class='xj-header-right' open-type='redirect' url='/pages/bargain/index/index'>
+      <image src='/static/images/icon-red/home.png' mode='aspectFit'></image>
+      <text>首页</text>
+    </navigator>
+  </view>
+  <!-- 内容 -->
+  <navigator class='xj-content' open-type='redirect' url='/pages/bargain/detail/index?id={{list.res2.id}}'>
+    <image mode='aspectFit' style='width:250rpx;height:150rpx;margin-right:20rpx' src='{{list.res2.images}}'></image>
+    <view class='xj-content-right'>
+      <view class='xj-right-title'>{{list.res2.title}}</view>
+      <view class='xj-right-view' style='margin-top:20rpx;'>库存:{{list.res2.stock}} | 已售:{{list.ewei_detail.sales}}</view>
+      <view class='xj-right-view'>剩余时间：{{endtime}}</view>
+    </view>
+  </navigator>
+  <!-- 金额 -->
+  <view class='xj-money'>
+    <view class='xj-money-price'>
+      <view class='xj-moeny-top'>当前成交价</view>
+      <view class='xj-moeny-center'>￥{{list.res.now_price}}</view>
+      <view class='xj-moeny-bottom'>原价
+        <text style='text-decoration:line-through'>￥{{list.res2.start_price}}</text>
+      </view>
+    </view>
+    <view class='xj-money-price'>
+      <view class='xj-moeny-top' style='color:#959595'>已砍金额</view>
+      <view class='xj-moeny-center' style='color:#959595'>￥{{list.res.bargain_price}}</view>
+      <view class='xj-moeny-bottom'>砍价次数 {{list.res.bargain_times}} 次</view>
+    </view>
+  </view>
+  <!-- 点击 -->
+  <view class='xj-money' wx:if="{{list.swi==111}}">
+    <block wx:if="{{list.trade_swi==0}}">
+      <navigator class='xj-btn-left' url='/pages/order/create/index?bargainid={{list.res.id}}&mid={{mid}}'> 立即购买</navigator>
+    </block>
+    <block wx:if="{{list.trade_swi==1}}">
+      <navigator style="background-color:#ccc;" class='xj-btn-left'> 已经下单</navigator>
+    </block>
+    <block wx:if="{{list.trade_swi==2}}">
+      <navigator style="background-color:#ccc;" class='xj-btn-left'> 已经结束</navigator>
+    </block>
+    <block wx:if="{{list.trade_swi==3}}">
+      <navigator style="background-color:#ccc;" class='xj-btn-left'> 库存不足</navigator>
+    </block>
+    <block wx:if="{{list.trade_swi==4}}">
+      <navigator style="background-color:#ccc;" class='xj-btn-left'> 没到底价</navigator>
+    </block>
+    <block wx:if="{{list.trade_swi==1}}">
+      <navigator class='xj-btn-right' url='/pages/order/detail/index?id={{list.res.order}}'>查看订单</navigator>
+    </block>
+    <block wx:if="{{list.trade_swi!=1&&list.myself_swi&&list.myself_swi!=0}}">
+      <view class='xj-btn-right' bindtap='bargain'>砍一刀</view>
+    </block>
+    <block wx:if="{{list.trade_swi!=1&&(!list.myself_swi||list.myself_swi==0)}}">
+      <view class='xj-btn-right' bindtap="eno" data-eno='1'>找人帮砍</view>
+    </block>
+  </view>
+
+  <view class='xj-money' wx:if="{{list.swi==222}}">
+    <navigator class='xj-btn-left' url='/pages/bargain/detail/index?id={{list.res2.id}}'> 我也要砍</navigator>
+    <view class='xj-btn-right' bindtap='bargain'>帮砍一刀</view>
+  </view>
+
+  <!-- 底部切换 -->
+  <view class='view-wine-nav-bg'>
+    <view class='view-wine-nav'>
+      <text class='view-wine-nav-wait {{num==0?"blue":""}} {{list.account_set.partin>-10000?"":"w33"}}' data-num='0' data-hidden='0' bindtap='tapwait'>亲友团</text>
+      <text class='view-wine-nav-go {{num==1?"blue":""}} {{list.account_set.partin>-10000?"":"w33"}}' data-num='1' data-hidden='1' bindtap='tapwait'>商品详情</text>
+      <text class='{{num==2?"blue":""}} {{list.account_set.partin>-10000?"":"w33"}}' data-num='2' data-hidden='2' bindtap='tapwait'>活动规则</text>
+
+      <text class='{{num==3?"blue":""}}' data-num='3' data-hidden='3' bindtap='tapwait' wx:if="{{list.account_set.partin>-10000}}">参与榜</text>
+    </view>
+  </view>
+
+
+
+  <!-- 亲友团 -->
+  <view>
+    <view class='view-wine-center {{hidden==0?"":"hidden"}}'>
+      <block wx:if="{{list.res3}}" wx:key="">
+        <block wx:for="{{list.res3}}" wx:key="">
+          <view class='xj-header'>
+            <view class='xj-header-center1'>
+              <image src='{{item.head_image}}' class='xj-header-image1' mode='aspectFit'></image>
+              <view>{{item.nickname}}</view>
+            </view>
+            <view class='xj-header-time1' wx:if="{{item.bargain_price<0||item.bargain_price==0}}">{{item.bargain_price}}元</view>
+            <view class='xj-header-time1' wx:if="{{item.bargain_price>0}}">{{item.bargain_price}}元</view>
+            <view class='xj-header-time'>{{item.bargain_time}}</view>
+          </view>
+        </block>
+      </block>
+      <!-- 未找到任何记录 -->
+      <view style='display:flex;justify-content:space-between;width:100%;'>
+        <view class='view-xiaoxi' wx:if="{{!list.res3||list.res3.length == 0}}" style='display:flex;flex-direction:column;align-items:center;width:100%;'>
+          <image src='/static/images/icon/cry-220.png' mode='aspectFill' style='width:150rpx;height:150rpx;margin-bottom:30rpx'></image>
+          <view>未找到任何记录</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- <!商品详情 -->
+  <view>
+    <view class='view-wine-center {{hidden==1?"":"hidden"}}'>
+      <view style='font-size:30rpx;padding:10rpx 20px'>
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      </view>
+    </view>
+  </view>
+
+
+  <!--活动规则 -->
+  <view>
+    <view class='view-wine-center {{hidden==2?"":"hidden"}}'>
+      <view style='font-size:30rpx;padding:10rpx 20px'>
+        <!-- <template is="wxParse" data="{{wxParseData:article1.nodes}}" /> -->
+        <rich-text  nodes="{{article1}}"></rich-text>
+      </view>
+    </view>
+  </view>
+
+  <!--参与榜 -->
+  <view>
+    <view class='view-wine-center {{hidden==3?"":"hidden"}}'>
+      <block wx:if="{{list.account_set.partin>-10000}}">
+        <block wx:for="{{list.res4}}" wx:key="">
+          <view class='xj-header'>
+            <view class='xj-header-center'>
+              <image src='{{item.head_image}}' class='xj-header-image' mode='aspectFit'></image>
+              <view>{{item.nickname}}</view>
+            </view>
+            <view class='xj-header-time' wx:if="{{item.bargain_price<0||item.bargain_price==0}}">{{item.bargain_price}}元</view>
+            <view class='xj-header-time' wx:if="{{item.bargain_price>0}}">+{{item.bargain_price}}元</view>
+
+            <view class='xj-header-time'>{{item.update_time}}</view>
+          </view>
+        </block>
+      </block>
+
+      <!-- 未找到任何记录 -->
+      <view style='display:flex;justify-content:space-between;width:100%;'>
+        <view class='view-xiaoxi' wx:if="{{!list.res4||list.res4.length==0}}" style='display:flex;flex-direction:column;align-items:center;width:100%;'>
+          <image src='/static/images/icon/cry-220.png' mode='aspectFill' style='width:150rpx;height:150rpx;margin-bottom:30rpx'></image>
+          <view>未找到任何记录</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 二维码 -->
+<view class='view-eno-bg {{eno==0?"hidden":""}}' bindtap="eno" data-eno='0'>
+</view>
+<block wx:if="{{list.isFollowed != true}}">
+  <view class='view-eno {{eno==0?"hidden":""}}'>
+    <image src='{{isFollowed[1]}}' mode='aspectFill' style='width:300rpx;height:300rpx;'></image>
+    <text style='width:500rpx;display:inline-block;color:orange'>长按二维码关注后才能砍价</text>
+    <text style="color:#f60;" bindtap="shuxin">我已关注</text>
+  </view>
+</block>
+
+<block wx:if="{{list.account_set.sharestyle}}">
+  <view class='view-eno {{eno==0?"hidden":""}}' bindtap="eno" data-eno='0'>
+    <image src='http://xcxvip.iiio.top/addons/wx_shop/plugin/app/static/images/123.png' class='image1' mode='aspectFill'></image>
+    <text style="color:white;font-size:34rpx" bindtap="eno" data-eno='0'> 点击右上角按钮转发给好友帮你砍价</text>
+  </view>
+</block>

@@ -1,0 +1,26 @@
+<!--pages/bargain/purchase/index.wxml-->
+<import src="../foots.wxml" />
+<view style='padding-bottom:102rpx;' >
+  <view class='xj-act-allcontent' wx:for="{{list}}" wx:for-item="item" wx:key="">
+    <navigator url='/pages/bargain/bargain/index?id={{item[0].actor_id}}&mid={{mid}}'>
+      <image class='xj-act-left-image' mode='aspectFit' src='{{item[0].images}}'></image>
+    </navigator>
+    <view class='xj-act-detail'>
+      <navigator class='xj-act-title' url='/pages/bargain/bargain/index?id={{item[0].actor_id}}&mid={{mid}}'>{{item[0].title}} </navigator>
+      <view class='xj-act-bottom'>
+        <view class='xj-act-now'>成交价￥{{item[0].now_price}}</view>
+        <view class='xj-act-old'>已下单</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 未找到任何记录 -->
+  <view style='display:flex;justify-content:space-between;width:100%;margin-top:30rpx;margin-top:250rpx;'>
+    <view class='view-xiaoxi' wx:if="{{!list}}" style='display:flex;flex-direction:column;align-items:center;width:100%;'>
+      <image src='/static/images/icon/cry-220.png' mode='aspectFill' style='width:250rpx;height:250rpx;margin-bottom:50rpx'></image>
+      <view>未找到任何记录</view>
+    </view>
+  </view>
+</view>
+
+<template is="foots" data="{{...list,buy,bargain,allbargain}}" />

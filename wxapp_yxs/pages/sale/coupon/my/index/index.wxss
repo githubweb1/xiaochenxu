@@ -1,0 +1,119 @@
+.btn wx-image { height: 42rpx; width: 42rpx; vertical-align: middle; margin-left: 20rpx }
+.btn wx-text { vertical-align: middle; }
+.fui-loading .text {
+     background-color: #eff1f6;
+}
+
+page{
+    background-color: #eff1f6;
+    word-break: break-all;
+	font-size:28rpx;
+}
+.oy_nav_list{
+    background-color: #fff;
+}
+.oy_nav_item{
+    height:76rpx;
+    border-bottom:1px solid transparent;
+    font-size: 30rpx;
+    color:#333;
+}
+.oy_nav_item.oy_active{
+     border-bottom:1px solid #64b3f3;
+     color:#64b3f3;
+}
+.oy_discount_list{
+    padding:20rpx 20rpx 0 20rpx;
+}
+.oy_discount_list_left{
+    background: #fff;
+}
+.oy_dis_left_img{
+    width:146rpx;
+    height:144rpx;
+}
+.oy_discount_list_middle{
+     background: #fff;
+     padding: 0 6rpx 0 28rpx;
+}
+.oy_discount_list_head{
+    font-size:34rpx;
+    color:#333;
+    font-weight: bold;
+}
+.oy_dis_right_img{
+    width:260rpx;
+    height:150rpx;
+}
+.oy_discount_list_title{
+    color:#999;
+    font-size: 22rpx;
+    padding-top:4rpx;
+}
+.oy_discount_list_title.oy_blue{
+    color:#76a9f7;
+}
+.oy_discount_list_title.oy_red{
+     color:#f4558f;
+}
+.oy_discount_list_title.oy_blue1{
+     color:#003e9b;
+}
+.oy_relative_box{
+    position: relative;
+}
+.oy_list_right_title{
+    width:260rpx;
+    height:100%;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 10;
+    color:#fff;
+    font-size: 76rpx;
+   
+}
+.oy_list_right_title .oy_small_title{
+    font-size:28rpx;
+}
+.oy_dis_mid_img{
+    position: absolute;
+    width:100rpx;
+    height:100rpx;
+    top:50%;
+    margin-top:-50rpx;
+    left:-50rpx;
+    z-index: 40;
+}
+
+.oy_fotter_title_box{
+    color:#999;
+    font-size: 30rpx;
+    padding:58rpx 0 38rpx 0;
+    text-align: center;
+    position: relative;
+    z-index: 30;
+}
+.oy_fotter_title{
+    display: inline-block;
+    padding:0 20rpx;
+    position: relative;
+    z-index: 30;
+    background-color:#eff1f6; 
+}
+.oy_fotter_line{
+    height:2rpx;
+    width:484rpx;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin:10rpx 0 0 -242rpx;
+    z-index: 10;
+    background-color: #999;
+}
+.oy_fotter_title_btn{
+    padding-bottom: 20rpx;
+    color:#f4558f;
+    font-size: 30rpx;
+    text-align: center;
+}

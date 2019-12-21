@@ -1,0 +1,431 @@
+/* pages/IntegralMall/orderDetails/orderDetails.wxss */
+page{
+  background: #f8f8f8
+}
+.view-order{
+font-size:25rpx;
+padding:20rpx;
+background: #fff;
+margin-top: 20rpx;
+}
+.view-shop-image{
+  width: 30rpx;
+  height: 30rpx;
+}
+.view-order-content{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.view-order-content image{
+}
+.view-order-center{
+width:400rpx;
+overflow:hidden;
+}
+.view-order-integral{
+
+}
+
+.view-order-Calculation{
+  margin-top: 20rpx;
+  padding: 20rpx;
+font-size:25rpx;
+background: #fff
+}
+.view-order-Calculation-content{
+height: 40rpx;
+}
+.view-order-Calculation label{
+  float: right
+}
+/* 地址 */
+.view-address{
+font-size:25rpx;
+float: left;
+display:flex;
+align-items: center
+}
+.view-address-content{
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background: #fff;
+ display:flex;
+justify-content:space-between;
+align-items:center;
+font-size: 30rpx;
+border-bottom: 1rpx solid #ddd
+}
+.view-choose{
+font-size:25rpx;
+float: right;
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+.view-choose image{
+  width: 30rpx;
+  height: 30rpx;
+  transform: rotate(180deg);
+}
+.view-bottom-LuckDraw{
+  position:fixed;
+bottom:0;
+height:80rpx;
+line-height:80rpx;
+width:100%;
+font-size:25rpx;
+color:#555;
+padding-left: 30rpx;
+border-top: 1rpx solid #ddd;
+box-shadow: darkgrey 10px 10px 15px 5px ;
+
+}
+.view-bottom-LuckDraw text{
+display: inline-block
+}
+.view-bottom-LuckDraw navigator{
+display: inline-block;
+float: right;
+width:200rpx;
+height:80rpx;
+text-align: center;
+background:rgb(214, 32, 63)  ;
+color: white;
+padding-right: 20rpx
+}
+/* 订单详细 */
+.view-order-details{
+  margin-top: 20rpx;
+  padding: 20rpx;
+font-size:25rpx;
+background: #fff;
+padding-bottom: 100rpx;
+}
+.view-order-details view{
+  height: 40rpx;
+}
+.view-order-details label{
+  margin-left: 20rpx;
+}
+/* 头部 */
+.view-order-header{
+padding: 20rpx;
+background: orange;
+color: white;
+font-size: 30rpx;
+height:100rpx;
+position: relative
+}
+.view-order-header-left{
+}
+.view-header-choose{
+font-size:33rpx;
+}
+.view-header-money{
+font-size: 25rpx
+}
+.view-order-header-right{
+  height: 70rpx;
+  width: 70rpx;
+  position: absolute;
+  right:15rpx;
+  top:40rpx;
+}
+/* 底部 */
+.view-bottom{
+    position:fixed;
+bottom:0;
+  width: 100%;
+  height: 100rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+.view-allRecord-media{
+  position: relative;
+  width:100%;
+height:100%;
+border-top:1rpx solid #ccc;
+display:flex;
+align-items:center;
+
+}
+.view-bottom-LuckDraw{
+  
+height:80rpx;
+line-height:80rpx;
+text-align:center;
+width:94%;
+font-size:25rpx;
+color:white;
+background:orange;
+border-radius: 10rpx;
+}
+
+
+.view-order-bg{
+background: #000;
+opacity: 0.5;
+width: 100%;
+height: 100%;
+z-index: 1000;
+position: fixed;
+top:0;
+left: 0
+}
+.view-order-bg-choose{
+    background: #ddd;
+    height: 80rpx;
+    line-height: 80rpx;
+     width: 100%;
+     color: #666;
+     text-align: center
+}
+.view-order-bg-wechat{
+  background: #fff;
+   height: 80rpx;
+    line-height: 80rpx;
+     width: 100%;
+     color: #999;
+     text-align: center
+}
+.view-order-bg-cancel{
+  background: rgb(230, 34, 34);
+   height: 80rpx;
+    line-height: 80rpx;
+     width: 100%;
+     color: white;
+     text-align: center
+}
+.view-order-bg-content{
+  position: fixed;
+bottom:60rpx;
+  z-index: 2000;
+  height: 180rpx;
+  width: 100%;
+  font-size: 27rpx;
+}
+
+
+
+.view-order-finish{
+  font-size: 30rpx;
+  border: 1px solid #666;
+  width: 140rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+}
+.view-order-hongbao{
+  font-size: 30rpx;
+  border: 1px solid #666;
+  width: 140rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  position: absolute;
+  right: 20rpx;
+  border-radius:15rpx;
+padding:2rpx 20rpx;
+background:#f3f3f3;
+
+}
+.view-order-commond{
+    font-size: 30rpx;
+  border: 1px solid #666;
+  width: 140rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  margin-top: 20rpx;
+}
+
+.hidden{
+  display: none
+}
+/* 快递 */
+.view-first-express{
+padding:20rpx;
+background:#fff;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:30rpx;
+color: #888;
+margin-bottom:20rpx;
+}
+/* 兑换码 */
+.view-qrcode-content{
+padding:10rpx;
+background:#fff;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:30rpx;
+color: #888;
+margin-top:20rpx;
+}
+.view-qrcode-content-bootom{
+padding:10rpx;
+background:#fff;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:30rpx;
+color: #888;
+margin-bottom:20rpx;
+}
+/* 适用门店 */
+.view-store-content{
+padding:10rpx;
+background:#fff;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:30rpx;
+color: #888;
+margin-top:20rpx;
+}
+
+.view-store-content-bootom{
+padding:10rpx;
+background:#fff;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:30rpx;
+color: #888;
+margin-bottom:20rpx;
+}
+.view-store-content1{
+  padding:10rpx;
+background:#fff;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:30rpx;
+color:#888;
+margin-top:20rpx;
+}
+.view-store-content-lright{
+display: flex;
+flex-direction: column;
+margin-right:30rpx;
+
+}
+.view-store-content-lright image{
+margin-top: 10rpx
+}
+.view-store-content-left{
+display:flex;
+align-items:center;
+
+}
+.view-store-content-left view{
+margin-right:30rpx;
+}
+.storeimage {
+  position: relative;
+  top: 3rpx;
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+  transform: rotate(180deg);
+}
+.rotate {
+  transform: rotate(270deg);
+}
+
+
+/* 二维码 */
+
+.view-alleno {
+  color: #f60;
+  font-size: 30rpx;
+  position: relative;
+  border:1rpx solid #ddd;
+display:inline-block;
+padding:10rpx;
+border-radius:30rpx;
+margin-left:20rpx;
+}
+
+.view-eno {
+position:fixed;
+display:flex;
+top:20%;
+left:18%;
+z-index:1001;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+.view-eno-bg {
+  background: #000;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+/* 支付方式 */
+.view-order-bg {
+  background: #000;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.view-order-bg-choose {
+  background: #ddd;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  color: #666;
+  text-align: center;
+}
+
+.view-order-bg-wechat {
+  background: #f8f8f8;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  color: #999;
+  text-align: center;
+}
+
+.view-order-bg-balance {
+  background: #fff;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  color: #999;
+  text-align: center;
+}
+
+.view-order-bg-cancel {
+  background: rgb(230, 34, 34);
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+.view-order-bg-content {
+  position: fixed;
+  bottom: 140rpx;
+  z-index: 2000;
+  height: 180rpx;
+  width: 100%;
+  font-size: 27rpx;
+}

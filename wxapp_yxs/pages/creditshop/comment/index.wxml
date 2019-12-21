@@ -1,0 +1,65 @@
+<!--pages/creditshop/comment/index.wxml-->
+<view style='padding-bottom:100rpx'>
+  <view class='view-order'>
+    <view style='display:flex;align-items:center;padding-bottom:17rpx;'>
+      <image class='view-shop-image' src='/static/images/icon/shop.png'></image>
+      <view style='margin-left:20rpx'>{{list.shopset_shop_name}}</view>
+    </view>
+    <navigator class='view-order-content' url='/pages/creditshop/detail/index?id={{list.log.goodsid}}'>
+      <image src='{{list.log.thumb}}' mode='aspectFill'></image>
+      <view class='view-order-center'>
+        <view>{{list.log.title}}</view>
+        <view style='color:#666' wx:if="{{list.log.optionid&&list.log.optionid!=0&&list.log.optionid&&list.log.optionid!=''}}">规格：{{list.log.optiontitle}}</view>
+      </view>
+      <view class='view-order-integral'>{{list.log.credit}}{{list.shopset_trade_credittext}}
+        <view>
+          <view class='xj-text-right' wx:if="{{list.log.money==0}}">
+            {{list.log.money}}元{{list.log.type==1?"抽奖":""}}{{list.log.type==0?"兑换":""}}
+          </view>
+          <view wx:else>
+            付{{list.log.money}}元{{list.log.type==1?"抽奖":""}}{{list.log.type==0?"兑换":""}}
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <view class='xj-title'>
+    整单评价
+  </view>
+  <view class='view-order' style='margin-top:0'>
+    <view class='xj-list' wx:if="{{list.log.iscomment==0}}">
+      <view class='xj-textstars' >
+      评分
+        <text class='xj-text-star'>*</text>
+      </view>
+      <view class='xj-stars'>
+        <image src='{{key>item?allimagesUrl:imagesUrl}}' wx:for="{{stars}}" wx:key="" bindtap='clickStar' data-imgNum='{{item+1}}'></image>
+      </view>
+      <view class='xj-commentNum'>
+        <view wx:if="{{key==0}}">没有评分</view>
+        <image wx:if="{{key!=0}}" class='xj-dele' bindtap='delete' src='/static/images/icon/close_light.png'></image>
+      </view>
+    </view>
+    <view class='xj-list1'>
+      <view class='xj-image-title'>晒图</view>
+      <view class="oy-pic-img-item" wx:for="{{imageList}}" wx:key="">
+        <image src="{{item}}"></image>
+        <view class="oy-del-box flex flex-center" data-key="{{index}}" bindtap='myDel'>
+          X
+        </view>
+      </view>
+      <view class="oy-pic-img-item" bindtap='addImg'>
+        <image src="/static/images/icon/upload.png"></image>
+      </view>
+    </view>
+    <view class='xj-list1'>
+      <view class='xj-textstars'>评论
+        <text class='xj-text-star'>*</text>
+      </view>
+      <textarea style='height:150rpx' bindinput='comment' placeholder='说点什么吧'></textarea>
+    </view>
+  </view>
+  <view class='xj-bottom'>
+    <view class='xj-postComment' bindtap='postComment'>提交评论</view>
+  </view>
+</view>

@@ -1,0 +1,103 @@
+<!--pages/SecKill/seckill.wxml秒杀页面-->
+<view>
+  <view wx:if="{{data.status==1}}">
+      <scroll-view  scroll-x class='time-container'>
+          <view class='time-scoll'>
+              <block wx:for="{{data.result.times}}" wx:key="index">
+                  <view class='time-slide {{timeSlide==index?"current":""}}' bindtap='clickTime' data-id='{{item.id}}' data-timeslide='{{index}}'>
+                      <text class='timee'>{{item.time}}:00</text>
+                      <text class='textt'>{{item.status==0?"抢购中":(item.status==1?"即将开始":"已开抢")}}</text>
+                  </view>
+              </block>
+              
+          </view> 
+      </scroll-view>
+      <view class='swiper-container'>
+          <swiper autoplay="true" duration="500" class='swiper-main' interval='3000' circular='true' display-multiple-items='3'>
+              <block wx:for="{{data.result.advs}}" wx:key="ind">
+                  <swiper-item>
+                    <navigator href="{{item.link}}">
+                      <image src="{{item.thumb}}" class="slide-image"/>
+                    </navigator>
+                  </swiper-item>
+              </block>
+              
+          </swiper>
+      </view>
+      <scroll-view scroll-x class='room-container'>
+          <view class='scroll-room'>
+              <block wx:for="{{data.result.rooms}}" wx:key="i">
+                  <view class='room-slide {{roomid==item.id?"selected":""}}' bindtap='selectedTitle' data-roomid="{{item.id}}">{{item.title}}</view>
+              </block>    
+          </view>
+      </scroll-view>
+      <view class='goods-container'>
+          <view class='goods-container-main'>
+              <view class='fui-list-group-title'>
+                  <text class="flex-1">{{times.status==0?"抢购中，先下单先得":(times.status==1?"即将开始 先下单先得哦":(times.status==-1?"还可以继续抢购哦~":""))}}</text>
+                  <view class='timer' wx:if="{{times.status>=0}}">{{times.status==1?"距开始":"距结束"}}
+                    <view class='time-hour'>{{countDownList[0].hou}}</view>:
+                    <view class='time-min'>{{countDownList[0].min}}</view>:
+                    <view class='time-sec'>{{countDownList[0].sec}}</view>
+                  </view>
+              </view>
+              <block wx:for="{{produList.result.goods}}" wx:key='p'>
+                  <view class='fui-list align-start'>
+                      <view class='fui-list-media'>
+                        <navigator url='/pages/goods/detail/index?id={{item.goodsid}}&frommyshop=1&taskid={{taskid}}&roomid={{roomid}}&timeid={{timeid}}' class='nav-img'>
+                            <image src='{{item.thumb}}'>
+                            </image>
+                        </navigator>
+                      </view>
+                      <view class='fui-list-inner'>
+                        <navigator url='/pages/goods/detail/index?id={{item.goodsid}}&frommyshop=1&taskid={{taskid}}&roomid={{roomid}}&timeid={{timeid}}' class='nav-text'>{{item.title}}</navigator>
+                        <view class='info'>
+                            <view class='button'>
+                              <navigator url='/pages/goods/detail/index?id={{item.goodsid}}&frommyshop=1&taskid={{taskid}}&roomid={{roomid}}&timeid={{timeid}}' class='{{times.status==1?"btn-success":(item.percent>=100?"btn-success":"")}}'>{{times.status==1?"等待抢购":(item.percent>=100?"已抢空":"去抢购")}}</navigator>
+                            </view>
+                            <view class='price'>¥{{item.price}}</view>
+                        </view>
+                        <view class='info info1'>
+                            <view class='process'>
+                              <view class='inner' style='width:{{item.percent}}%;'></view>
+                            </view>
+                            <text class='process-text'>已售 {{item.percent}}%</text>
+                            <view class='price1'>¥{{item.marketprice}}</view>
+                        </view>
+                      </view>
+                  </view>
+              </block>
+              <view wx:if="{{produList.status==0}}" class='nonedata'>暂无数据...</view>
+          </view>
+      </view>
+
+      <!-- 底部脚本导航 -->
+      <view class='fui-navbar'>
+          <view class='nav-item'  bindtap='qiehuan' data-now='0'>
+            <image src='/static/images/tabbar/icon-1-active.png'></image>
+            <text class='label labelcolor'>秒杀首页</text>
+          </view>
+          <view class='nav-item' bindtap='qiehuan' data-now='1'>
+            <image src='/static/images/tabbar/icon-4.png'></image>
+            <text class='label'>购物车</text>
+          </view>
+          <view class='nav-item' bindtap='qiehuan' data-now='2'>
+            <image src='/static/images/tabbar/icon-3.png'></image>
+            <text class='label'>我的订单</text>
+          </view>
+          <view class='nav-item backicon' bindtap='qiehuan' data-now='3'>
+            <image class='backicon1' src='/static/images/icon/back.png'></image>
+            <text class='label'>返回商城</text>
+          </view>
+      </view>
+  </view>
+  <view class='fui-message' wx:if="{{data.status==0}}">
+      <view class='icon-oy'>
+          <image src='/static/images/icon/cry-220.png'></image>
+      </view>
+      <view class='content-oy'>{{data.result.message}}</view>
+      <view class='bottom-oy'>
+          <view class='btn-oy-sub' bindtap='gobackk'>确认</view>
+      </view>
+  </view>
+</view>

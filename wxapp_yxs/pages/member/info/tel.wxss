@@ -1,0 +1,42 @@
+/* pages/info/tel.wxss */
+.oy_form_list{
+    height:100rpx;
+    padding:0 40rpx;
+}
+.oy_form_pointer{
+    color:#ff5233;
+    font-size: 38rpx;
+    margin-right:8rpx;
+}
+.oy_form_title{
+    color:#000;
+    font-size: 30rpx;
+    width:190rpx;
+    height:90rpx;
+}
+.oy_form_right{
+    height:90rpx;
+}
+.oy_form_input{
+    width: 100%;
+    height:100%;
+    font-size:30rpx;
+    color:#000;
+}
+.oy_tel_btn{
+    color:#fa5757;
+    border:1px solid #fa5757;
+    padding:14rpx;
+    font-size:30rpx;
+    border-radius: 10rpx;
+}
+.oy_placeholder{
+    color:#b3b3b3;
+    font-size: 30rpx;
+}
+.oy_tel_box{
+    padding:20rpx 64rpx;
+    height:90rpx;
+    font-size: 36rpx;
+    font-weight: bold;
+}

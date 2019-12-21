@@ -1,0 +1,265 @@
+<!--pages/IntegralMall/my/my.wxml-->
+<!-- 顶部 -->
+<import src="../foots.wxml" />
+
+<view>
+  <!-- 头部 -->
+  <view class='view-wine-nav-bg'>
+    <view class='view-wine-nav'>
+      <text class='view-wine-nav-wait {{num==0?"blue":""}}' data-num='0' data-hidden='0' bindtap='tapwait'>全部记录</text>
+      <text class='view-wine-nav-go {{num==1?"blue":""}}' data-num='1' data-hidden='1' bindtap='tapgo'>兑换记录</text>
+      <text class='{{num==2?"blue":""}}' data-num='2' data-hidden='2' bindtap='tapleave'>中奖记录</text>
+    </view>
+  </view>
+</view>
+<!-- 内容 -->
+<template name="msgItem">
+  <view class='view-allRecord'>
+    <block wx:for-items="{{list}}" wx:key="asd">
+      <view style='margin-top:20rpx;background:#fff'>
+        <view class='view-allRecord-header'>订单号:
+          <text>{{item.logno}}</text>
+          <block wx:if="{{item.type==0}}">
+            <block wx:if="{{item.goodstype==0}}">
+              <block wx:if="{{item.isverify==1}}">
+                <block wx:if="{{item.status==2}}">
+                  <label>待兑换</label>
+                  <block wx:if="{{item.isreply==1}}">
+                    <label>
+                      {{item.status==3&&item.iscomment==0?"待评价":item.status==3&&item.iscomment==1?"追加评价":item.status==3&&item.iscomment==2?"已完成":""}}</label>
+                  </block>
+                  <block wx:else>
+                    <label wx:if="{{item.status==3}}">
+                      已完成
+                    </label>
+                  </block>
+                </block>
+              </block>
+              <block wx:else>
+                <block wx:if="{{item.status==2&&item.addressid==0}}">
+                  <label>已兑换</label>
+                </block>
+                <block wx:if="{{item.status==2&&item.addressid>0&&item.time_send==0}}">
+                  <label>待发货</label>
+                </block>
+                <block wx:if="{{item.status==3&&item.addressid>0&&item.time_send==0}}">
+                  <label>待发货</label>
+                </block>
+                <block wx:if="{{item.status==3&&item.addressid>0&&item.time_finish==0}}">
+                  <label>待收货</label>
+                </block>
+                <block wx:if="{{item.isreply==1}}">
+                  <block wx:if="{{item.status==3&&item.iscomment==0&&item.time_finish>0}}">
+                    <label>待评价</label>
+                  </block>
+                  <block wx:if="{{item.status==3&&item.iscomment==1&&item.time_finish>0}}">
+                    <label>追加评价</label>
+                  </block>
+                  <block wx:if="{{item.status==3&&item.iscomment==2&&item.time_finish>0}}">
+                    <label>已完成</label>
+                  </block>
+                </block>
+                <block wx:else>
+                  <block wx:if="{{item.status==3}}">
+                    <label>已完成</label>
+                  </block>
+                </block>
+              </block>
+            </block>
+            <block wx:if="{{item.goodstype==1}}">
+              <block wx:if="{{item.isreply==1}}">
+                <label>
+                  {{item.status==3&&item.iscomment==0?"待评价":item.status==3&&item.iscomment==1?"追加评价":item.status==3&&item.iscomment==2?"已发放":""}}</label>
+              </block>
+              <block wx:else>
+                <label wx:if="{{item.status==3}}">
+                  已发放
+                </label>
+              </block>
+            </block>
+            <block wx:if="{{item.goodstype==2}}">
+              <block wx:if="{{item.isreply==1}}">
+                <label>
+                  {{item.status==3&&item.iscomment==0?"待评价":item.status==3&&item.iscomment==1?"追加评价":item.status==3&&item.iscomment==2?"已发放":""}}</label>
+              </block>
+              <block wx:else>
+                <label wx:if="{{item.status==3}}">
+                  已发放
+                </label>
+              </block>
+            </block>
+            <block wx:if="{{item.goodstype==3 }}">
+              <block wx:if="{{item.isreply==1}}">
+                <label>
+                  {{item.status==3&&item.iscomment==0?"待评价":item.status==3&&item.iscomment==1?"追加评价":item.status==3&&item.iscomment==2?"已发放":""}}</label>
+              </block>
+              <block wx:else>
+                <label wx:if="{{item.status==3}}">
+                  已发放
+                </label>
+              </block>
+            </block>
+          </block>
+          <block wx:else>
+            <block wx:if="{{item.goodstype==0}}">
+              <block wx:if="{{item.isverify==1}}">
+                <block wx:if="{{item.status==2}}">
+                  <label>待兑换</label>
+                  <block wx:if="{{item.isreply==1}}">
+                    <label>
+                      {{item.status==3&&item.iscomment==0?"待评价":item.status==3&&item.iscomment==1?"追加评价":item.status==3&&item.iscomment==2?"已完成":""}}</label>
+                  </block>
+                  <block wx:else>
+                    <label wx:if="{{item.status==3}}">
+                      已完成
+                    </label>
+                  </block>
+                </block>
+              </block>
+              <block wx:else>
+                <block wx:if="{{item.status==2&&item.addressid==0}}">
+                  <label>已中奖</label>
+                </block>
+                <block wx:if="{{item.status==2&&item.addressid>0}}">
+                  <label>待发货</label>
+                </block>
+                <block wx:if="{{item.isreply==1}}">
+                  <block wx:if="{{item.status==3&&item.iscomment==0}}">
+                    <label>待评价</label>
+                  </block>
+                  <block wx:if="{{item.status==3&&item.iscomment==1}}">
+                    <label>追加评价</label>
+                  </block>
+                  <block wx:if="{{item.status==3&&item.iscomment==2}}">
+                    <label>已完成</label>
+                  </block>
+                </block>
+                <block wx:else>
+                  <block wx:if="{{item.status==3}}">
+                    <label>已完成</label>
+                  </block>
+                </block>
+              </block>
+            </block>
+            <block wx:if="{{item.goodstype==1}}">
+              <block wx:if="{{item.isreply==1}}">
+                <label>
+                  {{item.status==3&&item.iscomment==0?"待评价":item.status==3&&item.iscomment==1?"追加评价":item.status==3&&item.iscomment==2?"已发放":""}}</label>
+              </block>
+              <block wx:else>
+                <label wx:if="{{item.status==3}}">
+                  已发放
+                </label>
+              </block>
+            </block>
+            <block wx:if="{{item.goodstype==2}}">
+              <block wx:if="{{item.isreply==1}}">
+                <label>
+                  {{item.status==3&&item.iscomment==0?"待评价":item.status==3&&item.iscomment==1?"追加评价":item.status==3&&item.iscomment==2?"已发放":""}}</label>
+              </block>
+              <block wx:else>
+                <label wx:if="{{item.status==3}}">
+                  已发放
+                </label>
+              </block>
+            </block>
+            <block wx:if="{{item.goodstype==3 }}">
+              <block wx:if="{{item.isreply==1}}">
+                <label>
+                  {{item.status==3&&item.iscomment==0?"待评价":item.status==3&&item.iscomment==1?"追加评价":item.status==3&&item.iscomment==2?"已发放":""}}</label>
+              </block>
+              <block wx:else>
+                <label wx:if="{{item.status==3}}">
+                  已发放
+                </label>
+              </block>
+            </block>
+            <block wx:if="{{item.status==1}}">
+              <label>未中奖</label>
+            </block>
+          </block>
+        </view>
+        <navigator class='view-allRecord-content' url='/pages/creditshop/log_detail/index?id={{item.id}}?merchid={{item.merchid}}'>
+          <image class='view-allRecord-image' src='{{item.thumb}}' mode='aspectFill'></image>
+          <view>
+            <view class='view-allRecord-center'>
+              <text style='margin-right:20rpx'>{{item.goodstype==0?"商品":item.goodstype==1?"优惠券":item.goodstype==2?"余额":item.goodstype==3?"红包":""}}</text>
+              {{item.title}}
+            </view>
+            <view class='view-allRecord-center1' wx:if="{{item.optiontitleg}}">
+              <text>规格:{{item.optiontitleg}}</text> 
+            </view>
+          </view>
+          <view>
+            <view class='view-allRecord-right'>
+              <text>{{item.credit}}</text>积分</view>
+            <view class='view-allRecord-right' wx:if="{{item.money!=0}}">
+              <text>+￥{{item.money}}</text>{{item.type==1?"抽奖":item.type==0?"兑换":""}}</view>
+          </view>
+        </navigator>
+        <view class='view-allRecord-bottom'>
+          <view class='view-bottom-inner' wx:if="{{item.goodstype==0}}">
+            <text style="color:#f60;" wx:if="{{item.isverify==1 && item.status==2}}"> 兑换码:{{item.eno}}</text>
+            <view class='view-alleno' wx:if="{{item.isverify==1 && item.status==2}}" data-eno='1' data-a='{{item.eno}}' data-logid='{{item.id}}' bindtap="eno"> 兑换二维码 </view>
+          </view>
+          <view class='view-allRecord-media'>
+            <view class='view-order-finish' data-lodid='{{item.id}}' bindtap='create' wx:if="{{item.isverify==0&&item.addressid!=0 && item.status==3 && item.time_send > 0 && item.time_finish == 0}}">
+              {{complete.lenght !=0 ?"已收货":"确认收货"}}
+            </view>
+            <view class='view-order-hongbao' data-lodid='{{item.id}}' bindtap='Receivehongbao' wx:if="{{item.goodstype==3 && item.status ==2}}">
+              {{complete.lenght !=0 ?"领取红包":"已领取"}}
+            </view>
+
+            <block wx:if="{{item.isreply==1 && item.iscomment < 2 && item.time_finish>0}}">
+              <block wx:if="{{item.goodstype==0 || item.goodstype ==1}}">
+                <navigator url='/pages/creditshop/comment/index?goodsid={{item.goodsid}}&logid={{item.id}}' class='view-order-hongbao' data-lodid='{{item.id}}'  wx:if="{{item.status==3 && item.iscomment ==0}}">
+                  评价
+                </navigator>
+                <navigator url='/pages/creditshop/comment/index?goodsid={{item.goodsid}}&logid={{item.id}}'  class='view-order-hongbao' data-lodid='{{item.id}}'  wx:if="{{item.status==3 && item.iscomment ==1}}">
+                  追加评价
+                </navigator>
+              </block>
+              <block wx:if="{{item.goodstype==2 || item.goodstype ==3}}">
+                <navigator url='/pages/creditshop/comment/index?goodsid={{item.goodsid}}&logid={{item.id}}'  class='view-order-hongbao' data-lodid='{{item.id}}'  wx:if="{{item.status==3 && item.iscomment ==0}}">
+                  评价
+                </navigator>
+                <navigator url='/pages/creditshop/comment/index?goodsid={{item.goodsid}}&logid={{item.id}}'  class='view-order-hongbao' data-lodid='{{item.id}}'  wx:if="{{item.status==3 && item.iscomment ==1}}">
+                  追加评价
+                </navigator>
+              </block>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+ 
+</template>
+
+<!-- 全部记录 -->
+<view class='view-wine-wait'>
+  <template is="msgItem" data="{{...links}}" />
+</view>
+ <!-- 未找到任何记录 -->
+  <view class='view-xiaoxi' wx:if="{{!links.list || links.list.length==0 }}">
+    <image src='/static/images/icon/cry-220.png' mode='aspectFill' style='width:150rpx;height:150rpx;margin-bottom:30rpx'></image>
+    <view>未找到任何消息</view>
+  </view>
+<!-- 加载更多 -->
+<view bindtap='moreinfo' wx:if="{{links.list&&links.list.length!=0}}" style='padding:20rpx;text-align:center;font-size:30rpx;color:orange;padding-bottom:150rpx'>
+  {{more==0?"点击加载更多":"没有更多信息"}}
+</view>
+
+
+
+<!-- 二维码 -->
+<view class='view-eno-bg {{eno==0?"hidden":""}}' bindtap="eno" data-eno='0' data-a='0'>
+</view>
+<view class='view-eno {{eno==0?"hidden":""}}'>
+  <image src='{{url}}' mode='aspectFill' style='width:300rpx;height:300rpx;'></image>
+  <text style='width:500rpx;display:inline-block;color:orange'>请将此二维码出示给店员，如扫码失败请将二维码号码出示给店员看</text>
+  <text style="color:#f60;">兑换码:{{a}}</text>
+</view>
+
+<!-- 底部tabbar -->
+<template is="foots" data="{{...list,home,alllist,my}}" />

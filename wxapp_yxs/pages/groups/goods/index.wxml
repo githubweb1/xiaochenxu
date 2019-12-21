@@ -1,0 +1,103 @@
+<import src="/utils/wxParse/wxParse.wxml"/>
+<view class='fui-page creditshop-detail-page'>
+  <view class='fui-content'>
+    <block wx:if='{{goods.thumb_url!=""}}'>
+    <view class="fui-swipe" data-speed="5000" data-gap="5">
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='height:750rpx;'>
+        <view class="fui-swipe-wrapper">
+          <block wx:for="{{goods.thumb_url}}" wx:key=''>
+            <view class="fui-swipe-item">
+              <swiper-item>
+                <image mode='widthFix' src="{{item}}" alt="{{goods.title}}" style='width:100%; height:100%;'/>
+              </swiper-item>
+            </view>
+          </block>
+        </view>
+        <view class="fui-swipe-page">
+          <block wx:for="{{goods.thumb_url}}" wx:item="thumb" wx:key=''>
+            <view class="fui-swipe-bullet"></view>
+          </block>
+        </view>
+      </swiper>
+    </view>
+    </block>
+    <view class="lynn_goods_head">
+      <view class='lynn_goods_head_title'>
+        <text class='span'>{{goods.groupnum}}人成团</text>{{goods.title}}
+      </view>
+      <view class="lynn_goods_follow" style="display: none;">
+        <icon class="iconfont icon">&#xe606;</icon>
+        <icon class="iconfont icon on">&#xe605;</icon>收藏
+      </view>
+      <block wx:if="{{goods.description}}">
+        <view class="lynn_goods_head_subtitle">
+          {{goods.description}}
+        </view>
+      </block>
+      <view >
+        <view class="lynn_goods_head_info view-Element">
+          <view>
+          ¥
+          <text class='strong'>{{goods.groupsprice}}</text>/{{goods.units ? goods.goodsnum+goods.units : '1件'}}
+          <text class='del' style="flex-direction:row;">¥ {{goods.price}}</text>
+</view>
+          <view class='fr'>
+            已有
+            <text class='b'>{{goods.fightnum}}</text>人参团，销量
+            <text class='b'>{{goods.sales}}</text>
+            </view>
+          <view style="clear:both;"></view>
+        </view>
+        <block wx:if="{{goods.isdiscount}}">
+          <view class="lynn_goods_discount " >【团长优惠
+           <text style='color:#fd5454'>
+              <block wx:if="{{goods.headstype==0}}">¥{{goods.headsmoney}}</block>
+
+              <block wx:else="{{goods.headstype==1}}">{{goods.headsdiscount}}折</block>
+             </text>】
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="lynn_goods_invitation">
+      *开团并邀请{{goods.groupnum-1}}人参团，人数不足自动退款，详见
+      <navigator url="/pages/groups/team/rules">拼团玩法</navigator>
+    </view>
+    <view class="lynn_goods_content">
+      <view class="lynn_goods_content_title">
+        <view class='span'>图文详情</view>
+      </view>
+      <view class="lynn_goods_content_info content-images" id="content">
+        <block wx:if="{{groupsset.description || goods.content}}">
+          <template is="wxParse" data="{{wxParseData:wxParseData.nodes}}"/>
+        </block>
+        <block wx:else>
+          暂无商品详情
+        </block>
+      </view>
+    </view>
+    <view style="height:2.5rem;"></view>
+  </view>
+  <view class="fui-navbar bordert" style="z-index:100;padding:2px;">
+    <navigator  class="homeabtn btn btn-warning {{ !goods.stock ? 'disabled' : ''}} external" open-type='redirect' url="/pages/groups/index/index">
+      <image mode='widthFix' class='homeabtn_images_home' src='/static/images/icon/home.png'></image>
+    </navigator>
+    <view class="lynn_goods_btn lynn_btn_waring btn-single" bindtap='btnSingle'>
+      <view class='strong' style='padding:0rpx;'>
+        <block wx:if="{{goods.single == 1}}">
+          <view>¥ {{goods.singleprice}}</view>
+        </block>
+        <block wx:else>
+          <text>\n</text>
+        </block>
+        单独购买
+      </view>
+    </view>
+    <navigator class="lynn_goods_btn lynn_btn_danger"  data-nocache="true" url="/pages/groups/goods/opengroups?heads=1&type=groups&id={{goods.id}}">
+      <view class='strong'>
+        <view>¥ {{goods.groupsprice}}</view> 
+        {{goods.groupnum}}人成团
+      </view>
+    </navigator>
+  </view>
+</view>

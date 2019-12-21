@@ -1,0 +1,72 @@
+<view class='fui-page order-pay-page'>
+  <view class="fui-header" style='position: none;'>
+    <view class="title" style='margin-right:-2rem;'>收银台</view>
+    <view class="fui-header-right">
+      <navigator url="/pages/groups/orders/index">订单</navigator>
+    </view>
+  </view>
+  <view class='fui-content margin'>
+    <view class="fui-cell-group">
+      <view class="fui-cell">
+        <view class="fui-cell-label">订单编号</view>
+        <view class="fui-cell-info"></view>
+        <view class="fui-cell-remark noremark">{{list.order.orderno}}</view>
+      </view>
+      <view class="fui-cell">
+        <view class="fui-cell-label">订单金额</view>
+        <view class="fui-cell-info"></view>
+        <view class="fui-cell-remark noremark">
+          <span class='text-danger'>¥ {{list.money}}</span>
+        </view>
+      </view>
+    </view>
+    <view class='fui-list-group' style="margin-top:10px;">
+      <block wx:if="{{list.wechat.success || list.payinfo.wechat}}">
+        <view class='fui-list pay-btn' bindtap='pay' data-type='wechat'>
+          <view class='fui-list-media wechat'>
+            <image mode='aspectFit' class='round' src='/static/images/icon-white/wechat.png'></image>
+          </view>
+          <view class='fui-list-inner'>
+            <view class="title">微信支付</view>
+            <view class="subtitle">微信安全支付</view>
+          </view>
+          <view class='fui-list-angle'>
+            <span class="angle"></span>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{list.credit.success}}">
+        <view class='fui-list pay-btn' bindtap='pay' data-type='credit'>
+          <view class='fui-list-media credit radius'>
+            <image mode='aspectFit' class='round' src='/static/images/icon-white/money.png'></image>
+          </view>
+          <view class='fui-list-inner'>
+            <view class="title">余额支付</view>
+            <view class="subtitle">当前余额:
+              <span class='text-danger'>¥ {{list.credit.current}}</span>
+            </view>
+          </view>
+          <view class='fui-list-angle'>
+            <span class="angle"></span>
+          </view>
+        </view>
+      </block>
+      <!-- <block wx:if="{{list.cash.success}}">
+        <view class='fui-list pay-btn' bindtap='pay' data-type='cash'>
+          <view class='fui-list-media'>
+            <i class='icon icon-deliver1 cash'></i>
+          </view>
+          <view class='fui-list-inner'>
+            <view class="title">货到付款</view>
+            <view class="subtitle">收到商品后进行付款</view>
+          </view>
+          <view class='fui-list-angle'>
+            <span class="angle"></span>
+          </view>
+        </view>
+      </block> -->
+    </view>
+  </view>
+  <text>
+  </text>
+</view>

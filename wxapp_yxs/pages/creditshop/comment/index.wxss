@@ -1,0 +1,141 @@
+/* pages/creditshop/comment/index.wxss */
+page{
+  background: #f8f8f8
+}
+.view-order{
+font-size:26rpx;
+padding:20rpx;
+background: #fff;
+margin-top: 20rpx;
+}
+
+.view-shop-image{
+  width: 30rpx;
+  height: 30rpx;
+}
+.view-order-content{
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-top:1rpx solid #f3f3f3;
+}
+
+.view-order-content image{
+  width:160rpx;
+height:160rpx;
+}
+.view-order-center{
+width:400rpx;
+overflow:hidden;
+}
+.view-order-integral{
+color:#f60;
+text-align:center;
+}
+.xj-text-right{
+  text-align:right;
+  padding:0 10rpx;
+background:#fb4a20;
+color:white;
+border-radius:10rpx;
+}
+.view-order-Calculation{
+  margin-top: 20rpx;
+  padding: 20rpx;
+font-size:25rpx;
+background: #fff
+}
+.view-order-Calculation-content{
+height: 40rpx;
+}
+.view-order-Calculation label{
+  float: right
+}
+
+/* 整单评价 */
+.xj-title{
+padding:20rpx;
+color:#888;
+font-size: 30rpx;
+}
+.xj-textstars{
+  width:150rpx;
+}
+.xj-text-star{
+color:red;
+height:15rpx;
+}
+.xj-list{
+display:flex;
+align-items:center;
+padding:25rpx;
+border-bottom:1rpx solid #f3f3f3;
+}
+.xj-list1{
+display:flex;
+padding:25rpx;
+border-bottom:1rpx solid #f3f3f3;
+}
+.xj-stars{
+
+}
+.xj-stars image{
+width:40rpx;
+height:40rpx;
+}
+.xj-commentNum{
+  display:flex;
+align-items:center;
+margin-left:20rpx;
+}
+.xj-dele{
+  width:40rpx;
+height:40rpx;
+margin-left:10rpx;
+border:1rpx solid #ccc;
+border-radius:50%;
+}
+.xj-image-title{
+width:150rpx;
+}
+.xj-addimage{
+
+}
+.xj-bottom{
+  position:fixed;
+bottom:0;
+background:#fff;
+width:100%;
+height:100rpx;
+font-size:30rpx;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+box-shadow:10rpx 5rpx 5rpx 5rpx #ccc;
+}
+.xj-postComment{
+  width:95%;
+height:80rpx;
+background:#ff5555;
+border-radius:10rpx;
+text-align:center;
+line-height:80rpx;
+}
+
+.oy-del-box{
+position:absolute;
+right:0;
+top:0;
+color:white;
+background:rgba(0,0,0,0.5);
+width:40rpx;
+height:40rpx;
+line-height:40rpx;
+text-align:center;
+font-size:28rpx;
+}
+.oy-pic-img-item {
+  position: relative;
+  margin-right:20rpx;
+}

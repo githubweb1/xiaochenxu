@@ -1,0 +1,20 @@
+/* pages/board/aboutBoard/aboutBoard.wxss */
+.oy-qa-head-right{
+	color:#999;
+}
+.oy-qa-head-right:after{
+	content: " ";
+    display: inline-block;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    height: 16rpx;
+    width: 16rpx;
+    border-width: 1px 1px 0 0;
+    border-color: #C8C8CD;
+    border-style: solid;
+    position: relative;
+    margin-left: 0;
+}
+@import '../index/list.wxss';
+@import '../index/footer.wxss'

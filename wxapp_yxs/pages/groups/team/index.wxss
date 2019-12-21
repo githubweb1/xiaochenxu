@@ -1,0 +1,109 @@
+/* pages/groups/team/index.wxss */
+
+page {
+  background: #f6f6f6;
+}
+
+.orderscroll {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+}
+
+.orderscroll:after {
+  height: 2rpx;
+  width: 100%;
+  background: #efefef;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.item {
+  height: 80rpx;
+  width: 33.3%;
+  text-align: center;
+  line-height: 80rpx;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.item.active {
+  color: #fe5455;
+  position: relative;
+  z-index: 10;
+}
+
+.item.active:before {
+  content: "";
+  height: 6rpx;
+  width: 100%;
+  background: #fe5455;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.center {
+  margin-top: 5rem;
+}
+
+.contain .fui-list-group:first-child {
+  margin: 0rpx;
+}
+
+.statuscss {
+  color: rgb(221, 0, 0);
+  font-weight: normal;
+  position: absolute;
+  right: 30rpx;
+}
+
+.lynn_order_bottom {
+  height: 2.2rem;
+  padding: 0 0.2rem;
+  border-top: 0.1rem solid #eee;
+}
+
+.status {
+  font-size: 0.65rem;
+  float: right;
+  margin-right: 0.6rem;
+}
+
+.lynn_btn {
+  border: 1px solid #fd5454;
+  background: #fd5454;
+  color: #fff;
+  border-radius: 0.2rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.6rem;
+  height: 1.3rem;
+  line-height: 1.3rem;
+  padding: 0 0.5rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0.45rem 0.2rem;
+  display: inline-block;
+}
+
+/* 底部导航 */
+
+.strong_images {
+  width: 36rpx;
+  height: 38rpx;
+  margin-bottom: 8rpx;
+}
+
+.icon-images-home {
+  width: 50rpx;
+  height: 50rpx;
+}

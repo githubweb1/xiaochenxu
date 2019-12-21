@@ -1,0 +1,213 @@
+<!--pages/merch/index/index.wxml-->
+
+<!-- 内容 -->
+<view style='margin-bottom:100rpx'>
+  <!-- 搜索 -->
+  <template name="search">
+    <block wx:if="{{sorts.search.visible==1}}">
+      <view style='background:#f7f7f8;padding:30rpx;position:relative;'>
+        <image class='view-input-image' src='../../../static/images/icon/search.png' bindtap='search'> </image>
+        <input placeholder='输入关键字...' class='view-input' bindinput='searchinput'></input>
+      </view>
+    </block>
+  </template>
+  <!-- 轮播 -->
+
+  <template name="adv">
+    <block wx:if="{{0 != advs.length}}">
+      <block wx:if="{{sorts.adv.visible==1}}">
+        <view class='view-swiper'>
+          <swiper class="swiper_box" autoplay="true" interval="2000" duration="500" indicator-dots='true' indicator-color='white' indicator-active-color='#ccc' style='width:100%;'>
+            <block wx:for-items="{{advs}}" wx:key="">
+              <swiper-item>
+                <image mode='widthFix' src="{{item.thumb}}" class="slide-image" style='width:100%;' />
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+      </block>
+
+    </block>
+  </template>
+
+
+  <!-- 幻灯片 -->
+  <template name="banner">
+    <block wx:if="{{sorts.banner.visible==1}}">
+      <view class='adv-image' wx:for="{{banners}}" wx:key="">
+        <image src='{{item.thumb}}' mode='widthFix' style='width:100%'></image>
+      </view>
+    </block>
+  </template>
+
+  <!-- 跳转导航 -->
+  <template name="nav">
+    <block wx:if="{{sorts.nav.visible==1}}">
+      <view class='view-nav'>
+        <block wx:for-items="{{navs}}" wx:key="">
+          <navigator class='view-nav-content' open-type='switchTab' url='/pages/index/index'>
+            <image mode='aspectFill' class='view-nav-image' src='{{item.icon}}' style='width:100rpx;height:100rpx;'></image>
+            <text class='view-nav-text'>{{item.navname}}</text>
+          </navigator>
+        </block>
+      </view>
+    </block>
+
+  </template>
+
+  <!-- 为你推荐 -->
+  <template name="goods">
+    <block wx:if="{{sorts.goods.visible==1}}">
+      <view class='view-exchange'>
+        <view class='view-exchange-allContent'>
+          <block wx:for-items="{{recommandlist.list}}" wx:key="">
+            <navigator class='view-exchange-content' hover-class='none' url='/pages/goods/detail/index?id={{item.id}}'>
+              <image mode='aspectFill' class='view-exchange-image' src='{{item.thumb}}'></image>
+              <view class='view-exchange-text' value="{{item.title}}">
+                {{item.title}}</view>
+              <view class='view-footer'>
+                <view class='view-footer-integral1'>
+                  <view class='view-footer-integral1 '>￥
+                    <text class='red ' style="font-size: 0.8rem;font-weight: bold;padding-right: 0.1rem;">{{item.productprice}}</text>
+                    <label>购买</label>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+          </block>
+        </view>
+      </view>
+    </block>
+  </template>
+
+
+
+
+  <!-- 魔方 -->
+  <template name="cube">
+    <block wx:if="{{sorts.cube.visible==1}}">
+      <navigator class='avi' wx:if="{{cubes.length==4}}" url="/pages/goods/index/index">
+        <view class='avi-left'>
+          <image src='{{cubes[0].img}}' mode='widthFix' style='width:100%'></image>
+        </view>
+        <view class='avi-right'>
+          <view class='avi-top'>
+            <image mode='widthFix' src='{{cubes[1].img}}'></image>
+          </view>
+          <view class='avi-bottom'>
+            <image mode='widthFix' src='{{cubes[2].img}}'></image>
+            <image mode='widthFix' src='{{cubes[3].img}}'></image>
+          </view>
+        </view>
+      </navigator>
+      <navigator class='avi' wx:if="{{cubes.length==3}}" url="/pages/goods/index/index">
+        <view class='avi-left'>
+          <image src='{{cubes[0].img}}' mode='widthFix' style='width:100%'></image>
+        </view>
+        <view class='avi-right'>
+          <view class='avi-top'>
+            <image mode='widthFix' src='{{cubes[1].img}}'></image>
+          </view>
+          <view class='avi-bottom'>
+            <image mode='widthFix' src='{{cubes[2].img}}'></image>
+          </view>
+        </view>
+      </navigator>
+      <navigator class='avi' wx:if="{{cubes.length==2}}" url="/pages/goods/index/index">
+        <view class='avi-left'>
+          <image src='{{cubes[0].img}}' mode='widthFix' style='width:100%'></image>
+        </view>
+        <view class='avi-right'>
+          <image mode='widthFix' src='{{cubes[1].img}}'></image>
+        </view>
+      </navigator>
+
+      <navigator class='avi' wx:if="{{cubes.length==1}}" url="/pages/goods/index/index">
+        <image src='{{cubes[0].img}}' mode='widthFix' style='width:100%'></image>
+      </navigator>
+    </block>
+
+  </template>
+
+
+  <!-- 广告 -->
+  <template name="notice">
+    <block wx:if="{{sorts.notice.visible==1}}">
+
+      <view class='weui-flex'>
+        <view class='<flex-head-item item-hotdot'>
+          <image class="hotdot" mode='aspectFit' src="/static/images/hotdot.jpg" style="padding-bottom:4px;margin-right:10rpx" lazy-load='true'></image>
+        </view>
+        <view class='weui-flex__item'>
+          <swiper autoplay="{{autoplayHot}}" circular="{{circularHot}}" class="index-adcs-sqiper index-notification-swiper" duration="{{durationHot}}" indicatorDots="{{indicatorDotsHot}}" interval="{{2000}}" style='height:100rpx;'>
+            <block wx:for='{{notices}}' wx:for-item='item' wx:for-index='idx' wx:key="">
+              <swiper-item class="xj-swiper-item">
+                <image class="hotdot" mode='aspectFit' src="{{item.thumb}}" style="width:50rpx;height:50rpx" lazy-load='true'></image>
+                <navigator hoverClass="none" class="notification-navigoter" url="/{{item.linkurl}}">{{item.title}}
+                </navigator>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+      </view>
+    </block>
+  </template>
+
+  <template name="recommand">
+
+  </template>
+
+  <block wx:if="{{one}}">
+    <template is="{{one}}" data="{{...list}}" />
+  </block>
+  <block wx:if="{{two}}">
+    <template is="{{two}}" data="{{...list}}" />
+  </block>
+  <block wx:if="{{three}}">
+    <template is="{{three}}" data="{{...list}}" />
+  </block>
+  <block wx:if="{{four}}">
+    <template is="{{four}}" data="{{...list }}" />
+  </block>
+  <block wx:if="{{five}}">
+    <template is="{{five}}" data="{{...list}}" />
+  </block>
+  <block wx:if="{{six}}">
+    <template is="{{six}}" data="{{...list}}" />
+  </block>
+  <block wx:if="{{serve}}">
+    <template is="{{serve}}" data="{{...list}}" />
+  </block>
+  <block wx:if="{{eight}}">
+    <template is="{{eight}}" data="{{...list}}" />
+  </block>
+
+</view>
+
+
+
+
+
+<!-- 底部tabbar -->
+<view class='view-tabbar'>
+  <navigator class='view-tabbar-content' open-type='redirectTo' hover-class='none' url='/pages/merch/mystore/index?id={{id}}'>
+    <image class='view-tabbar-image' src='../../../static/images/icon-red/home.png'></image>
+    <view class='view-tabbar-text' style='color:red'>首页</view>
+  </navigator>
+  <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/shop/caregory/index'>
+    <image class='view-tabbar-image' src='../../../static/images/icon/cate.png'></image>
+    <view class='view-tabbar-text'>全部分类</view>
+  </navigator>
+  <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/member/cart/index'>
+    <image class='view-tabbar-image' src='../../../static/images/icon/cart.png'></image>
+    <view class='view-tabbar-text'>购物车</view>
+  </navigator>
+  <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/member/index/index'>
+    <image class='view-tabbar-image' src='../../../static/images/icon/people.png'></image>
+    <view class='view-tabbar-text'>会员中心</view>
+  </navigator>
+  <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/index/index?back=1' bindtap='backshop'>
+    <image class='view-tabbar-image' src='../../../static/images/icon/back.png'></image>
+    <view class='view-tabbar-text'>返回商城</view>
+  </navigator>
+</view>

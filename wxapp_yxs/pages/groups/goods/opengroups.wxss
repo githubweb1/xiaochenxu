@@ -1,0 +1,245 @@
+/*
+拼团操作页面
+*/
+
+page {
+  background: #f6f6f6;
+}
+
+.fui-content {
+  width: 100%;
+  height: 100%;
+}
+
+.lynn_opengroups_head {
+  height: 200rpx;
+  padding: 0.4rem 0.6rem;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.lynn_index_list_a {
+  width: 150rpx;
+  height: 150rpx;
+  padding: 0rpx;
+  margin: 0rpx;
+}
+
+.lynn_index_list_a image {
+  width: 100%;
+  height: 100%;
+}
+
+.fui-list-inner {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-left: 0.5rem;
+}
+
+.h2 {
+  font-size:30rpx;
+  font-weight: bold;
+  color: #051b28;
+  height: 2.5rem;
+  overflow: hidden;
+}
+
+.lynn_opengroups_head_goods_info {
+  font-size: 26rpx;
+  position: relative;
+}
+
+.lynn_opengroups_head_goods_info .f1 {
+  color: #051b28;
+  font-size:30rpx;
+}
+
+.fr {
+  float: right;
+  color: #959595;
+  position: absolute;
+  right: 0rpx;
+  top: 0rpx;
+}
+
+.lynn_opengroups_invitation {
+  padding: 0.5rem;
+  height: 180rpx;
+  background: #fff;
+  border-bottom: 0.25rem solid #eee;
+}
+
+.lynn_opengroups_invitation .p {
+  font-size: 24rpx;
+  color: #44545e;
+  margin-top: 20rpx;
+}
+
+.lynn_fightgroups_btn {
+  width: 45%;
+  border: 1px solid #909090;
+  display: block;
+  text-align: center;
+  font-size: 30rpx;
+  color: #1c1c1c;
+  float: left;
+  margin: 30rpx 15rpx;
+  border-radius: 10rpx;
+  padding:10rpx 0;
+}
+
+.lynn_opengroups_btn {
+  width: 45%;
+  border: 1px solid #fd5454;
+  display: block;
+  text-align: center;
+  font-size: 30rpx;
+  float: right;
+  background: #fd5454;
+  color: #fff;
+  margin: 30rpx 15rpx;
+  border-radius: 10rpx;
+  padding:10rpx 0;
+}
+
+.step {
+  height: 150rpx;
+  padding: 15px 10px;
+  font-size: 12px;
+  position: relative;
+  background: #fff;
+}
+
+.step_hd {
+  height: 36rpx;
+  line-height: 36rpx;
+  margin-bottom: 24rpx;
+  font-size: 28rpx
+}
+
+.left {
+  float: left;
+  height: 15px;
+  width: 5px;
+  background: #fd5454;
+  margin-right: 0.2rem;
+}
+
+.step_more {
+  top: 30rpx;
+  height: 36rpx;
+  text-align: right;
+  right: 30rpx;
+  color: #9b9b9b;
+  line-height: 36rpx;
+  display: block;
+  position: absolute;
+  font-size:28rpx;
+}
+
+.step_list {
+  margin-top: 40rpx;
+}
+
+.step_item {
+  width: 17%;
+  padding-left: 50rpx;
+  float: left;
+  position: relative;
+  font-size:28rpx;
+}
+
+.step_num {
+  border-radius: 40rpx;
+  border: 1rpx dashed rgb(213, 213, 213);
+  border-image: none;
+  left: 0px;
+  top:10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  color: rgb(102, 102, 102);
+  line-height: 40rpx;
+  position: absolute;
+  background-clip: padding-box;
+  background-color: rgb(255, 255, 255);
+}
+
+.step_tit {
+  color: rgb(102, 102, 102);
+  font-size: 28rpx;
+}
+
+.lynn_more_groups_head {
+ height:70rpx;
+font-size:26rpx;
+font-weight:bold;
+line-height:70rpx;
+text-align:center;
+color:#5a5a5a;
+}
+
+.li {
+  border: 7rpx solid #f2f2f2;
+  background: #fff;
+  width: 48%;
+  list-style: none;
+}
+
+.li-a {
+  width: 100%;
+  height: 360rpx;
+  display: block;
+}
+
+.li-a image {
+  width: 100%;
+  height: 100%;
+}
+
+.li-h3 {
+  height:62rpx;
+font-size:26rpx;
+font-weight:bold;
+color:#474747;
+padding:0.2rem 0.2rem 0;
+overflow:hidden;
+line-height:31rpx;
+}
+
+.li-p {
+  height:50rpx;
+  font-size:26rpx;
+  padding:10rpx;
+}
+
+.li-f1 {
+  font-size: 30rpx;
+  color: #fd4a67;
+}
+
+.li-ff {
+margin-left:15rpx;
+color:#979797;
+font-size:24rpx;
+text-decoration:line-through;
+}
+
+.li-fr {
+  float: right;
+  color: #979797;
+}
+
+/* 底部导航 */
+
+.strong_images {
+  width: 38rpx;
+  height: 38rpx;
+  margin-bottom: 8rpx;
+}
+
+.icon-images-home {
+  width: 50rpx;
+  height: 50rpx;
+}

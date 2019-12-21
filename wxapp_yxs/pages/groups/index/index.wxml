@@ -1,0 +1,94 @@
+<view class='fui-page creditshop-index-page' style='padding-bottom:100rpx;'>
+  <view class='fui-content navbar'>
+    <view class='fui-swipe' data-transition="500" data-gap="1">
+      <view class='fui-swipe-wrapper'>
+        <block wx:for="{{advs}}" wx:for-index="id" wx:key="adv">
+          <navigator class='fui-swipe-item' url="{{adv.link ? adv.link : '' }}">
+            <image mode='aspectFit' src="{{adv.thumb}}" alt="{{adv.advname}}" />
+          </navigator>
+        </block>
+      </view>
+      <view class='fui-swipe-page'></view>
+    </view>
+    <block wx:if="{{count_category>0}}">
+      <view class='view-nav'>
+        <block wx:for-items="{{category}}" wx:for-item="cate" wx:key="">
+          <navigator class='view-nav-content' url='/pages/groups/category/index?category={{cate.id}}'>
+            <image mode='aspectFill' class='view-nav-image' src='{{cate.thumb}}' style='width:100rpx;height:100rpx;'></image>
+            <text class='view-nav-text'>{{cate.name}}</text>
+          </navigator>
+        </block>
+      </view>
+    </block>
+    <view class="lynn_item"></view>
+    <view class="lynn_index_rec">
+      <p>
+        <i></i>
+        <span>正在热卖</span>
+      </p>
+      <span>H O T S A L E</span>
+    </view>
+    <block wx:if="{{recgoods.length>0}}">
+      <view class="lynn_index_list_ul row">
+        <block wx:for="{{recgoods}}" wx:for-index="id" wx:key="item">
+          <li class="lynn_index_list_li fui-list goods-list">
+            <navigator url="/pages/groups/goods/index?id={{item.id}}" class="external lynn_index_list_a fui-list-media">
+              <image mode='aspectFll' class="image" src="{{item.thumb}}" alt="{{item.title}}" />
+            </navigator>
+
+            <navigator class="lynn_index_list_info fui-list-inner" url="/pages/groups/goods/index?id={{item.id}}">
+              <view class='h3'>{{item.title}}</view>
+              <view class='p'>{{item.description}}</view>
+              <view class='del'>原价：¥{{item.price}}</view>
+              <view class="lynn_index_list_team">
+                <span class="lynn_index_list_team_left">
+                  <strong>
+                    <image mode='aspectFit' class='strong_images' src='/static/images/icon-red/group.png'></image>
+                  </strong>{{item.groupnum}}人团 ¥
+                  <em>{{item.groupsprice}}</em>/{{item.goodsnum}}
+                  <block wx:if="{{item.units}}">{{item.units}}</block>
+                  <block wx:else>件</block>
+                </span>
+                <a href="groups/goods?id=>{{item.id}}" class="external lynn_index_list_team_a">去拼团 ></a>
+              </view>
+            </navigator>
+
+          </li>
+        </block>
+      </view>
+    </block>
+    <block wx:else>
+      <view style='width:100%'>
+        <view class="fui-message fui-message-popup in" style='margin:50px auto;display:flex;flex-direction:column;align-items:center;justify-content:center;'>
+          <view class="icon ">
+            <i class="icon icon-information"></i>
+          </view>
+          <view class="content">暂无任何活动</view>
+        </view>
+      </view>
+    </block>
+
+  </view>
+</view>
+
+<template name="item">
+  <view class="fui-navbar" style="z-index: 10;">
+    <navigator url="/pages/groups/index/index" open-type='redirect' class="external nav-item active">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon-red/home.png'></image>
+      <text class="label">拼团首页</text>
+    </navigator>
+    <navigator url="/pages/groups/category/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/tabbar/icon-2.png'></image>
+      <text class="label">活动列表</text>
+    </navigator>
+    <navigator url="/pages/groups/orders/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/cart.png'></image>
+      <text class="label">我的订单</text>
+    </navigator>
+    <navigator url="/pages/groups/team/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/group.png'></image>
+      <text class="label">我的团</text>
+    </navigator>
+  </view>
+</template>
+<template is="item" data="{{get_r: 'groups'}}" />

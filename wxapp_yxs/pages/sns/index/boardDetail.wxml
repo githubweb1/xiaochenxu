@@ -1,0 +1,58 @@
+<!--pages/board/boardDetail.wxml-->
+<import src="footer.wxml"/>
+<import src="../template/detailList.wxml"/>
+
+<view class="oy-boardDetail-head">
+	<image mode='aspectFill' class="oy-boardDetail-head-img" src="{{result.board.banner}}"></image>
+	<view class="oy-boardDetail-head-main flex">
+		<view class="oy-boardDetail-left flex flex-1">
+			<view class="flex flex-ver oy-boardDetail-left-box">
+				<image src='{{result.board.logo}}'></image>
+			</view>
+			<view class="flex flex-col flex-col-ver flex-1">
+				<view class="oy-boardDetail-left-title">{{result.board.title}}</view>
+				<view class="oy-boardDetail-left-title1 flex flex-baseline"><view>话题</view><text>{{result.postcount}}</text><view>关注</view><text>{{result.followcount}}</text></view>
+			</view>
+		</view>
+		<view class="oy-boardDetail-right flex flex-col flex-col-ver">
+			<view class="oy-boardDetail-right-box" wx:if="{{!result.isfollow}}" bindtap='myFllow'>
+				<view class="oy-boardDetail-right-btn flex flex-center">
+					<view class="oy-add-icon">
+						<image src="/pages/sns/myIcon/add.png"></image>
+					</view>
+					<view>关注</view>
+				</view>
+			</view>
+			<view class="oy-boardDetail-right-box " wx:else>
+				<view class="oy-boardDetail-right-btn oy-active flex flex-center" bindtap='myFllow'>
+					<view class="oy-add-icon">
+						<image src="/pages/sns/myIcon/selected.png"></image>
+					</view>
+					<view>已关注</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="flex oy-nav-box">
+	<view class="oy-nav-item flex-1 flex flex-center oy-active">
+		<!-- <image mode='aspectFill' class="oy-nav-item-img" src="myIcon/home_yellow.png" ></image>	 -->
+		<view class="oy-nav-item-title">首页</view>		
+	</view>
+	<view class="oy-nav-item flex-1 flex flex-center"  bindtap='goToDetal' data-key="boardBest">
+		<!-- <image mode='aspectFill' class="oy-nav-item-img" src="myIcon/credit-level.png" ></image>	 -->
+		<view class="oy-nav-item-title">精华区</view>		
+	</view>
+	<view class="oy-nav-item flex-1 flex flex-center" bindtap='goToDetal' data-key="aboutBoard">
+		<!-- <image mode='aspectFill' class="oy-nav-item-img" src="myIcon/box.png" ></image>	 -->
+		<view class="oy-nav-item-title">相关版块</view>		
+	</view>
+</view>
+
+<template is="detailist" data="{{list:list,replyTemArray:replyTemArray,id:id}}"/>
+<view class="flex flex-center oy-bottom-title" wx:if="{{noend===false}}">我是有底线的</view>
+<view class="oy-h112"></view>
+<navigator url="{{'/pages/sns/borderConment/index?id='+id}}" class="oy-edit-btn flex flex-center" >
+	<image src="../myIcon/edit.png"></image>
+</navigator>
+<template is="footer" data="{{isMy:isMy}}"/>

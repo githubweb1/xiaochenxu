@@ -1,0 +1,157 @@
+<block wx:if='{{!show}}'>
+  <loading>加载中...</loading>
+</block>
+<block wx:if='{{show}}'>
+  <view class='page navbar'>
+    <view class='category-search'>
+      <view class='weui-flex'>
+        <view class='weui-flex__item category-search-form'>
+          <view class='flex-head-search' id='searchBar'>
+            <navigator hoverClass='none' class='weui-search-bar__form' url='/pages/goods/index/index?fromsearch=1'>
+              <view class='weui-search-bar__box category-search-box'>
+                <view class='flex-icon-search'>
+                  <image class='icon20' src='{{icons.search}}' lazy-load='true'></image>
+                </view>
+                <view class='weui-search-bar__input flex-input'>输入关键字进行搜索</view>
+                <navigator class='weui-icon-clear' id='searchClear' url='javascript:'></navigator>
+              </view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='category-content category-search-bar weui-flex'>
+      <block wx:if='{{set.level > 1}}'>
+        <view class='category-content-left'>
+          <scroll-view scrollY='true' class='scroll-view_H' style='height: 100%;'>
+            <view data-id='0' bindtap='tabCategory' class='content-left-item {{selector == "0"?"active":""}}' data-child='{{recommands}}' data-src='{{set.advimg}}'>推荐分类</view>
+            <block wx:for='{{category}}' wx:for-item='item' wx:for-index='idx' wx:key="category">
+              <view bindtap='tabCategory' class='content-left-item {{selector == item.id?"active":""}}' data-child='{{item.child}}' data-id='{{item.id}}' data-src='{{item.advimg}}'>{{item.name}}</view>
+            </block>
+          </scroll-view>
+        </view>
+      </block>
+      <view class='category-ceontet-right weui-flex__item'>
+        <scroll-view scrollY='true' class='scroll-view_H' style='height:100%;'>
+          <view class='content-right-item'>
+            <block wx:if='{{set.level > 1 && advimg}}'>
+              <view class='' style='width:100%;display:block;'>
+                <navigator url='{{url}}' class='swipe external' id='advurl'>
+                  <image mode='widthFix' id='advimg' src='{{advimg}}' lazy-load='true'></image>
+                </navigator>
+              </view>
+            </block>
+            <!-- <block wx:if='{{set.level == 1}}'> -->
+            <block>
+              <view class='fui-title'>所有分类</view>
+              <view class='fui-icon-group col-3'>
+                <navigator class='fui-icon-col block' url='/pages/goods/index/index?merchid={{id}}'>
+                  <view class='icon radius'>
+                    <image src='{{icons.list}}' lazy-load='true'></image>
+                  </view>
+                  <view class='text'>所有商品</view>
+                </navigator>
+                <block wx:for='{{category}}' wx:for-item='item' wx:for-index='idx' wx:key="category">
+                  <navigator class='fui-icon-col' url='/pages/goods/index/index?cate={{item.id}}'>
+                    <view class='icon radius'>
+                      <image src='{{item.advimg}}' lazy-load='true'></image>
+                    </view>
+                    <view class='text'>{{item.name}}</view>
+                  </navigator>
+                </block>
+              </view>
+            </block>
+            <block wx:if='{{set.level > 1}}'>
+              <view class='fui-icon-group col-3'>
+                <navigator url='/pages/goods/index/index?merchid={{id}}' class='fui-icon-col {{selector == 0?"block":"none"}}'>
+                  <view class='icon radius'>
+                    <image src='{{icons.list}}' lazy-load='true'></image>
+                  </view>
+                  <view class='text'>所有商品</view>
+                </navigator>
+                <block wx:if='{{set.level == 2}}'>
+                  <block wx:for='{{child}}' wx:for-item='item' wx:for-index='idx' wx:key="child">
+                    <navigator class='fui-icon-col {{set.level >= item.level?"block":"none"}}' url='/pages/goods/index/index?cate={{item.id}}'>
+                      <view class='icon radius'>
+                        <image src='{{item.thumb || icons.nopic}}' lazy-load='true'></image>
+                      </view>
+                      <view class='text'>{{item.name}}</view>
+                    </navigator>
+                  </block>
+                </block>
+                <block wx:elif='{{set.level == 3}}'>
+                  <block wx:if='{{back == 1 && idx == 0}}'>
+                    <view class='fui-icon-col' bindtap='backParent' data-id='{{selector}}' data-parent='{{parent}}'>
+                      <view class='icon radius'>
+                        <image src='icons.back' lazy-load='true'></image>
+                      </view>
+                      <view class='text'>返回上一级</view>
+                    </view>
+                  </block>
+                  <block wx:for='{{child}}' wx:for-item='item' wx:for-index='idx' wx:key="child">
+                    <navigator class='fui-icon-col' data-child='{{item.child}}' data-parent='{{child}}' bindtap='{{item.child.length > 0?"cateChild":""}}' url='{{item.child.length > 0?"":"/pages/goods/index/index?cate=" + item.id}}'>
+                      <view class='icon radius'>
+                        <image src='{{item.thumb || icons.nopic}}' binderror='error' lazy-load='true'></image>
+                      </view>
+                      <view class='text'>{{item.name}}</view>
+                    </navigator>
+                  </block>
+                </block>
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <include src='/pages/common/menu.wxml' />
+</block>
+
+<!-- 底部tabbar -->
+
+<block wx:if="{{merch}}">
+  <view class='view-tabbar'>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/index/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/home.png'></image>
+      <view class='view-tabbar-text'>首页</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/shop/caregory/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon-red/cate.png'></image>
+      <view class='view-tabbar-text' style='color:red'>全部分类</view>
+    </navigator>
+    <navigator class='view-tabbar-content'  hover-class='none' url='/pages/merch/index/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/cate.png'></image>
+      <view class='view-tabbar-text'>商家列表</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/member/cart/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/cart.png'></image>
+      <view class='view-tabbar-text'>购物车</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/member/index/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/people.png'></image>
+      <view class='view-tabbar-text'>会员中心</view>
+    </navigator>
+  </view>
+</block>
+
+
+<block wx:if="{{id!=0&&id!=''}}">
+  <view class='view-tabbar'>
+    <navigator class='view-tabbar-content' open-type='redirectTo' hover-class='none' url='/pages/merch/mystore/index?merchid={{id}}'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/home.png'></image>
+      <view class='view-tabbar-text'>首页</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/shop/caregory/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon-red/cate.png'></image>
+      <view class='view-tabbar-text' style='color:red'>全部分类</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/member/cart/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/cart.png'></image>
+      <view class='view-tabbar-text'>购物车</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/member/index/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/people.png'></image>
+      <view class='view-tabbar-text'>会员中心</view>
+    </navigator>
+  </view>
+</block>

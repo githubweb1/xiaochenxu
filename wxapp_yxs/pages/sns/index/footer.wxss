@@ -1,0 +1,35 @@
+.oy-h100{
+	height:100rpx;
+}
+.oy-footer-bar{
+	height:100rpx;
+	box-sizing: border-box;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	background: #fff;
+	box-shadow: 0 0 4px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 0 4px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 0 4px rgba(0,0,0,0.1);
+	z-index: 200;
+}
+.oy-footer-bar-item{
+	text-align: center;
+	color: #999;
+	font-size:40rpx; 
+}
+.oy-footer-bar-item.oy-active{
+
+	color: #f00;
+
+}
+.oy-footer-bar-title{
+	font-size: 24rpx;
+}
+.oy-icon-img{
+	width:40rpx;
+	height: 40rpx;
+	display: block;
+	margin:0 auto;
+}

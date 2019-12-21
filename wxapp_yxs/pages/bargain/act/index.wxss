@@ -1,0 +1,39 @@
+/* pages/bargain/act/index.wxss */
+page{
+  background: #f3f3f3
+}
+/* 底部tabbar */
+@import "../foots.wxss";
+/* 内容 */
+.xj-act-allcontent{
+display:flex;
+justify-content:space-between;
+padding:30rpx;
+background:#fff;
+border-bottom:1rpx solid #f8f8f8;
+}
+.xj-act-left-image{
+width:150rpx;
+height:150rpx;
+}
+.xj-act-title{
+color:#ff6600;
+}
+.xj-act-now{
+color:#ff5555;
+margin-top: 10rpx
+}
+.xj-act-old{
+border:1rpx solid #a5a6a4;
+display:inline-block;
+padding:5rpx 30rpx;
+font-size:30rpx;
+border-radius:18rpx;
+color: #a5a6a4;
+text-decoration: line-through;
+margin-top: 10rpx
+}
+.xj-act-detail{
+width:500rpx;
+font-size:30rpx;
+}

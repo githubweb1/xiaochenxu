@@ -1,0 +1,63 @@
+<!--pages/merch/list/index.wxml-->
+<!-- 搜索 -->
+<view style='background:#f7f7f8;padding:30rpx;'>
+  <image class='view-input-image' src='../../../static/images/icon/search.png' bindtap='search'> </image>
+  <input placeholder='输入关键字...' class='view-input' bindinput='searchinput'></input>
+</view>
+<!-- 内容 -->
+<view>
+  <!-- 轮播 -->
+  <block wx:if="{{0 != list.category_swipe.length}}">
+    <view class='view-swiper'>
+      <swiper class="swiper_box" autoplay="true" interval="2000" duration="500" indicator-dots='true' indicator-color='white' indicator-active-color='#ccc' style='height:500rpx'>
+        <block wx:for-items="{{list.category_swipe}}" wx:key="id">
+          <swiper-item>
+            <image mode='aspectFill' src="{{list.url}}attachment/{{item.thumb}}" class="slide-image"  />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </block>
+  <!-- 推荐分类 -->
+  <view>
+    <block wx:if="{{list.category.length>0}}">
+      <navigator class='xj-all-cate'  url='/pages/merch/category/index'  hover-class='none'>
+        <view>推荐分类</view>
+        <view style='width:100rpx;display:flex;align-items:center;'>全部
+          <image class='headerimage' src='/static/images/icon/back.png' mode='aspectFill'></image>
+        </view>
+      </navigator>
+      <view class='xj-cate-all-content'>
+        <block wx:for="{{list.category}}" wx:key="asd">
+          <navigator class='xj-cata-content' url='/pages/merch/merchuser/index?cateid={{item.id}}&catename={{item.catename}}'>
+            <image src='{{item.thumb}}' style='background:#ccc;border-radius:50%;'></image>
+            <view>{{item.catename}}</view>
+          </navigator>
+        </block>
+      </view>
+    </block>
+  </view>
+  <!-- 推荐商家 -->
+  <view>
+    <block wx:if="{{list.merchuser.length>0}}">
+      <navigator  class='xj-all-cate' url='/pages/merch/merchuser/index'  hover-class='none'>
+        <view>推荐商家</view>
+        <view style='width:100rpx;display:flex;align-items:center;'>全部
+          <image class='headerimage' src='/static/images/icon/back.png' mode='aspectFill'></image>
+        </view>
+      </navigator>
+      <block wx:for="{{list.merchuser}}" wx:key="assd">
+        <navigator bindtap='store' class='xj-cate-all-shopcontent' data-id='{{item.id}}' url='/pages/merch/mystore/index?merchid={{item.id}}'>
+          <view class='xj-cata-shopcontent'>
+            <image src='{{item.logo}}' style='background:#ccc'></image>
+            <view class='xj-cata-center'>
+              <view>{{item.merchname}}</view>
+              <view>{{item.desc}}</view>
+            </view>
+            <image class='headerimage' src='/static/images/icon/back.png' mode='aspectFill'></image>
+          </view>
+        </navigator>
+      </block>
+    </block>
+  </view>
+</view>

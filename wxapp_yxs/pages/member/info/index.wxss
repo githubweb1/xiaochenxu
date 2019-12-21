@@ -1,0 +1,43 @@
+wx-checkbox-group wx-text { padding-right: 15rpx; }
+.picker-group { display: -webkit-flex; display: flex; }
+.picker-group wx-picker { width: 40%; }
+.btn{ font-size: 32rpx }
+
+
+@import "tel.wxss";
+page{
+	word-break: break-all;
+	font-size:28rpx;
+  	background: #fff;
+}
+page{
+   
+    background-color: #eff1f6;
+   
+}
+.oy_form_list{
+    height:110rpx;
+    background-color: #fff;
+    margin-top:22rpx;
+}
+.oy_nav_box{
+     color:#b3b3b3;
+    height:100%;
+}
+.oy_nav_box image{
+    width:42rpx;
+    height:42rpx;
+}
+.picker.oy_placeholder{
+    color:#000;
+}
+.oy_h100{
+    height:100%;
+}
+.oy_tel_box{
+    padding-top:110rpx;
+}
+.oy_picker{
+    height:110rpx;
+    line-height: 110rpx;
+}

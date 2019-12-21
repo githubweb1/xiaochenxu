@@ -1,0 +1,6 @@
+<!--pages/bargain/rule/index.wxml-->
+<import src="/utils/wxParse/wxParse.wxml" />
+
+<view style='padding:40rpx;font-size:30rpx'>
+<rich-text type='text' nodes="{{list.rule}}"></rich-text>
+</view>

@@ -1,0 +1,240 @@
+<!--pages/IntegralMall/commodityDetails/commodityDetails.wxml-->
+<import src="/utils/wxParse/wxParse.wxml" />
+
+<view style='padding-bottom:100rpx;'>
+  <view class='view-header'>
+    <image mode='widthFix' style='width:750rpx;' src="{{goods.thumb}}"></image>
+    <view class='view-header-bg'></view>
+    <view class='view-header-content'>
+      <image src='/static/images/icon/wait-128.png' mode='aspectFill'></image>
+      <view class='view-header-time' wx:if="{{goods.timestate&&goods.istime}}">{{endtime}}</view>
+    </view>
+  </view>
+  <!-- 抽奖  -->
+  <view class='view-LuckDraw'>
+    <view class='view-LuckDraw-header'>
+      <text wx:if="{{goods.goodstype==0}}">商品</text>
+      <text wx:elif="{{goods.goodstype==1}}">优惠券</text>
+      <text wx:elif="{{goods.goodstype==2}}">余额</text>
+      <text wx:else="{{goods.goodstype==3}}">红包</text> {{goods.title}}
+    </view>
+    <view class='view-LuckDraw-content'>
+      <view wx:if="{{goods.isverify==1 && (goods.usetime>0 && goods.isendtime==0 || goods.isendtime)}}" class='view-LuckDraw-content-top'>使用有效期：
+        <block wx:if="{{goods.isendtime==1}}">兑换之日起</block>
+        <block wx:else>{{goods.usetime}}天内</block>
+      </view>
+      <view class='view-LuckDraw-content-top'>仅限：{{goods.total}}份 已参与：{{goods.joins}}次</view>
+
+      <view wx:if="{{goods.dispatch&&goods.isverify==0}}" class='view-LuckDraw-content-bottom'>
+        邮费
+        <block wx:if="{{goods.dispatch.min}}">
+          {{goods.dispatch.min}} ~ {{goods.dispatch.max}} 元
+        </block>
+        <block wx:elif="{{goods.dispatch==0}}">
+          包邮
+        </block>
+        <block wx:else>
+          {{goods.dispatch}} 元
+        </block>
+      </view>
+    </view>
+    <view class='view-LuckDraw-footer'>
+      <text wx:if="{{goods.mincredit>0}}" style='font-size:34rpx'>{{goods.mincredit}}</text>
+      <text wx:else style='font-size:34rpx'>{{goods.credit}}</text>
+      <text style='font-size:34rpx'>积分</text>
+      <text wx:if="{{goods.money>0 || goods.dispatch >0}}">+￥{{goods.dispatch+goods.money}}</text>
+      <label>原价:{{goods.price}}元</label>
+    </view>
+  </view>
+
+  <!-- 请选择规格 -->
+  <view wx:if="{{goods.hasoption!='0'}}" class='view-chooseNbm' bindtap='chooseOption' data-pay='1'>
+    <view>请选择规格及数量</view>
+    <image style='float:right;' src='../../../static/images/icon/back.png'></image>
+    <view style='float:right;color:#999;'>{{select.title}}</view>
+  </view>
+<!-- 兑换流程 -->
+  <view style='padding-bottom:20rpx;background:#fff;margin-bottom:20rpx;font-size:30rpx' wx:if="{{goods.detailshow==1 ||(set.isdetail&&set.isdetail!=''&&set.isdetail!=null)}}"  >
+    <view class='text'>兑换流程</view>
+    <view  style='padding:20rpx'>
+     <template is="wxParse" data="{{wxParseData:article1.nodes}}" />
+    </view>
+  </view>
+
+  <!-- 注意事项 -->
+  <view style='padding-bottom:20rpx;background:#fff;margin-bottom:20rpx;font-size:30rpx' wx:if="{{goods.noticedetailshow==1 ||(set.isnoticedetail&&set.isnoticedetail!=''&&set.isnoticedetail!=null)}}">
+    <view style='padding-left:20rpx;'>注意事项</view>
+    <view style='padding:20rpx'>
+     <template is="wxParse" data="{{wxParseData:article2.nodes}}" />
+    </view>    
+  </view>
+  
+  <!-- 头部 -->
+  <view class='view-wine-nav-bg'>
+    <view class='view-wine-nav'>
+      <label class='view-wine-nav-wait {{num==0?"blue ":""}} comment' data-num='0' data-hidden='0' bindtap='tapwait'>
+        商品详情
+      </label>
+      <label class='view-wine-nav-go {{num==2?"blue":""}} comment' data-num='2' data-hidden='2' bindtap='tapwait' wx:if="{{set.isreply==1}}">
+        评价
+      </label>
+      <label class='view-wine-nav-go {{num==1?"blue":""}} comment' data-num='1' data-hidden='1' bindtap='tapwait'>
+        参与记录
+      </label>
+    </view>
+  </view>
+
+  <!-- 内容 -->
+
+  <!-- 商品详情 -->
+  <view class='view-wine-wait {{hidden==0?"":"hidden"}}'>
+   <view wx:if="{{goods.goodsdetail}}" style='font-size:30rpx;padding:20rpx'>
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+    <view wx:else style='padding:50rpx 25rpx;font-size:24rpx;color:#aaa;background:#fff;text-align:center;'>
+      暂无商品详情！
+    </view>
+  </view>
+
+  <!-- 参与记录 -->
+  <view class='view-wine-go {{hidden==1?"":"hidden"}} '>
+    <scroll-view scroll-y class='scroll-height'>
+      <view wx:for="{{log}}" wx:key="sd" class='view-recard-content'>
+        <image src="{{item.avatar?item.avatar:'/static/images/noface.png'}}" mode='aspectFill'></image>
+        <text>{{item.nickname}}</text>
+        <view class='view-recard-time'>{{item.createtime_str}}</view>
+      </view>
+    </scroll-view>
+    <view bindtap='moreLog' wx:if="{{logtotal>2}}" class='view-recard-more'>查看更多(
+      <block>{{logtotal>999?'999+':logtotal}}</block>)
+    </view>
+    <view wx:elif="{{logtotal==0}}" style='padding:50rpx 25rpx;font-size:24rpx;color:#aaa;background:#fff;text-align:center;'>
+      暂无参与记录！
+    </view>
+  </view>
+
+
+  <!-- 评价 -->
+  <view class='view-wine-oy {{hidden==2?"":"hidden"}} '>
+    <view wx:if="{{set.isreply==1}}">
+        <view wx:if="{{replytotal}}">
+            <block wx:for="{{replys}}" wx:key="">
+                <view class='gq-item'>
+                  <view class='gq-userinfo'>
+                      <view class='gq-user'>
+                          <image src='{{item.headimg}}'></image>
+                          <text class='gq-user-title'>{{item.nickname}}</text>
+                          <text class='gq-data'>{{item.time_str}}</text>
+                      </view>
+                      <view class='gq-feel'>
+                          <text class='shine' wx:if="{{item.level>0}}">★</text>
+                          <text class='shine' wx:if="{{item.level>1}}">★</text>
+                          <text class='shine' wx:if="{{item.level>2}}">★</text>
+                          <text class='shine' wx:if="{{item.level>3}}">★</text>
+                          <text class='shine' wx:if="{{item.level>4}}">★</text>
+                      </view>
+                  </view>
+                  <view class='gq-comment'>{{item.content}}</view>
+                  <view class='gq-comment-images'>
+                      <block wx:for="{{item.images}}" wx:for-item="items" wx:key="">
+                        <image src="{{items}}"></image>
+                      </block>
+                      
+                  </view>
+                  <view class='comment-reply' wx:if="{{item.reply_time>0}}">
+                        卖家回复：{{item.reply_content}}
+                        <view class='gq-comment-images'>
+                            <block wx:for="{{item.reply_images}}" wx:for-item="itemss" wx:key="">
+                              <image src="{{itemss}}"></image>
+                            </block>
+                        </view>
+                  </view>
+                  <view class='gq-comment' wx:if="{{item.append_time>0}}">追加评论:{{item.append_content}}</view>
+                  <view class='gq-comment-images' wx:if="{{item.append_time>0}}">
+                      <block wx:for="{{item.append_images}}" wx:for-item="ite" wx:key="">
+                        <image src="{{ite}}"></image>
+                      </block>
+                      
+                  </view>
+                  <view class='comment-reply' wx:if="{{item.append_reply_time>0}}">
+                        卖家追加回复：{{item.append_reply_content}}
+                        <view class='gq-comment-images'>
+                            <block wx:for="{{item.append_reply_images}}" wx:for-item="itemm" wx:key="">
+                              <image src="{{itemm}}"></image>
+                            </block>
+                        </view>
+                  </view>
+                </view>
+            </block>
+        </view>
+        
+    </view>
+    
+    <view bindtap='replymore' wx:if="{{replytotal>2}}" class='view-recard-more'>查看更多(
+      <block>{{replytotal>999?'999+':replytotal}}</block>)
+    </view>
+    <view wx:else style='padding:50rpx 25rpx;font-size:24rpx;color:#aaa;background:#fff;text-align:center;' >
+      暂无评价！
+    </view>
+  </view>
+
+  <!-- 为您推荐 -->
+  <view class='view-Recommend'>
+    <view class='view-Recommend-header'>为您推荐</view>
+    <view class='view-Recommend-AllContent'>
+      <block wx:for="{{goodsrec}}" wx:key="id">
+        <navigator class='view-Recommend-content' hover-class='none' url='/pages/creditshop/detail/index?id={{item.id}}'>
+          <image src="{{item.thumb}}" mode='aspectFill'></image>
+          <view style='' class='showlistimg'>{{item.title}}</view>
+          <label>{{item.credit}}积分  <text wx:if="{{item.money>0 || item.dispatch >0}}">+￥{{item.money}}</text> </label>
+        </navigator>
+      </block>
+    </view>
+  </view>
+  <view wx:if="{{goods.subdetail}}" style='background:#fff; font-size:30rpx;padding:20rpx;'>
+    <view>提供商家介绍</view>
+    <view>
+      <rich-text type="text" nodes="{{goods.subdetail}}" style='font-size:26rpx;color:#666'></rich-text>
+    </view>
+  </view>
+
+  <!-- 立即抽奖 -->
+  <view wx:if="{{goods.canbuy}}" class='view-bottom-LuckDraw ' bindtap='chooseOption' data-pay='1'>
+    {{goods.type==1?"立即抽奖":"立即兑换"}}
+  </view>
+  <view style='background:#ddd;' wx:else class='view-bottom-LuckDraw ' hover-class='none'>
+    {{goods.buymsg}}
+  </view>
+</view>
+
+
+<view class='view-order-bg {{pay==1?"":"hidden"}}' data-pay='0' bindtap='tabLuck'>
+</view>
+<view class='view-order-bg-content {{pay==1?"":"hidden"}}'>
+  <view class='view-top'>
+    <view class='view-left'>
+      <image src="{{option.goods.thumb}}" style='background:red' class='view-left-image'></image>
+    </view>
+    <view class='view-center'>
+      <view>￥{{select?select.money:goods.money}}+{{select?select.credit:goods.credit}}积分</view>
+      <view>库存{{select?select.total:goods.total}}</view>
+      <view>请选择规格</view>
+    </view>
+    <view class='view-right'>
+      <image src='/static/images/icon/close_light.png' data-pay='0' bindtap='tabLuck'></image>
+    </view>
+  </view>
+  <block wx:for="{{option.specs}}" wx:for-item="i" wx:for-index="iindex" wx:key="id">
+    <view class='view-bottom'>
+      <view class='view-color'>{{i.title}}</view>
+      <view>
+        <block wx:for="{{i.items}}" wx:for-item="j" wx:key="title">
+          <text class="{{i.select==j.id?'choose':''}}" bindtap='optionActive' data-iindex="{{iindex}}" data-id="{{j.id}}">{{j.title}}</text>
+        </block>
+      </view>
+    </view>
+  </block>
+  <button disabled="{{select.total==0}}" class='view-button' data-pay='0' data-order='1' bindtap='chooseOption'>
+    {{select.total>0||!select?'确定':'库存不足'}}
+  </button>
+</view>

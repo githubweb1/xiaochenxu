@@ -1,0 +1,67 @@
+ <!--pages/board/template/detailList.wxml-->
+
+<template name="detailist">
+	<import src="/utils/wxParse/wxParse.wxml" />
+	<scroll-view>
+		<view class="oy-detailist" wx:for="{{replyTemArray}}" wx:key="">
+			<navigator url="{{'/pages/sns/postDetail/postDetail?id='+list[index].id+'&bid='+id}}" hover-class='none'>
+				<view class="oy-detailist-head flex">
+					<image class="oy-detailist-img" src="{{list[index].avatar}}"></image>
+					<view class="flex-1 oy-detailist-head-right">
+						<view class="oy-detailist-head-name">{{list[index].nickname}}</view>
+						<view class="oy-detailist-head-title">{{list[index].createtime}}</view>
+					</view>
+				</view>
+				<view class="oy-detailist-body">
+					<view class="oy-detailist-body-head flex flex-ver">
+						<view class="oy-jp-btn flex flex-ver" wx:if="{{list[index].isboardbest==1}}">精</view><view>{{list[index].title}}</view>	
+					</view>
+					<view class="oy-detailist-body-main {{list[index].isOpen==1?'oy-active':''}}">
+						<template is='wxParse' data='{{wxParseData:item }}' />
+					</view>
+					<view class="oy-open flex flex-ver" wx:if="{{list[index].isOpen==1}}" catchtap="openAll" data-index="{{index}}" data-open="{{list[index].isOpen}}">全文</view>
+					<view class="oy-open flex flex-ver" wx:if="{{list[index].isOpen==2}}" catchtap="openAll" data-index="{{index}}" data-open="{{list[index].isOpen}}">收起</view>
+				</view>
+			</navigator>
+			<block wx:if="{{isMore!=1}}">
+				<view class="oy-detailist-footer flex">
+					<navigator url="{{'/pages/sns/postDetail/postDetail?id='+list[index].id+'&bid='+id}}" class="flex flex-center flex-1">
+						<image mode='aspectFill' class="oy-detailist-footer-img oy-comment-img" src="/pages/sns/myIcon/comment.png" ></image>	
+						<view class="oy-detailist-footer-title">({{list[index].postcount}})</view>		
+					</navigator>
+					<view class="flex flex-center flex-1" bindtap="getGoods" data-index="{{index}}" data-id='{{list[index].id}}'>
+						<block wx:if="{{list[index].isgood==1}}">
+							<image mode='aspectFill'  class="oy-detailist-footer-img" src="/pages/sns/myIcon/good_yellow.png" ></image>	
+						</block>
+						<block wx:else>
+							<image mode='aspectFill'  class="oy-detailist-footer-img" src="/pages/sns/myIcon/good.png" ></image>	
+						</block>
+						<view class="oy-detailist-footer-title">({{list[index].goodcount}})</view>		
+					</view>
+					<view class="flex flex-center flex-1" bindtap='gotoDetail'  data-id='{{list[index].id}}'  data-name='{{list[index].nickname}}'>
+						<image mode='aspectFill' class="oy-detailist-footer-img" src="/pages/sns/myIcon/warning.png" ></image>	
+						<view class="oy-detailist-footer-title">投诉</view>		
+					</view>
+				</view>
+			
+			</block>
+			<block wx:else>
+				<view class="oy-detailist-footer flex">
+					<view class="flex flex-center flex-1">
+						<image mode='aspectFill' class="oy-detailist-footer-img oy-comment-img" src="/pages/sns/myIcon/comment.png" ></image>	
+						<view class="oy-detailist-footer-title">({{list[index].postcount}})</view>		
+					</view>
+					<view class="flex flex-center flex-1">
+						<block wx:if="{{list[index].isgood==1}}">
+							<image mode='aspectFill'  data-index="{{index}}" data-id='{{list[index].id}}' class="oy-detailist-footer-img" src="/pages/sns/myIcon/good_yellow.png" ></image>	
+						</block>
+						<block wx:else>
+							<image mode='aspectFill' data-index="{{index}}" data-id='{{list[index].id}}' class="oy-detailist-footer-img" src="/pages/sns/myIcon/good.png" ></image>	
+						</block>
+						<view class="oy-detailist-footer-title">({{list[index].goodcount}})</view>		
+					</view>
+				</view>
+			</block>
+		</view>
+	</scroll-view>
+</template>

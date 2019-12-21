@@ -1,0 +1,122 @@
+<!--pages/groups/team/index.wxml-->
+<view class='box' style='margin-bottom:100rpx'>
+  <view class="orderscroll">
+    <view data-type='0' bindtap='selected' class='item {{success == "0"?"active":""}}'>组团中</view>
+    <view data-type='1' bindtap='selected' class='item {{success == "1"?"active":""}}'>组团成功</view>
+    <view data-type='-1' bindtap='selected' class='item {{success == "-1"?"active":""}}'>组团失败</view>
+  </view>
+  <block wx:if='{{list.length != 0}}'>
+    <view class='contain'>
+      <block wx:for='{{list}}' wx:for-item='item' wx:for-index='index' wx:key="list">
+        <view class='fui-list-group noclick'>
+          <navigator hoverClass='none' url='/pages/groups/team/detail?teamid={{item.teamid}}&orderid={{item.id}}'>
+            <view class='fui-list-group-title'>
+              订单号：
+              <text>{{item.orderno}}</text>
+              <block wx:if='{{item.itemnum==item.groupnum}}'>
+                <view class='statuscss'>团购已成功</view>
+              </block>
+              <block wx:else>
+                <block wx:if='{{item.success==1}}'>
+                  <view class='statuscss'>团购已成功</view>
+                </block>
+                <block wx:else>
+                  <block wx:if='{{item.lasttime>0}}'>
+                    <block wx:if='{{item.status==0}}'>
+                      <view class='statuscss'>未支付</view>
+                    </block>
+                    <block wx:elif='{{item.itemnum}} < {{item.groupnum}}'>
+                      <block wx:if='{{item.status}}>0'>
+                        <view class='statuscss'>团购进行中</view>
+                      </block>
+                      <block wx:else>
+                        <view class='statuscss'>团购已取消</view>
+                      </block>
+                    </block>
+                  </block>
+                  <block wx:else>
+                    <view class='statuscss'>团购已过期</view>
+                  </block>
+                </block>
+              </block>
+            </view>
+            <view class='fui-list goods-info' style='background:#eee;'>
+              <view class='fui-list-media'>
+                <image style='width:120rpx;height:120rpx' mode='aspectFll' src='{{item.thumb}}' class='round goods_img' lazy-load='true'></image>
+              </view>
+              <view class='fui-list-inner'>
+                <view class='text text-left'>{{item.title}}</view>
+              </view>
+              <view class='num'>
+                <view class='text-right' style='margin-right:-10rpx;'>
+                  <text style='color:red;'>￥{{item.price}}</text> /{{item.goodsnum}}{{item.units}}
+                </view>
+                <view class='text-right' style='margin-right:-10rpx;'>x
+                  <text>{{item.goodsnum}}</text>
+                </view>
+              </view>
+              <view style="position: absolute;right: 4rem;top:1rem;width:4rem;height: 4rem;z-index: 999;">
+                <block wx:if='{{item.itemnum>=item.groupnum}}'>
+                <image   mode='aspectFit' alt="" width="100%" height="100%" src="/static/images/success.png"></image>
+                </block>
+                <block wx:else>
+                  <block wx:if='{{item.success<0}}'>
+                  <image   mode='aspectFit'  alt="" width="100%" height="100%" src="/static/images/fail.png"></image>
+                  </block>
+                </block>
+              </view>
+            </view>
+            <view class='fui-list list-padding' style='font-size:0.8rem;left:220rpx;'>运费:
+              <text class='text-danger'>{{item.freight}}</text>元,共
+              <text class='text-danger'>{{item.goodsnum}}</text>个商品 总额:
+              <text class='text-danger'>￥<text>{{item.amount}}</text></text>元
+            </view>
+          </navigator>
+          <view class='lynn_order_bottom'>
+            <view class="status">
+              <block wx:if="{{item.status == 3 || item.status == -1}}">
+                <view class="lynn_btn lynn_btn_danger">
+                  <navigator url="/pages/groups/goods/index?id={{item.goodid}}">再拼一单</navigator>
+                </view>
+              </block>
+              <view class="external lynn_btn lynn_btn_danger">
+                <navigator url="/pages/groups/team/detail?teamid={{item.teamid}}&orderid={{item.id}}">查看团详情</navigator>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+  <block wx:if='{{list.length == 0 || empty}}'>
+    <view class='center'>
+      <view class='empty'>
+        <image mode='aspectFit' class='light' src='/static/images/icon/lights-128.png' lazy-load='true'></image>
+        <view class='text-cancel'>暂时没有参加任何团</view>
+        <navigator url='/pages/groups/index/index' class='btn btn-default-o'>到处逛逛</navigator>
+      </view>
+    </view>
+  </block>
+</view>
+<!-- 底部导航 -->
+<template name="item">
+  <view class="fui-navbar" style="z-index: 10;">
+    <navigator url="/pages/groups/index/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/home.png'></image>
+      <text class="label">拼团首页</text>
+    </navigator>
+    <navigator url="/pages/groups/category/index" open-type='redirect' class="external nav-item">
+       <image mode='aspectFit' class='icon-images-home' src='/static/images/tabbar/icon-2.png'></image>
+      <text class="label">活动列表</text>
+    </navigator>
+    <navigator url="/pages/groups/orders/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/cart.png'></image>
+      <text class="label">我的订单</text>
+    </navigator>
+    <navigator url="/pages/groups/team/index" open-type='redirect' class="external nav-item active">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon-red/group.png'></image>
+      <text class="label">我的团</text>
+    </navigator>
+  </view>
+</template>
+<template is="item" data="{{get_r: 'groups'}}" />

@@ -1,0 +1,2 @@
+/* pages/board/postDetail/backComent.wxss */
+@import 'postDetail.wxss';

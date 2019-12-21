@@ -1,0 +1,330 @@
+<!-- <block wx:if='{{!show}}'>
+  <loading>加载中...</loading>
+</block> -->
+<!-- <view class='bg-view' wx:if='{{showBg}}'>
+  <view class='impower-box'>
+    <view class='impower-title'>用户信息授权</view>
+    <view class='impower-content'>本页面需要获取您的昵称等公开信息</view>
+    <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" withCredentials="true" class="impower-btn">授权登录</button>
+  </view>
+</view> -->
+<!--pages/center/index.wxml-->
+<block >
+  <view>
+    <view class="oy_center_head flex">
+      <view class="flex-1 flex flex-ver">
+        <image mode="aspectFill" class="oy_user_img" src='{{member.avatar || "/static/images/noface.png"}}' lazy-load='true'></image>
+        <view class="flex-1">
+          <view class="oy_user_name">{{member.nickname || "未更新用户信息"}}</view>
+          <!-- <view class="oy_user_lv">ID:cxxxx_5444</view> -->
+          <view class="oy_user_lv">会员等级：{{member.levelname}}</view>
+          <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" style="padding-left: 0;padding-right: 0;font-size: 12px;width: 85px;margin-left: 0;margin-right: 0;margin-top: 5px;" wx:if='{{!member.nickname}}'>获取用户信息</button>
+        </view>
+      </view>
+      <view class="flex flex-jcfe">
+        <navigator hover-class='none' url="/pages/member/info/index">
+          <image mode='aspectFill' src="../../img/oy_set@2x.png" class="oy_set_img" lazy-load='true'></image>
+        </navigator>
+      </view>
+    </view>
+    <view class="oy_center_main_head flex flex-ver">
+      <image mode='aspectFill' class="oy_icon" src="../../img/oy_wallet@2x.png" lazy-load='true'></image>
+      <view class="flex-1">我的钱包</view>
+    </view>
+    <view class="oy_center_item_box flex flex-ver">
+      <navigator url='/pages/member/recharge/index' hover-class='none' class="oy_item1 flex flex-col flex-center">
+        <view class="oy_money">{{member.moneytext}}</view>
+        <view class="oy_money_title">{{member.credit2}}</view>
+      </navigator>
+      <view class="oy_item1 flex flex-col flex-center">
+        <view class="oy_money">{{member.credittext}}</view>
+        <view class="oy_money_title">{{member.credit1}}</view>
+      </view>
+    </view>
+    <view class="oy_center_main_head flex flex-ver">
+      <image mode='aspectFill' class="oy_icon" src="../../img/oy_myorder.png" lazy-load='true'></image>
+      <view class="flex-1">我的订单</view>
+      <navigator url="/pages/order/index" class="flex flex-ver oy_nav_box" hover-class='none'>
+        <view class="oy_nav_title">
+          查看全部
+        </view>
+        <image mode='aspectFill' src="../../img/oy_all@2x.png" lazy-load='true'></image>
+      </navigator>
+    </view>
+    <view class="flex flex-ver oy_center_list">
+      <navigator url="../../order/index?status=0" hover-class='none' class="oy_center_item flex flex-col flex-center">
+        <view class="oy_relative_box">
+          <image mode="aspectFill" src="../../img/oy_nopay@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <block wx:if='{{member.statics.order_0 > 0}}'>
+            <view class="flex flex-center {{member.statics.order_0 >= 10?'oy_badge':'oy_badge1'}}">{{member.statics.order_0}}</view>
+          </block>
+        </view>
+        <view class="oy_center_item_title">待付款</view>
+      </navigator>
+      <navigator url="../../order/index?status=1" hover-class='none' class="oy_center_item flex flex-col flex-center">
+        <view class="oy_relative_box">
+          <image mode="aspectFill" src="../../img/oy_deliver@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <block wx:if='{{member.statics.order_1 > 0}}'>
+            <view class="flex flex-center {{member.statics.order_1 >= 10?'oy_badge':'oy_badge1'}}">{{member.statics.order_1}}</view>
+          </block>
+        </view>
+        <view class="oy_center_item_title">待发货</view>
+      </navigator>
+      <navigator url="../../order/index?status=2" hover-class='none' class="oy_center_item flex flex-col flex-center">
+        <view class="oy_relative_box">
+          <image mode="aspectFill" src="../../img/oy_delivery@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <block wx:if='{{member.statics.order_2 > 0}}'>
+            <view class="flex flex-center {{member.statics.order_2 >= 10?'oy_badge':'oy_badge1'}}">{{member.statics.order_2}}</view>
+          </block>
+        </view>
+        <view class="oy_center_item_title">待收货</view>
+      </navigator>
+      <navigator url="../../order/index?status=3" hover-class='none' class="oy_center_item flex flex-col flex-center">
+        <view class="oy_relative_box">
+          <image mode="aspectFill" src="../../img/oy_complete@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <block wx:if='{{member.statics.order_4 > 0}}'>
+            <view class="flex flex-center {{member.statics.order_4 >= 10?'oy_badge':'oy_badge1'}}">{{member.statics.order_4}}</view>
+          </block>
+        </view>
+        <view class="oy_center_item_title">已完成</view>
+      </navigator>
+    </view>
+    <view class="oy_center_main_head flex flex-ver">
+      <image mode='aspectFill' class="oy_icon" src="../../img/oy_tool.png" lazy-load='true'></image>
+      <view class="flex-1">常用工具</view>
+    </view>
+    <view class="flex flex-ver flex-wrap">
+      <navigator url="/pages/member/bind/index" class="oy_center_item1" hover-class='none'>
+        <view class="flex flex-col flex-center oy_center_item_main">
+          <image mode="aspectFill" src="../../img/oy_perfect@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <view class="oy_center_item_title">绑定手机</view>
+        </view>
+      </navigator>
+      <navigator openType='switchTab' url='/pages/member/cart/index' class="oy_center_item1" hover-class='none'>
+        <view class="flex flex-col flex-center oy_center_item_main">
+          <view class="oy_relative_box">
+            <image mode="aspectFill" src="../../img/oy_cart@2x.png" class="oy_item_icon" lazy-load='true'></image>
+            <block wx:if='{{member.statics.cart > 0}}'>
+              <view class="flex flex-center {{member.statics.cart >= 10?'oy_badge':'oy_badge1'}}">{{member.statics.cart}}</view>
+            </block>
+          </view>
+          <view class="oy_center_item_title">我的购物车</view>
+        </view>
+      </navigator>
+      <navigator url="/pages/member/favorite/index" class="oy_center_item1" hover-class='none'>
+        <view class="flex flex-col flex-center oy_center_item_main oy_noline">
+          <view class="oy_relative_box">
+            <image mode="aspectFill" src="../../img/oy_attention@2x.png" class="oy_item_icon" lazy-load='true'></image>
+            <block wx:if='{{member.statics.favorite > 0}}'>
+              <view class="flex flex-center {{member.statics.favorite >= 10?'oy_badge':'oy_badge1'}}">{{member.statics.favorite}}</view>
+            </block>
+          </view>
+          <view class="oy_center_item_title">我的关注</view>
+        </view>
+      </navigator>
+      <navigator url="/pages/member/history/index" class="oy_center_item1" hover-class='none'>
+        <view class="flex flex-col flex-center oy_center_item_main">
+          <image mode="aspectFill" src="../../img/oy_footer@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <view class="oy_center_item_title">我的足迹</view>
+        </view>
+      </navigator>
+    </view>
+    <view class="oy-ef-line"></view>
+    <view class="oy_center_main_head flex flex-ver">
+      <image mode='aspectFill' class="oy_icon" src="../../img/oy_tool.png" lazy-load='true'></image>
+      <view class="flex-1">必备工具</view>
+    </view>
+    <view class="flex flex-ver flex-wrap">
+      <block wx:if='{{member.commission}}'>
+      <view class="oy_center_item1" data-type='commission' bindtap='register'>
+        <view class="flex flex-col flex-center oy_center_item_main">
+          <image mode="aspectFill" src="../../img/oy_distribution@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <view class="oy_center_item_title">分销中心</view>
+        </view>
+      </view>
+      </block>
+            
+      <!-- <navigator url="/pages/member/bind/index" class="oy_center_item1" hover-class='none'>
+      <view class="flex flex-col flex-center oy_center_item_main">
+        <image mode="aspectFill" src="../../img/oy_perfect@2x.png" class="oy_item_icon" lazy-load='true'></image>
+        <view class="oy_center_item_title">绑定手机</view>
+      </view>
+    </navigator>
+    <navigator openType='switchTab' url='/pages/member/cart/index' class="oy_center_item1" hover-class='none'>
+      <view class="flex flex-col flex-center oy_center_item_main">
+        <view class="oy_relative_box">
+          <image mode="aspectFill" src="../../img/oy_cart@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <block wx:if='{{member.statics.cart > 0}}'>
+            <view class="flex flex-center {{member.statics.cart >= 10?'oy_badge':'oy_badge1'}}">{{member.statics.cart}}</view>
+          </block>
+        </view>
+        <view class="oy_center_item_title">我的购物车</view>
+      </view>
+    </navigator>
+    <navigator url="/pages/member/favorite/index" class="oy_center_item1" hover-class='none'>
+      <view class="flex flex-col flex-center oy_center_item_main oy_noline">
+        <view class="oy_relative_box">
+          <image mode="aspectFill" src="../../img/oy_attention@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <block wx:if='{{member.statics.favorite > 0}}'>
+            <view class="flex flex-center {{member.statics.favorite >= 10?'oy_badge':'oy_badge1'}}">{{member.statics.favorite}}</view>
+          </block>
+        </view>
+        <view class="oy_center_item_title">我的关注</view>
+      </view>
+    </navigator>
+    <navigator url="/pages/member/history/index" class="oy_center_item1" hover-class='none'>
+      <view class="flex flex-col flex-center oy_center_item_main">
+        <image mode="aspectFill" src="../../img/oy_footer@2x.png" class="oy_item_icon" lazy-load='true'></image>
+        <view class="oy_center_item_title">我的足迹</view>
+      </view> 
+    </navigator>-->
+
+      <navigator url="/pages/sale/coupon/index/index" class="oy_center_item1" hover-class='none' wx:if="{{member.hascouponcenter===true}}">
+        <view class="flex flex-col flex-center oy_center_item_main">
+          <view class="oy_relative_box">
+            <image mode="aspectFill" src="../../img/oy_discount@2x.png" class="oy_item_icon" lazy-load='true'></image>
+            <block wx:if='{{member.couponnum > 0}}'>
+              <view class="flex flex-center {{member.couponnum >= 10?'oy_badge':'oy_badge1'}}">{{member.couponnum}}</view>
+            </block>
+          </view>
+          <view class="oy_center_item_title">领取优惠券</view>
+        </view>
+      </navigator>
+      <navigator url="/pages/sale/coupon/my/index/index" class="oy_center_item1" hover-class='none' wx:if="{{member.hascoupon===true}}">
+        <view class="flex flex-col flex-center oy_center_item_main">
+          <view class="oy_relative_box">
+            <image mode="aspectFill" src="../../img/oy_discount1@2x.png" class="oy_item_icon" lazy-load='true'></image>
+            <block wx:if='{{member.statics.coupon > 0}}'>
+              <view class="flex flex-center {{member.statics.coupon >= 10?'oy_badge':'oy_badge1'}}">{{member.statics.coupon}}</view>
+            </block>
+          </view>
+          <view class="oy_center_item_title">我的优惠券</view>
+        </view>
+      </navigator>
+      <navigator url="/pages/member/withdraw/index" class="oy_center_item1" hover-class='none'>
+        <view class="flex flex-col flex-center oy_center_item_main oy_noline">
+          <image mode="aspectFill" src="../../img/oy_withdraw@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <view class="oy_center_item_title">余额提现</view>
+        </view>
+      </navigator>
+      <navigator url="/pages/member/log/index" class="oy_center_item1" hover-class='none'>
+        <view class="flex flex-col flex-center oy_center_item_main">
+          <image mode="aspectFill" src="../../img/oy_balance@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <view class="oy_center_item_title">余额明细</view>
+        </view>
+      </navigator>
+      <navigator url="/pages/member/address/index" class="oy_center_item1" hover-class='none'>
+        <view class="flex flex-col flex-center oy_center_item_main">
+          <image mode="aspectFill" src="../../img/oy_adr@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <view class="oy_center_item_title">收货地址管理</view>
+        </view>
+      </navigator>
+      <!-- <navigator url="/pages/exchange/common/index" class="oy_center_item1" hover-class='none'>
+        <view class="flex flex-col flex-center oy_center_item_main">
+          <image mode="aspectFill" src="../../img/oy_adr@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <view class="oy_center_item_title">兑换中心</view>
+        </view>
+      </navigator> -->
+
+      <navigator url="/pages/member/info/index" class="oy_center_item1" hover-class='none' wx:if='{{member["customer"] == "1" }}'>
+        <view class="flex flex-col flex-center oy_center_item_main">
+          <image mode="aspectFill" src="../../img/oy_data@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <view class="oy_center_item_title">会员资料设置</view>
+        </view>
+      </navigator>
+
+      <!-- <navigator url="/pages/merch/merchuser/index" class="oy_center_item1" hover-class='none'>
+        <view class="flex flex-col flex-center oy_center_item_main">
+          <image mode="aspectFill" src="../../img/oy_data@2x.png" class="oy_item_icon" lazy-load='true'></image>
+          <view class="oy_center_item_title">多店铺用户</view>
+        </view>
+      </navigator> -->
+    <block wx:for="{{plugins}}" wx:key="" wx:if="{{item.identity=='merch'}}">
+        <navigator url="/pages/{{item.identity}}/register/index" class="oy_center_item1" hover-class='none'>
+          <view class="flex flex-col flex-center oy_center_item_main">
+            <image mode="aspectFill" src="{{item.thumb}}" class="oy_item_icon" lazy-load='true'></image>
+            <view class="oy_center_item_title">商户入驻</view>
+          </view>
+        </navigator>
+      </block>
+      <block wx:for="{{plugins}}" wx:if="{{plugins&&plugins!=''}}" wx:key="">
+        <block wx:if="{{item.path}}">
+          <navigator data-url="{{item.path}}" class="oy_center_item1 {{item.identity=='merch'?'hidden':''}}" hover-class='none'>
+            <view class="flex flex-col flex-center oy_center_item_main">
+              <image mode="aspectFill" src="{{item.thumb}}" class="oy_item_icon" lazy-load='true'></image>
+              <view class="oy_center_item_title">{{item.name}}</view>
+            </view>
+          </navigator>
+        </block>
+        <block wx:else>
+          <view data-type='{{item.identity}}' data-url="/pages/{{item.identity}}/index/index" bindtap='register' class="oy_center_item1 {{item.identity=='merch'?'hidden':''}}" hover-class='none'>
+            <view class="flex flex-col flex-center oy_center_item_main">
+              <image mode="aspectFill" src="{{item.thumb}}" class="oy_item_icon" lazy-load='true'></image>
+              <view class="oy_center_item_title">{{item.name}}</view>
+            </view>
+          </view>
+        </block>
+      </block>
+  
+    </view>
+    <view style="font-size:22rpx;text-align:center;width:100%;padding:80rpx 0 0 0;{{member.copyrightlogo?'background-image:url('+member.copyrightlogo+');background-size:50rpx 50rpx; background-repeat: no-repeat;background-position:center;':''}}">{{member["copyrighttext"]}}</view>
+    <!-- 客服  -->
+    <view wx:if='{{member["customer"] == "1"}}' class="quic">
+      <view class='info'>
+        <view class="quicbg">
+          <button open-type="contact" MsgType="miniprogrampage" send-message-title="{{member.nickname}}" send-message-img="" show-message-card="true">
+            <view class="pic" style="{{member.customercolor?'background:'+member.customercolor:''}}">
+              <image class='icon' src='{{icons["service"]}}' lazy-load='true'></image>
+            </view>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+<!-- 底部tabbar -->
+<block  wx:if="{{merch}}">
+  <view class='view-tabbar'>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/index/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/home.png'></image>
+      <view class='view-tabbar-text'>首页</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/shop/caregory/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/cate.png'></image>
+      <view class='view-tabbar-text'>全部分类</view>
+    </navigator>
+    <navigator class='view-tabbar-content'  hover-class='none' url='/pages/merch/index/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/cate.png'></image>
+      <view class='view-tabbar-text'>商家列表</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/member/cart/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/cart.png'></image>
+      <view class='view-tabbar-text'>购物车</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/member/index/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon-red/people.png'></image>
+      <view class='view-tabbar-text' style='color:red'>会员中心</view>
+    </navigator>
+  </view>
+</block>
+<block  wx:if="{{id!=0&&id!=''}}">
+  <view class='view-tabbar'>
+    <navigator class='view-tabbar-content' open-type='redirectTo' hover-class='none' url='/pages/merch/mystore/index?merchid={{id}}'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/home.png'></image>
+      <view class='view-tabbar-text'>首页</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/shop/caregory/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/cate.png'></image>
+      <view class='view-tabbar-text'>全部分类</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/member/cart/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon/cart.png'></image>
+      <view class='view-tabbar-text'>购物车</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/member/index/index'>
+      <image class='view-tabbar-image' src='../../../static/images/icon-red/people.png'></image>
+      <view class='view-tabbar-text' style='color:red'>会员中心</view>
+    </navigator>
+  </view>
+</block>

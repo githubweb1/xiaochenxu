@@ -1,0 +1,54 @@
+<!--pages/task/reward/index.wxml-->
+<view>
+  <view class='xj-reward-list' wx:for="{{list}}" wx:key="">
+    <view class='xj-reward-list-left'>
+      <view class='xj-reward-list-left-top'>
+        <block wx:if="{{item.reward_type=='redpacket'}}">
+          <image class='xj-center-image' src='/static/images/icon-red/redpacket.png' mode='aspectFit'></image>
+          <text class='xj-text'>￥{{item.reward_data}}红包</text>
+        </block>
+        <block wx:if="{{item.reward_type=='credit'}}">
+          <image class='xj-center-image' src='/static/images/icon-red/credit.png' mode='aspectFit'></image>
+          <text class='xj-text'>{{item.reward_data}}积分</text>
+        </block>
+        <block wx:if="{{item.reward_type=='balance'}}">
+          <image class='xj-center-image' src='/static/images/icon-red/balance.png' mode='aspectFit'></image>
+          <text class='xj-text'>￥{{item.reward_data}}</text>
+        </block>
+        <block wx:if="{{item.reward_type=='coupon'}}">
+          <image class='xj-center-image' src='/static/images/icon-red/coupon.png' mode='aspectFit'></image>
+          <text class='xj-text'>{{item.reward_title}}</text>
+        </block>
+        <block wx:if="{{item.reward_type=='goods'}}">
+          <image class='xj-center-image' src='/static/images/icon-red/goods.png' mode='aspectFit'></image>
+          <text class='xj-text'>{{item.goodsList.title}}</text>
+        </block>
+      </view>
+      <view class='xj-reward-center'>
+        {{item.tasktitle}}
+      </view>
+      <view class='x-reward-bottom'>
+        {{item.gettime}}
+      </view>
+    </view>
+    <view class='xj-reward-list-right' wx:if="{{item.reward_type=='credit'||item.reward_type=='balance'||item.sent==1}}">
+      已发放
+    </view>
+    <!-- <view class='xj-reward-list-right' wx:if="{{item.reward_type=='coupon'}}">
+      <navigator class='xj-one' url='/pages/task/deltail/index'>
+        查看
+      </navigator>
+    </view> -->
+    <view class='xj-reward-list-right' wx:if="{{item.reward_type=='redpacket'}}" bindtap='getshop' data-id='{{item.id}}'>
+      领取
+    </view>
+    <view class='xj-reward-list-right' wx:if="{{item.reward_type=='goods'}}">
+      <navigator class='xj-one' url='/pages/goods/detail/index?id={{item.goodsList.id}}&taskrewardgoodsid={{item.goodsList.id}}'>
+        去下单
+      </navigator>
+    </view>
+  </view>
+  <block wx:if="{{!list||lisk.length==0||list==''}}">
+    <view style="height: 7rem;line-height:7rem;width: 100%;text-align: center;color: #d0d0d0;font-size: 1rem">暂时没有任何任务</view>
+  </block>
+</view>

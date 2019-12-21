@@ -1,0 +1,331 @@
+<!--pages/IntegralMall/orderDetails/orderDetails.wxml-->
+<view style='height:60rpx;background:#fff;top:0;width:100%;text-align:center;font-size:30rpx;line-height:60rpx;font-weight:400;border-bottom:1px solid #f5f5f5;padding:15rpx;'>
+  <navigator open-type='redirect' style='float:right;width:80rpx;height:80rpx;' hover-class='none' url='/pages/creditshop/index/index'>
+    <image src='/static/images/icon/home.png' mode='aspectFill' style='width:35px;height:35px;margin-left:-25rpx;margin-top:-1rpx'></image>
+  </navigator>
+  订单详情
+</view>
+<!-- 头部 -->
+<view class='view-order-header'>
+  <view class='view-order-header-left'>
+    <view class='view-header-choose'>
+      <block wx:if="{{list.goods.type==1}}">
+        <text wx:if="{{list.log.status==1}}">未中奖</text>
+      </block>
+      <block wx:if="{{list.goods.goodstype==0}}">
+        <block wx:if="{{list.goods.isverify==1}}">
+          <text wx:if="{{list.log.status==2}}">待兑换</text>
+          <block wx:if="{{isreply==1}}">
+            <text wx:if="{{list.log.status==3&&list.log.iscomment==0}}">等待评价</text>
+            <text wx:if="{{list.log.status==3&&list.log.iscomment==1}}">追加评价</text>
+            <text wx:if="{{list.log.status==3&&list.log.iscomment==2}}">已完成</text>
+          </block>
+          <block wx:else>
+            <text wx:if="{{list.log.status==3}}">已完成</text>
+          </block>
+        </block>
+        <block wx:else>
+          <block wx:if="{{list.log.status==2&&list.log.addressid==0}}">
+            <text>{{list.goods.type==0?"已兑换":"已中奖"}}，请选择收货地址</text>
+          </block>
+          <block wx:if="{{list.log.status==2&&list.log.addressid>0&&list.log.time_send==0}}">
+            <text>等待卖家发货</text>
+          </block>
+          <block wx:if="{{list.log.status==3&&list.log.time_finish!=0&&list.log.time_send!=0}}">
+            <text>卖家已发货，等待签收</text>
+          </block>
+          <block wx:if="{{isreply==1}}">
+            <text wx:if="{{list.log.status==3&&list.log.iscomment==0&&list.log.time_finish!=0}}">待评价</text>
+            <text wx:if="{{list.log.status==3&&list.log.iscomment==1&&list.log.time_finish!=0}}">待评价</text>
+            <text wx:if="{{list.log.status==3&&list.log.iscomment==2&&list.log.time_finish!=0}}">待评价</text>
+          </block>
+          <block wx:else>
+            <text wx:if="{{list.log.status==3&&list.log.time_finish!=0}}">已完成</text>
+          </block>
+        </block>
+      </block>
+      <block wx:else>
+        <block wx:if="{{list.log.status==2&&list.goods.goodstype==3}}">
+          <text>{{list.goods.type==0?"已兑换":"已中奖"}}，等待领取</text>
+        </block>
+        <block wx:if="{{isreply==1}}">
+          <text wx:if="{{list.log.status==3&&list.log.iscomment==0}}">等待评价</text>
+          <text wx:if="{{list.log.status==3&&list.log.iscomment==1}}">追加评价</text>
+          <text wx:if="{{list.log.status==3&&list.log.iscomment==2}}">
+                      {{list.goods.goodstype==1?"优惠券":list.goods.goodstype==2?"余额":list.goods.goodstype==3?"红包":""}}已发放
+          </text>
+        </block>
+        <block wx:else>
+          <text wx:if="{{list.log.status==3}}">
+          {{list.goods.goodstype==1?"优惠券":list.goods.goodstype==2?"余额":list.goods.goodstype==3?"红包":""}}已发放
+          </text>
+        </block>
+      </block>
+    </view>
+    <view class='view-header-money'>商品总额:{{list.goods.credit}}积分
+      <text wx:if="{{list.goods.money>0}}">￥{{list.goods.money}}</text>
+      <text wx:if="{{list.goods.goodstype==0&&list.goods.isverify==0}}"> 免运费 <text wx:if="list.goods.dispatch>0">运费：￥{{list.goods.dispatch}}</text> </text>
+    </view>
+  </view>
+  <block wx:if="{{list.goods.goodstype==0}}">
+    <block wx:if="{{list.goods.isverify==0}}">
+      <image mode='aspectFill' class='view-order-header-right' src='/static/images/icon/money.png' wx:if="{{list.log.status==2}}"></image>
+    </block>
+    <block wx:else>
+      <image mode='aspectFill' class='view-order-header-right' src='/static/images/icon/money.png' wx:if="{{list.log.status==2 && list.log.time_send==0 }}"></image>
+      <image mode='aspectFill' class='view-order-header-right' src='/static/images/icon-white/money.png' wx:if="{{list.log.status==2 && list.log.time_send!=0 }}"></image>
+    </block>
+    <image mode='aspectFill' class='view-order-header-right' src='/static/images/icon-red/money.png' wx:if="{{list.log.status==3}}"></image>
+
+    <block wx:if="{{list.goods.goodstype==1}}">
+      <image mode='aspectFill' class='view-order-header-right' src='/static/images/icon-red/money.png' wx:if="{{list.log.status==3}}"></image>
+    </block>
+    <block wx:if="{{list.goods.goodstype==2}}">
+      <image mode='aspectFill' class='view-order-header-right' src='/static/images/icon-red/money.png' wx:if="{{list.log.status==3}}"></image>
+    </block>
+    <block wx:if="{{list.goods.goodstype==3}}">
+      <image mode='aspectFill' class='view-order-header-right' src='/static/images/icon-red/money.png' wx:if="{{list.log.status==2}}"></image>
+    </block>
+    <block wx:if="{{list.log.status==1}}">
+      <image mode='aspectFill' class='view-order-header-right' src='/static/images/icon-red/money.png'></image>
+    </block>
+  </block>
+</view>
+<!-- 收货地址 -->
+<block wx:if="{{list.goods.isverify==0&&list.log.addressid==0&&list.goods.goodstype==0}}">
+  <navigator class='view-address-content' url='/pages/member/address/select'>
+    <view class='view-address'>收货地址</view>
+    <view style='width:400rpx'>
+      <block wx:if='{{address1}}'>
+        <view>
+          <text class='name'>{{address1.realname}}</text>
+          <text>{{address1.mobile}}</text>
+        </view>
+        <view class='adress'>{{address1.province + address1.city + address1.area + "" + address1.address}}</view>
+      </block>
+    </view>
+    <view class='view-choose'>
+      <block wx:if='{{!address1}}'>
+        <view>添加收货地址</view>
+      </block>
+      <image src='../../../static/images/icon/back.png'></image>
+    </view>
+  </navigator>
+</block>
+<!-- 快递公司 -->
+<block wx:if="{{list.goods.goodstype==0&&list.address}}">
+  <navigator class='view-first-express' url='/pages/creditshop/log_express/index?id={{list.log.id}}' wx:if="{{list.log.status==3&&list.log.expresssn}}">
+    <view class='view-address'>
+      <image src='../../../static/images/icon/car-48.png' mode='aspectFill' style='width:40rpx;height:40rpx;'></image>
+    </view>
+    <view wx:if="{{list.log.status==3&&list.expresssn!=''}}">
+      <block wx:if='{{!list.express}}'>
+        <view style='width:500rpx;'>
+          <view>
+            快递公司:{{list.log.expresscom}}
+          </view>
+          <view>
+            快递单号:{{list.log.expresssn}}
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <text class='name' wx:if="{{list.express&&step =='已签收'}}">
+              {{list.express.step}}
+          </text>
+        <text class='name' wx:if="{{list.express&&step =='已签收'}}">
+              {{list.express.time}}
+          </text>
+      </block>
+    </view>
+    <view class='view-choose'>
+      <image src='../../../static/images/icon/back.png'></image>
+    </view>
+  </navigator>
+</block>
+<!-- 内容 -->
+<view>
+  <view class='view-order'>
+    <view style='display:flex;padding:20rpx 0;align-items:center;'>
+      <image class='view-shop-image' src='/static/images/icon/shop.png'></image>
+      <view style='margin-left:20rpx'>{{list.shopset_shop_name}}</view>
+    </view>
+    <navigator class='view-order-content' url='/pages/creditshop/detail/index?id={{list.goods.id}}'>
+      <image src='{{list.goods.thumb}}' mode='aspectFill'></image>
+      <view class='view-order-center'>
+        <view>{{list.goods.title}}</view>
+        <view style='color:#666' wx:if="{{list.goods.optionid&&list.goods.optionid!=0&&list.goods.optionid!=''}}">规格：{{list.goods.optiontitle}}</view>
+      </view>
+      <view class='view-order-integral'>{{list.goods.credit}}{{list.shopset_trade_credittext}}
+        <view>
+          <view style='text-align:right' wx:if="{{list.goods.money!=0}}">
+            ￥
+          </view>
+          <text style='float:right'>×1</text>
+        </view> 
+      </view>
+    </navigator>
+  </view>
+  <view class='view-order-Calculation'>
+    <view class='view-order-Calculation-content'>
+      <text>商品小计</text>
+      <label>{{list.goods.credit}}积分+￥{{list.goods.money}}</label>
+    </view>
+    <view wx:if="{{list.goods.goodstype==0 &&list.goods.type==0&&list.goods.isverify==0 }}">
+      <text>运费</text>
+      <label> {{list.goods.dispatch==0?"包邮":"￥"}}
+        <text wx:if="{{list.goods.dispatch>0}}">{{list.goods.dispatch}}</text> </label>
+    </view>
+  </view>
+  <!-- 兑换码 -->
+  <block wx:if="{{list.goods.isverify==1&&list.log.status>1}}">
+    <view class='view-qrcode-content'>
+      <view class='view-address'>兑换码</view>
+    </view>
+    <view class='view-qrcode-content-bootom'>
+      <view>
+        {{list.log.eno}}
+      </view>
+      <block wx:if="{{list.verify.isverify}}">
+        <view>
+          已使用
+        </view>
+      </block>
+      <block wx:else>
+        <view wx:if="{{list.goods.verifytype==1}}">
+          <text wx:if="{{list.verifynum==0}}">已使用</text>
+          <text wx:else>剩余{{list.verifynum}}次</text>
+        </view>
+        <view wx:else>
+          未使用
+        </view>
+      </block>
+    </view>
+  </block>
+  <!-- 适用门店 -->
+  <block wx:if="{{list.stores.length!=0&&list.log.status>1}}">
+    <view class='view-store-content' bindtap='clickStore' data-hidden='1'>
+      <view class='view-address'>
+        <image style='position:relative;top:16rpx;' mode='aspectFill' class='view-shop-image' src='../../../static/images/icon/shop.png'></image>适用门店</view>
+      <image mode='aspectFill' class='storeimage {{hidden==0?"":"rotate"}}' src='/static/images/icon/back.png'></image>
+    </view>
+    <view class='view-store-content-bootom  {{hidden==0?"hidden":""}}'>
+      <block wx:for-items="{{list.stores}}" wx:key="zs">
+        <view class='view-store-content-left'>
+          <view>
+            <image style='margin-top:30rpx;' mode='aspectFill' class='view-shop-image' src='/static/images/icon/shop.png'></image>
+          </view>
+          <view>
+            <view>{{item.storename}}</view>
+            <view>{{item.realname}}{{item.mobile}}</view>
+            <view>{{item.address}}</view>
+            <view wx:if="{{distance}}">距门店{{distance}}km</view>
+            <view wx:else>正在计算距离...</view>
+          </view>
+        </view>
+        <view class='view-store-content-lright'>
+          <image wx:if="{{item.tel.lenght!=0}}" src='/static/images/icon-red/tel.png' mode='aspectFill' data-phone="{{item.mobile}}" style='width:50rpx;height:50rpx;' bindtap='bindtel'></image>
+          <navigator url='/pages/order/store/map?id={{item.id}}' hover-class='none'>
+            <image src='/static/images/icon-red/location.png' mode='aspectFill' style='width:50rpx;height:50rpx' bindtap='bind-location'></image>
+          </navigator>
+
+        </view>
+      </block>
+    </view>
+  </block>
+  <!-- 订单详情 -->
+
+  <view class='view-order-details'>
+    <view>
+      <text>订单编号:</text>
+      <label>{{list.log.logno}}</label>
+    </view>
+    <view>
+      <text>创建时间:</text>
+      <label>{{list.log.createtime}}</label>
+    </view>
+    <block wx:if="{{list.log.status>=1}}">
+      <view>
+        <text>支付时间:</text>
+        <label>{{list.log.createtime}}</label>
+      </view>
+    </block>
+    <block wx:if="{{list.log.status>=2&&list.log.time_send!=0}}">
+      <view>
+        <text>发货时间:</text>
+        <label>{{list.log.time_send}}</label>
+      </view>
+    </block>
+    <block wx:if="{{list.log.status==3&&list.log.time_finish!=0}}">
+      <view>
+        <text>完成时间:</text>
+        <label>{{list.log.time_finish}}</label>
+      </view>
+    </block>
+  </view>
+</view>
+<!-- 二维码 -->
+<view class='view-eno-bg {{eno==0?"":"hidden"}}' bindtap="eno" data-eno='1'>
+</view>
+<view class='view-eno {{eno==0?"":"hidden"}}'>
+  <image src='{{url}}' mode='aspectFill' style='width:300rpx;height:300rpx;'></image>
+  <text style='width:500rpx;display:inline-block;color:orange'>请将此二维码出示给店员，如扫码失败请将二维码号码出示给店员看</text>
+  <text style="color:#f60;">兑换码:{{list.log.eno}}</text>
+</view>
+<!-- 底部 -->
+
+<view class='view-bottom'>
+  <view class='view-allRecord-media'>
+    <view class='view-bottom-LuckDraw' hover-class='none' bindtap='tabLuck' wx:if="{{list.goods.isverify==0&&list.goods.goodstype==0&&list.log.addressid==0}}">
+      {{list.goods.dispatch>0?"支付运费":"确认兑换"}}
+    </view>
+    <block wx:if="{{list.goods.goodstype==0&&list.goods.isverify>0&&list.log.status==2||list.log.status==3&&list.verifynum>0}}">
+      <view class='view-alleno' data-eno='0' bindtap="eno" data-logid='{{list.log.id}}' data-a='{{list.log.eno}}'> 兑换二维码 </view>
+    </block>
+    <view class='view-bottom-LuckDraw' bindtap='create' data-lodid='{{list.log.id}}' wx:if="{{list.goods.goodstype==0&&list.log.status==3 && list.log.time_finish==0 && list.log.time_send!=0 }}">
+      <block wx:if="{{Receive}}">
+        {{Receive}}
+      </block>
+      <block wx:else>
+        确认收货
+      </block>
+    </view>
+
+    <view class='view-bottom-LuckDraw' data-lodid='{{list.log.id}}' bindtap='Receivehongbao' wx:if="{{list.goods.goodstype==3 && list.log.status ==2}}">
+      <block wx:if="{{Receive}}">
+        {{Receive}}
+      </block>
+      <block wx:else>
+        领取红包
+      </block>
+    </view>
+    <block wx:if="{{isreply==1 &&list.log.time_finish!=0}}">
+      <block wx:if="{{list.goods.goodstype==0 || list.goods.goodstype ==1}}">
+        <navigator url='/pages/creditshop/comment/index?goodsid={{list.log.goodsid}}&logid={{list.log.id}}' class='view-order-hongbao' data-lodid='{{list.log.id}}' data-goodsid='{{list.log.goodsid}}' wx:if="{{list.log.status==3 && list.log.iscomment ==0}}">
+          评价
+        </navigator>
+        <navigator url='/pages/creditshop/comment/index?goodsid={{list.log.goodsid}}&logid={{list.log.id}}' class='view-order-hongbao' data-lodid='{{list.log.id}}' data-goodsid='{{list.log.goodsid}}' wx:if="{{list.log.status==3 && list.log.iscomment ==1}}">
+          追加评价
+        </navigator>
+      </block>
+      <block wx:if="{{list.goods.goodstype==2 || list.goods.goodstype ==3}}">
+        <navigator url='/pages/creditshop/comment/index?goodsid={{list.log.goodsid}}&logid={{list.log.id}}' class='view-order-hongbao' data-lodid='{{list.log.id}}' data-goodsid='{{list.log.goodsid}}' wx:if="{{list.log.status==3 && list.log.iscomment ==0}}">
+          评价
+        </navigator>
+        <navigator url='/pages/creditshop/comment/index?goodsid={{list.log.goodsid}}&logid={{list.log.id}}' class='view-order-hongbao' data-lodid='{{list.log.id}}' data-goodsid='{{list.log.goodsid}}' wx:if="{{list.log.status==3 && list.log.iscomment ==1}}">
+          追加评价
+        </navigator>
+      </block>
+    </block>
+  </view>
+
+</view>
+
+<!-- 支付方式 -->
+<!-- <view class='view-order-bg {{num==1?"":"hidden"}}' bindtap='quxiao'>
+</view>
+ <view class='view-order-bg-content {{num==1?"":"hidden"}}'>
+    <view class='view-order-bg-choose'>选择支付方式</view>
+    <view class='view-order-bg-wechat' bindtap='wechat' data-pay='wechat'>微信支付</view>
+    <view class='view-order-bg-cancel' bindtap='quxiao'>取消</view>
+  </view> -->

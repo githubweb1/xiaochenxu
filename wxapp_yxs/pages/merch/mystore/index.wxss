@@ -1,0 +1,230 @@
+/* pages/merch/index/index.wxss */
+
+page {
+  background: #f3f3f3;
+}
+
+.view-swiper image {
+  width: 100%;
+  height: 100%;
+}
+
+.view-input {
+  background: #fff;
+  border-radius: 10rpx;
+  padding-left: 60rpx;
+  font-size: 30rpx;
+  height: 60rpx;
+}
+
+.view-input-image {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 33rpx;
+  left: 35rpx;
+}
+
+/* 商品展示 */
+
+.view-exchange {
+  padding: 20rpx;
+}
+
+.view-exchange-header {
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
+}
+
+.view-exchange-header::before {
+  content: ">";
+}
+
+.view-exchange-allContent {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  flex-wrap: wrap;
+}
+
+.view-exchange-content {
+  width: 48%;
+  font-size: 30rpx;
+  margin-bottom: 30rpx;
+  background: #fff;
+  padding-bottom: 20rpx;
+}
+
+.view-exchange-image {
+  width: 100%;
+  height: 350rpx;
+}
+
+.view-exchange-text {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.view-footer {
+  padding: 0 15rpx;
+}
+
+.view-exchange-content label {
+  float: right;
+  background: red;
+  width: 70rpx;
+  height: 40rpx;
+  display: inline-block;
+  text-align: center;
+  font-size: 25rpx;
+  color: white;
+  border-radius: 10rpx;
+  line-height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.view-footer-integral {
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 20rpx;
+  color: #999;
+  padding-left: 20rpx;
+}
+
+.red {
+  color: red;
+  font-size: 30rpx;
+}
+
+.view-exchange-text-shop {
+  height: 40rpx;
+  background: red;
+  border-radius: 10rpx;
+  display: inline-block;
+  color: white;
+  line-height: 40rpx;
+  font-size: 25rpx;
+  text-align: center;
+  margin-right: 30rpx;
+  padding: 0 10rpx;
+}
+
+/* nav导航 */
+
+.view-nav {
+  background: #fff;
+  display: flex;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.view-nav-content {
+  width: 25%;
+  height: 200rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-nav-image {
+  border-radius: 50%;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.view-nav-text {
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}
+
+/* 广告栏 */
+
+.avi {
+  display: flex;
+  flex-direction: space-between;
+  margin-bottom: 20rpx;
+}
+
+.avi-left {
+  width: 50%;
+}
+
+.avi-right {
+  width: 50%;
+}
+
+.avi-top {
+  width: 100%;
+}
+
+.avi-top image {
+  width: 100%;
+}
+
+.avi-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.avi-bottom image {
+  width: 50%;
+}
+
+/* 底部tabbar */
+
+.view-tabbar {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  padding: 10rpx 0;
+}
+
+.view-tabbar-content {
+  width: 20%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-tabbar-image {
+  width: 50rpx !important;
+  height: 50rpx !important;
+}
+
+.view-tabbar-text {
+  font-size: 25rpx;
+  color: #999;
+}
+
+.xj-swiper-item {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  position: absolute;
+  width: 100%;
+  height: 100rpx !important;
+}
+
+.weui-flex {
+  background: #fff;
+  border-top: 1rpx solid #f8f8f8;
+  border-bottom: 1rpx solid #f8f8f8;
+  margin-bottom: 30rpx;
+  padding: 0 20rpx;
+}

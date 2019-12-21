@@ -1,0 +1,13 @@
+<template name="xj_wxparse">
+  <view wx:for="{{content_diy_json}}" wx:key="">
+      <block wx:if="{{item.type=='font'}}">
+            <text class='xj-text'>{{item.content}}</text>
+      </block>
+      <block wx:if="{{item.type=='image'}}">
+            <image src='{{item.content}}' mode='widthFix' class='xj-image'></image>
+      </block>
+      <block wx:if="{{item.type=='video'}}">
+           <video src='{{item.content}}' class='xj-video'></video>
+      </block>
+  </view>
+</template>

@@ -1,0 +1,275 @@
+/*
+商品详情
+*/
+
+.view-Element {
+  flex-direction: row;
+  display: flex;
+}
+
+.lynn_back_icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+  position: fixed;
+  left: 0.7rem;
+  top: 0.7rem;
+  background: #000;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.5rem;
+  z-index: 10;
+  -webkit-border-radius: 1.5rem;
+  border-radius: 1.5rem;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+
+.lynn_goods_head {
+  padding: 20rpx;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 20rpx solid #f3f3f3;
+}
+
+.lynn_goods_head_title {
+font-size:32rpx;
+font-weight:600;
+padding:18rpx 0;
+line-height:40rpx;
+}
+
+.lynn_goods_head_title .span {
+  font-weight: normal;
+  color: #fff;
+  background: #fd5454;
+  font-size: 28rpx;
+   width:200rpx;
+  height:50rpx;
+  text-align:center;
+  padding:3rpx 10rpx;
+  margin-right: 10rpx
+}
+
+.lynn_goods_follow {
+  float: right;
+  width: 10%;
+  display: block;
+  height: 2rem;
+  margin: 0.5rem 0;
+  font-size: 0.6rem;
+  text-align: center;
+  border-left: 1px solid #c6c6c6;
+}
+
+.lynn_goods_follow i {
+  display: block;
+  height: 1rem;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1rem;
+}
+
+.lynn_goods_follow i.on {
+  color: #ff473f;
+  display: none;
+}
+
+.lynn_goods_head_subtitle {
+  padding: 20rpx 0;
+  color: #999;
+  font-size: 28rpx;
+  clear: both;
+  overflow: hidden;
+}
+
+.lynn_goods_head_info {
+  color: #313131;
+  font-size:26rpx;
+  height: 1rem;
+  line-height: 1rem;
+  clear: both;
+  display: flex;
+  justify-content: space-between
+}
+
+.lynn_goods_head_info .strong {
+  font-size: 28rpx;
+  color: #fd5454;
+}
+
+ .del {
+  font-size: 26rpx;
+  color: #959595;
+  padding-left: 20rpx;
+  text-decoration:line-through;
+}
+
+ .fr {
+  color: #959595;
+  margin-left: 0.6rem;
+}
+
+ .fr .b {
+  color: #000;
+  font-weight: bold;
+}
+
+.lynn_goods_invitation {
+  background: #fff;
+  padding: 20rpx;
+  color: #959595;
+  font-size: 26rpx;
+  display:inline-block;
+}
+
+.lynn_goods_invitation navigator {
+ color:#353535;
+text-decoration:underline;
+display:inline-block;
+
+}
+
+.lynn_goods_content {
+  padding: 0 0.5rem;
+  background: #fff;
+  border-top:20rpx solid #f3f3f3;
+}
+
+.lynn_goods_content_title {
+  font-size: 28rpx;
+  color: #000;
+  line-height: 60rpx;
+}
+
+.lynn_goods_content_title .span {
+  width: 130rpx;
+  border-bottom: 2rpx solid #fd5454;
+  font-weight: bold;
+  text-align:center;
+}
+
+.lynn_goods_content_info {
+  padding: 0.5rem 0;
+}
+
+.lynn_goods_btn {
+  width: 40%;
+  height: 2.5rem;
+  color: #fff;
+  display: block;
+  float: left;
+  text-align: center;
+  font-size: 0.6rem;
+  padding: 0.2rem 0;
+}
+
+.lynn_goods_btn p strong {
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+
+.lynn_btn_waring {
+  background: #ff8080;
+}
+
+.lynn_goods_discount {
+  color: #313131;
+  font-size: 26rpx;
+  height: 1rem;
+  line-height: 1rem;
+  clear: both;
+  padding-top: 0.2rem;
+  margin-top: -0.15rem;
+}
+
+.lynn_goods_discount span {
+  color: #fd5454;
+}
+
+.fui-navbar .homeabtn {
+  float: left;
+  border: none;
+  background: #fff;
+  padding: 0 28rpx;
+}
+
+.homeabtn_images_home {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+#content {
+  font-size: 0.8rem;
+}
+
+.fui-navbar {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 2.45rem;
+  background: #fff;
+}
+
+.fui-navbar.bordert {
+  display: flex;
+  flex-direction: row;
+}
+
+.creditshop-detail-page .fui-navbar .homeabtn {
+  height: 2.6rem;
+  width: 20%;
+  font-size: 12px;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+  float: left;
+  background: #fff;
+  color: #666;
+  border: none;
+  line-height: 2.6rem;
+}
+
+.lynn_goods_btn {
+  width: 40%;
+  height: 2.5rem;
+  color: #fff;
+  display: block;
+  float: left;
+  text-align: center;
+  font-size: 0.6rem;
+  padding: 0.2rem 0;
+}
+
+.lynn_btn_waring {
+  background: #ff8080;
+}
+
+.lynn_goods_btn {
+  width: 40%;
+  height: 2.5rem;
+  color: #fff;
+  display: block;
+  float: left;
+  text-align: center;
+  font-size: 0.6rem;
+  padding: 0.2rem 0;
+}
+
+.lynn_btn_danger {
+  border: 1px solid #fd5454;
+  background: #fd5454;
+  color: #fff;
+}
+
+.lynn_goods_btn .strong {
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+.lynn_goods_head{
+  display: flex;
+  flex-direction: column;
+}

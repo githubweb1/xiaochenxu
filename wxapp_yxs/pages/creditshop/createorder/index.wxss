@@ -1,0 +1,265 @@
+/* pages/IntegralMall/creadOrder/creadOrder.wxss */
+
+page {
+  background: #f8f8f8;
+}
+
+.view-order {
+  font-size: 25rpx;
+  padding: 20rpx;
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.view-shop-image {
+  width: 30rpx;
+  height: 30rpx;
+}
+.order-show{
+  margin-bottom: 30rpx;
+}
+
+.view-order-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view-order-content image {
+}
+
+.store-gq{
+  color: #666;
+  padding-left: 10rpx;
+}
+
+.view-order-center {
+  width: 450rpx;
+}
+
+.view-order-integral {
+}
+
+.view-order-Calculation {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  font-size: 25rpx;
+  background: #fff;
+}
+
+.view-order-Calculation-content {
+  height: 40rpx;
+}
+
+.view-order-Calculation label {
+  float: right;
+}
+
+/* 地址 */
+
+.view-address {
+  font-size: 25rpx;
+  float: left;
+}
+
+.view-address-content {
+  padding: 30rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.view-choose {
+  font-size: 25rpx;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-choose image {
+  width: 30rpx;
+  height: 30rpx;
+  transform: rotate(180deg);
+}
+
+.view-bottom-LuckDraw {
+  position: fixed;
+  bottom: 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 100%;
+  font-size: 25rpx;
+  color: #555;
+  padding-left: 30rpx;
+  border-top: 1rpx solid #ddd;
+  box-shadow: darkgrey 10px 10px 15px 5px;
+  box-sizing: border-box;
+}
+
+/* .view-bottom-LuckDraw text {
+  display: inline-block;
+} */
+
+.view-bottom-LuckDraw .payBtn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 200rpx;
+  height: 100rpx;
+  text-align: center;
+  background: rgb(214, 32, 63);
+  color: white;
+}
+
+.view-order-bg {
+  background: #000;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.view-order-bg-choose {
+  background: #ddd;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  color: #666;
+  text-align: center;
+}
+
+.view-order-bg-wechat {
+  background: #fff;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  color: #999;
+  text-align: center;
+}
+
+.view-order-bg-cancel {
+  background: rgb(230, 34, 34);
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+.view-order-bg-content {
+  position: fixed;
+  bottom: 60rpx;
+  z-index: 2000;
+  height: 180rpx;
+  width: 100%;
+  font-size: 27rpx;
+}
+
+/* 请选择兑换门店 */
+.view-exchangestore{
+padding:0 20rpx;
+margin-top:20rpx;
+margin-bottom:20rpx;
+background:#fff;
+font-size:30rpx;
+
+}
+.view-exchange{
+padding:20rpx 0;
+border-bottom:1rpx solid #f5f5f5;
+
+}
+.view-people{
+padding:20rpx 0;
+border-bottom:1rpx solid #f5f5f5;
+display:flex;
+align-items:center;
+}
+.view-people text{
+width:150rpx;
+color: #666
+}
+.view-phone {
+padding:20rpx 0;
+border-bottom:1rpx solid #f5f5f5;
+display:flex;
+align-items:center;
+}
+.view-phone  text{
+width:150rpx;
+color: #666
+}
+
+.view-choose1{
+padding:20rpx 0;
+display:flex;
+align-items:center;
+}
+.view-choose1 image{
+  width: 40rpx;
+  height: 40rpx;
+  transform: rotate(180deg)
+}
+
+/* 支付方式 */
+.view-order-bg {
+  background: #000;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.view-order-bg-choose {
+  background: #ddd;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  color: #666;
+  text-align: center;
+}
+
+.view-order-bg-wechat {
+  background: #f8f8f8;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  color: #999;
+  text-align: center;
+}
+
+.view-order-bg-balance {
+  background: #fff;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  color: #999;
+  text-align: center;
+}
+
+.view-order-bg-cancel {
+  background: rgb(230, 34, 34);
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+.view-order-bg-content {
+  position: fixed;
+  bottom: 140rpx;
+  z-index: 2000;
+  height: 180rpx;
+  width: 100%;
+  font-size: 27rpx;
+}

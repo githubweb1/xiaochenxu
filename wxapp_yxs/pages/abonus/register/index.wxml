@@ -1,0 +1,201 @@
+<!--pages/abonus/index/index.wxml-->
+<import src="/utils/wxParse/wxParse.wxml" />
+<view>
+  <view>
+    <view>
+      <image src='{{list.set.regbg?list.set.regbg:"http://xcxvip.iiio.top/addons/wx_shop/plugin/app/static/images/bg1.png"}}' style='width:100%;' mode='widthFix'></image>
+    </view>
+    <block wx:if="{{list.set.become=='' || !list.set.become || list.set.become==0}}">
+      <view class='xj-content'>
+        <image src='/static/images/icon/wait-128.png'></image>
+        <view wx:if="{{list.set.noregdesc==''||!list.set.noregdesc}}">想成为区域代理商吗？请立即联系我们！</view>
+        <view wx:else>{{list.set.noregdesc}}</view>
+        <navigator open-type='switchTab' url='/pages/index/index'>去商城逛逛</navigator>
+      </view>
+    </block>
+    <block wx:else>
+      <block wx:if="{{list.member.aagentblack&&list.member.aagentblack!=0}}">
+        <view class='xj-content'>
+          <image src='/static/images/icon/wait-128.png'></image>
+          <view>禁止访问，请联系客服！</view>
+        <navigator open-type='switchTab' url='/pages/index/index'>去商城逛逛</navigator>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='xj-content' wx:if="{{list.member.aagentstatus==1&&list.member.isaagent==1}}">
+          <image src='/static/images/label-green.png'></image>
+          <view>您的申请已经审核通过！</view>
+          <button> 进入商城</button>
+        </view>
+        <view class='xj-content' wx:if="{{list.member.aagentstatus==0&&list.member.isaagent==1}}">
+          <image src='/static/images/icon/wait-128.png'></image>
+          <view>谢谢您的支持，请等待审核！</view>
+        <navigator open-type='switchTab' url='/pages/index/index'>去商城逛逛</navigator>
+        </view>
+        <block wx:if="{{list.member.aagentstatus==0&&list.member.isaagent==0&&list.set.become==1}}">
+          <view style='margin-top:10rpx;background:#fff;padding:0 20rpx;color:#666;'>
+            <view class='xj-info-header'>欢迎加入
+              <text>{{list.shopname}}</text>，请填写申请信息
+            </view>
+            <view class='xj-input'>
+              <view class="oy_form_list flex flex-ver">
+                <view class="oy_form_title flex flex-ver">
+                  <view>姓名
+                    <text class="oy_form_pointer">*</text>
+                  </view>
+                </view>
+                <view class="flex-1 oy_form_right flex flex-ver">
+                  <input type='tel' bindinput='inputChange' placeholder='请填写真实姓名，用于结算' class="flex-1 oy_form_input" maxlength='11' placeholder-class="oy_placeholder" data-type='realname'></input>
+                </view>
+              </view>
+              <view class="oy_form_list flex flex-ver">
+                <view class="oy_form_title flex flex-ver">
+                  <view>手机号<text class="oy_form_pointer">*</text></view>
+                </view>
+                <view class="flex-1 oy_form_right flex flex-ver">
+                  <!-- <view class="oy_form_pointer">*</view> -->
+                  <input type='tel' bindinput='inputChange' placeholder='请输入你的手机号' class="flex-1 oy_form_input" maxlength='11' placeholder-class="oy_placeholder" data-type='mobile'></input>
+                </view>
+              </view>
+              <view class="oy_form_list flex flex-ver">
+                <view class="oy_form_title flex flex-ver">
+                  <view>微信号<text class="oy_form_pointer">*</text></view>
+                </view>
+                <view class="flex-1 oy_form_right flex flex-ver">
+                  <input type='tel' bindinput='inputChange' placeholder='请填写微信号' style='margin-left:16rpx' class="flex-1 oy_form_input" placeholder-class="oy_placeholder" data-type='weixin'></input>
+                </view>
+              </view>
+              <view class="oy_form_list flex flex-ver">
+                <view class="oy_form_title flex flex-ver">
+                  <view>区域代理<text class="oy_form_pointer">*</text></view>
+                </view>
+                <view class="flex-1 oy_form_right flex flex-ver">
+                  <radio-group bindchange="checkboxChange">
+                    <label class="checkbox">
+                      <radio style='transform:scale(0.7);' value="province" checked="{{aagenttype==1?'true':''}}" />省份
+                      <radio style='transform:scale(0.7);' value="city" checked="{{aagenttype==2?'true':''}}" />市级
+                      <radio style='transform:scale(0.7);' value="area" checked="{{aagenttype==3?'true':''}}" />区级
+                    </label>
+                  </radio-group>
+                </view>
+              </view>
+              <view class="oy_form_list flex flex-ver  {{aagenttype==1?'':'hidden'}}">
+                <view class="oy_form_title flex flex-ver">
+                  <view>代理省份</view>
+                </view>
+                <view class="flex-1 oy_form_right flex flex-ver">
+                  <view class="section">
+                    <picker mode="region" bindchange="bindRegionChange" data-type='province'>
+                      <view class="picker">
+                        <block wx:if="{{dress.province}}">
+                          {{dress.province[0]}}
+                        </block>
+                        <block wx:else>
+                          请选择代理省份
+                        </block>
+                      </view>
+                    </picker>
+                  </view>
+                </view>
+              </view>
+              <view class="oy_form_list flex flex-ver  {{aagenttype==2?'':'hidden'}}">
+                <view class="oy_form_title flex flex-ver">
+                  <view>代理城市</view>
+                </view>
+                <view class="flex-1 oy_form_right flex flex-ver">
+                  <picker mode="region" bindchange="bindRegionChange" data-type='city'>
+                    <view class="picker">
+                      <block wx:if="{{dress.city}}">
+                        {{dress.city[0]}} {{dress.city[1]}}
+                      </block>
+                      <block wx:else>
+                        请选择代理城市
+                      </block>
+                    </view>
+                  </picker>
+                </view>
+              </view>
+              <view class="oy_form_list flex flex-ver {{aagenttype==3?'':'hidden'}}">
+                <view class="oy_form_title flex flex-ver">
+                  <view>代理区域</view>
+                </view>
+                <view class="flex-1 oy_form_right flex flex-ver ">
+                  <picker mode="region" bindchange="bindRegionChange" data-type='area'>
+                    <view class="picker">
+                      <block wx:if="{{dress.area}}">
+                        {{dress.area[0]}} {{dress.area[1]}} {{dress.area[2]}}
+                      </block>
+                      <block wx:else>
+                        请选择代理区域
+                      </block>
+                    </view>
+                  </picker>
+                </view>
+              </view>
+            </view>
+          </view>
+          <block wx:if="{{list.set.open_protocol==1}}">
+            <view style='background:#fff;display:flex;font-size:30rpx;align-items:center;'>
+              <checkbox-group bindchange='checkChange'>
+                <label>
+                  <checkbox class="fui-checkbox-primary" wx:key="asd">
+                    我已经阅读并了解了
+                  </checkbox>
+                </label>
+              </checkbox-group>
+              <view style="color:#337ab7;float:right;" bindtap='content'>【{{list.apply_set.applytitle}}】</view>
+            </view>
+          </block>
+          <view class='read {{num==1?"":"hidden"}}'>
+            <view class='bg-title'>{{list.set.applytitle}}</view>
+            <view class='bg-content'>
+             <template is='wxParse' data='{{ wxParseData:wxParseData.nodes }}' />
+           </view>
+            <view bindtap='content' class=' btn'>我已阅读</view>
+          </view>
+          <view class='view-eno-bg {{num==1?"":"hidden"}}' bindtap='content'>
+          </view>
+          <view class='xj-btn'>
+            <button type='warn' form-type='submit' bindtap='submit'>{{choose}}</button>
+          </view>
+
+          <block wx:if="{{list.set.register_bottom==0}}">
+            <view style='font-size:26rpx;padding:20rpx;background:#fff;margin-top:20rpx;color:#666'>
+              <view class='xj-top'>
+                <image src='/static/images/icon/vip.png'></image>
+                <view style='margin-left:20rpx;'>{{list.set.texts.aagent}}特权</view>
+              </view>
+              <view class='xj-bottom'>
+                <image src='/static/images/icon-red/money.png'></image>
+                <view class='xj-bottom-become'>
+                  <view>坐享{{list.set.texts.bonus}}</view>
+                  <view>成为{{list.set.texts.aagent}}后，您可以享受平台营业额的{{list.set.texts.bonus}}收益</view>
+                </view>
+              </view>
+            </view>
+          </block>
+          <block wx:if="{{list.set.register_bottom==1}}">
+            <view class='xj-bottom' wx:if="{{list.set.register_bottom_title1!=''||list.set.register_bottom_content1!=''}}">
+              <image src='/static/images/icon-red/money.png'></image>
+              <view class='xj-bottom-become'>
+                <view>{{list.set.register_bottom_title1}}</view>
+                <view>{{list.set.register_bottom_content1}}</view>
+              </view>
+            </view>
+
+            <view class='xj-bottom' wx:if="{{list.set.register_bottom_title2!=''||list.set.register_bottom_content2!=''}}">
+              <image src='/static/images/icon-red/money.png'></image>
+              <view class='xj-bottom-become'>
+                <view>{{list.set.register_bottom_title2}}</view>
+                <view>{{list.set.register_bottom_content2}}</view>
+              </view>
+            </view>
+          </block>
+          <block wx:if="{{list.set.register_bottom==2}}">
+            <view>{{list.set.register_bottom_content}}</view>
+          </block>
+        </block>
+      </block>
+    </block>
+  </view>
+</view>

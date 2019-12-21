@@ -1,0 +1,70 @@
+<!--pages/globonus/bonus/index.wxml-->
+<!-- 头部 -->
+<view>
+  <view class='xj-header'>
+    <block wx:if="{{list.status==1}}">
+      <view>{{list.thisSet.texts.bonus_pay}}</view>
+      <view style='color:#000'>+
+        <text>{{total}}</text>元</view>
+    </block>
+    <block wx:if="{{list.status==2}}">
+      <view>{{list.thisSet.texts.bonus_lock}}</view>
+      <view style='color:#000'>+
+        <text>{{ok}}</text>元</view>
+    </block>
+    <block wx:if="{{list.status==0}}">
+      <view>{{list.thisSet.texts.bonus_total}}</view>
+      <view style='color:#000'>+
+        <text>{{lock}}</text>元</view>
+    </block>
+  </view>
+  <view class='view-wine-nav-bg'>
+    <view class='view-wine-nav'>
+      <text class='view-wine-nav-wait {{status==0?"blue":""}}' data-status='0' bindtap='tapwait'>全部</text>
+      <text class='view-wine-nav-go {{status==2?"blue":""}}' data-status='2' bindtap='tapgo'>待结算</text>
+      <text class='{{status==1?"blue":""}}' data-status='1' bindtap='tapleave'>已结算</text>
+    </view>
+  </view>
+  <block wx:if="{{list.lenght==0||list}}">
+    <view class='xj-bottom'>
+      <image src='/static/images/icon/fenhong1.png'></image>
+      <view>暂时没有任何数据</view>
+    </view>
+  </block>
+  <block wx:for-items="{{list1.list}}" wx:key="asd">
+    <view class='xj-content'>
+      <view class='xj-content-left'>
+        <text style='color:#333'>{{item.payno}}</text>
+        <text style='color:#666'>{{list.set.texts.bonus}}信息:{{item.bonus}}</text>
+        <block wx:if="{{item.aagenttype<1&&item.aagenttype==1}}">
+          <text style='color:#666'> 省级:{{item.paymoney1}}({{item.bonus1}}
+             <block wx:if="{{item.chargemoney1>0}}">
+              {{list.thisSet.texts.bonus_charge}}:{{item.chargemoney1}}
+            </block>)
+          </text>
+        </block>
+        <block wx:if="{{item.aagenttype<2&&item.aagenttype==2}}">
+          <text style='color:#666'> 市级:{{item.paymoney2}}({{item.bonus2}}
+            <block wx:if="{{item.chargemoney2>0}}">
+                  {{list.thisSet.texts.bonus_charge}}:{{item.chargemoney2}}
+            </block>)
+          </text>
+        </block>
+        <text style='color:#666'> 区级:{{item.paymoney3}}({{item.bonus3}}
+           <block wx:if="{{item.chargemoney3>0}}">
+            {{list.thisSet.texts.bonus_charge}}:{{item.chargemoney3}}
+            </block>
+          )
+          </text>
+      </view>
+      <view>
+        <view class='xj-content-right'>+{{item.paymoney}}</view>
+        <view>{{item.statusstr}}</view>
+      </view>
+    </view>
+    <!-- 加载更多 -->
+    <view bindtap='moreinfo' style='padding:20rpx;text-align:center;font-size:30rpx;color:orange;margin-bottom:100rpx'>
+      {{more==0?"点击加载更多":"没有更多信息"}}
+    </view>
+  </block>
+</view>

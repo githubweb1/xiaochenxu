@@ -1,0 +1,137 @@
+page { background: #f9f9f9; }
+.fui-header { background: #fff; z-index: 99; display: -webkit-flex; display: flex; padding: 0 15rpx; }
+.fui-header .searchbar { -webkit-flex: 1; flex: 1; background: #efefef; border-radius: 8rpx; margin-right: 15rpx; display: -webkit-flex; display: flex; overflow: hidden; -webkit-align-items:center; align-items:center; }
+.fui-header .searchbar wx-icon { height: 36rpx; margin: 0 10rpx; vertical-align: middle; }
+.fui-header .searchbar wx-input { border-radius: 8rpx; padding-right: 10rpx; width: 100%; font-size: 30rpx; background:transparent; color: #444; height: 60rpx; line-height:60rpx; border: none; }
+.fui-header .search-btn { color: #666; }
+.coupon-group { padding: 20rpx; }
+.coupon-group .coupon-item { background: #fff; border-radius: 15rpx; display: -webkit-flex; display: flex; position: relative; margin-bottom: 20rpx; }
+.coupon-group .coupon-item .coupon-dot-top, .coupon-group .coupon-item .coupon-dot-bot { height: 20rpx; width: 20rpx; border-radius: 20rpx; background: #fafafa; position: absolute; right: 80rpx; z-index: 2; }
+.coupon-group .coupon-item .coupon-dot-top { top: -10rpx; }
+.coupon-group .coupon-item .coupon-dot-bot { bottom: -10rpx; }
+.coupon-group .coupon-item .thumb { border: 1rpx solid #e6e6e6; margin: 20rpx; }
+.coupon-group .coupon-item .inner { -webkit-flex: 1; flex: 1; padding: 20rpx 20rpx 20rpx 0; }
+.coupon-group .coupon-item .inner .title { position: relative; font-size: 30rpx; color: #444; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; height: 50rpx; line-height: 50rpx; }
+.coupon-group .coupon-item .inner .text { position: relative; font-size: 26rpx; color: #666; height: 50rpx; line-height: 50rpx; color: #ff6c00; }
+.coupon-group .coupon-item .inner .text .big { font-size: 40rpx; }
+.coupon-group .coupon-item .right { width: 90rpx; position: relative; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; }
+.coupon-group .coupon-item .right:before { content: \x22\x22; position: absolute; left: 0; top: 0; bottom: 0; border-left: 1px dashed #eeeeee; z-index: 1; }
+.coupon-group .coupon-item .right wx-text { width: 40rpx; margin: auto; font-size: 26rpx; display: block; line-height: 28rpx; color: #666; text-align: center; }
+.btn{ padding: 0 30rpx; border-radius: 0; height: 100rpx; line-height: 100rpx; margin: 0; }
+
+@import '../my/index/index.wxss';
+
+.oy_scrollView{
+   white-space: nowrap;
+   -webkit-overflow-scrolling: touch;
+    font-size: 0;
+    background-color: #fff;
+    overflow: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.oy_nav_item{
+    display: inline-block;
+    width:118rpx;
+    height:76rpx;
+}
+
+.oy_wh100{
+    width: 100%;
+    height:100%;
+}
+.oy_dis_right_img{
+    width:260rpx;
+    height:205rpx;
+}
+.oy_discount_list_footer{
+    margin:8rpx 16rpx 0 16rpx;
+    border-top:1px dashed #eff1f6;
+}
+.oy_discount_footer_main{
+    margin:0 10rpx 0 6rpx;
+    border:2rpx solid #eff1f6;
+    height:22rpx;
+    border-radius: 11px;
+    width:300rpx;
+    overflow: hidden;
+}
+.oy_discount_footer_bar{
+    width:0%;
+    height:100%;
+    background-color: #64b3f3;
+    border-top-right-radius: 11rpx;
+    border-bottom-right-radius: 11rpx;
+}
+.oy_discount_footer_title{
+    font-size: 22rpx;
+    color:#64b3f3;
+}
+.oy_discount_footer_title.oy_red{
+    color:#f4558f;
+}
+.oy_discount_footer_bar.oy_red{
+    background-color:#f4558f;
+}
+.oy_discount_footer_title.oy_blue{
+    color:#003e9b;
+}
+.oy_discount_footer_bar.oy_blue{
+    background-color:#003e9b;
+    
+}
+.oy_list_btn{
+    position: relative;
+    font-size: 44rpx;
+    height:72rpx;
+    padding:0 36rpx;
+    line-height: 72rpx;
+    border:4rpx solid #fff;
+    border-radius: 38rpx;
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+    white-space: nowrap;
+}
+.oy_discount_list_title.oy_red{
+     color:#f4558f;
+}
+.oy_discount_list_title.oy_blue1{
+     color:#003e9b;
+}
+.oy_fotter_title_box{
+    color:#999;
+    font-size: 30rpx;
+    padding:58rpx 0 38rpx 0;
+    text-align: center;
+    position: relative;
+    z-index: 30;
+}
+.oy_fotter_title{
+    display: inline-block;
+    padding:0 20rpx;
+    position: relative;
+    z-index: 30;
+    background-color:#eff1f6; 
+}
+.oy_fotter_line{
+    height:2rpx;
+    width:484rpx;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin:10rpx 0 0 -242rpx;
+    z-index: 10;
+    background-color: #999;
+}
+.oy_fotter_title_btn{
+    padding-bottom: 20rpx;
+    color:#f4558f;
+    font-size: 30rpx;
+    text-align: center;
+}
+
+
+

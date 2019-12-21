@@ -1,0 +1,21 @@
+<!--pages/groups/team/rules.wxml-->
+<view class='fui-page'>
+    <view class='fui-tit'>
+      拼团流程：
+    </view>
+    <view class="fui-content">
+    <view>
+     1 选择心仪商品
+    </view>
+        <view>
+     2 支付开团或参团
+    </view>
+       <view>
+     3 邀请好友参团
+    </view>
+       <view>
+      4 达到人数团购成功
+    </view>
+       
+    </view>
+</view>

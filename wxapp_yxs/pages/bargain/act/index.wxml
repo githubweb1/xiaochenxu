@@ -1,0 +1,54 @@
+<!--pages/bargain/act/index.wxml-->
+<import src="../foots.wxml"/>
+<view style='padding-bottom:102rpx;' >
+  <navigator class='xj-act-allcontent' wx:for="{{list.goods}}" wx:for-item="item" wx:key="" url='/pages/bargain/bargain/index?id={{item[0].actor_id}}&mid={{mid}}'>
+    <view>
+      <image class='xj-act-left-image' mode='aspectFit' src='{{item[0].images}}'></image>
+    </view>
+    <view class='xj-act-detail'>
+      <view class='xj-act-title'>{{item[0].title}}</view>
+      <view style='display:flex;justify-content:space-between;align-items:center;'>
+        <block wx:if="{{item[0].type==0}}">
+          <view class='xj-act-now'>当前价￥{{item[0].now_price}}</view>
+          <block wx:if="{{item[0].label_swi==0}}">
+            <view class='xj-act-old'>原价￥{{item[0].start_price}}</view>
+          </block>
+          <block wx:if="{{item[0].label_swi==2}}">
+            <view class='xj-act-old'>已结束</view>
+          </block>
+          <block wx:if="{{item[0].label_swi==1}}">
+            <view class='xj-act-old'>已超时</view>
+          </block>
+          <block wx:if="{{item[0].label_swi==3}}">
+            <view class='xj-act-old'>已到底价</view>
+          </block>
+        </block>
+        <block wx:if="{{item[0].type==1}}">
+          <view class='xj-act-now'>当前价￥{{item[0].now_price}}</view>
+          <block wx:if="{{item[0].label_swi==0}}">
+            <view class='xj-act-old'>底价￥{{item[0].end_price}}</view>
+          </block>
+          <block wx:if="{{item[0].label_swi==2}}">
+            <view class='xj-act-old'>已结束</view>
+          </block>
+          <block wx:if="{{item[0].label_swi==1}}">
+            <view class='xj-act-old'>已超时</view>
+          </block>
+          <block wx:if="{{item[0].label_swi==3}}">
+            <view class='xj-act-old'>已到底价</view>
+          </block>
+        </block>
+      </view>
+    </view>
+  </navigator>
+
+  <!-- 未找到任何记录 -->
+  <view style='display:flex;justify-content:space-between;width:100%;margin-top:30rpx;margin-top:250rpx;'  wx:if="{{!list||list.length==0}}">
+    <view class='view-xiaoxi' style='display:flex;flex-direction:column;align-items:center;width:100%;'>
+      <image src='/static/images/icon/cry-220.png' mode='aspectFill' style='width:250rpx;height:250rpx;margin-bottom:50rpx'></image>
+      <view>未找到任何记录</view>
+    </view>
+  </view>
+</view>
+<!-- 底部tabbar -->
+<template is="foots" data="{{...list,buy,bargain,allbargain}}"/>

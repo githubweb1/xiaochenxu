@@ -1,0 +1,2 @@
+/* pages/bargain/rule/index.wxss */
+@import "/utils/wxParse/wxParse.wxss";

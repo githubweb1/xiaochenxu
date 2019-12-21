@@ -1,0 +1,110 @@
+<!--pages/groups/goods/openGroups.wxml-->
+<view class='fui-content navbar' style='margin-bottom:100rpx;'>
+  <view class='lynn_opengroups_head fui-list'>
+    <navigator open-type='redirect' class='lynn_index_list_a fui-list-media' url='/pages/groups/goods/index?id={{goods.id}}'>
+      <image mode='aspectFll' src='{{goods.thumb}}'></image>
+    </navigator>
+    <view class='fui-list-inner lynn_opengroups_head_goods'>
+      <view class='h2'>{{goods.title}}</view>
+      <view class='lynn_opengroups_head_goods_info'>
+        <text class='fl'>
+          {{goods.groupnum}}人团：¥ <text style='color:red;font-size:28rpx;'>{{goods.groupsprice}}</text>/{{goods.goodsnum}}{{goods.units}}
+        </text>
+        <text class='fr'>
+          已有<text style='font-weight: bold;font-size:28rpx;color:#394850;'>{{goods.fightnum}}</text>人参团
+        </text>
+      </view>
+    </view>
+  </view>
+  <view class='lynn_opengroups_invitation row'>
+    <view class='p'>
+      支付开团并邀请
+      <text style='color:red;'>{{goods.groupnum-1}}</text>人参加，人数不足自动退款，详见下方拼团玩法
+    </view>
+    <navigator open-type='redirect' class='lynn_fightgroups_btn' url='/pages/groups/goods/fightgroups?id={{goods.id}}' data-nocache="true">我要参团</navigator>
+    <view class='lynn_opengroups_btn btn-groups' bindtap="tapopen" data-id='{{goods.id}}'>我要开团</view>
+  </view>
+  <view class='step'>
+    <view class='step_hd'>
+      <text class='left'></text>拼团玩法
+      <navigator class='step_more' url='/pages/groups/team/rules'>查看详情></navigator>
+    </view>
+    <view id='footItem' class='step_list'>
+      <view class='step_item '>
+        <view class='step_num'>1</view>
+        <view class='step_detail'>
+          <text class='step_tit'>选择
+              心仪商品</text>
+        </view>
+      </view>
+    </view>
+    <view id='footItem' class='step_list'>
+      <view class='step_item '>
+        <view class='step_num'>2</view>
+        <view class='step_detail'>
+          <text class='step_tit'>支付开团
+							或参团</text>
+        </view>
+      </view>
+    </view>
+    <view id='footItem' class='step_list'>
+      <view class='step_item '>
+        <view class='step_num'>3</view>
+        <view class='step_detail'>
+          <text class='step_tit'>邀请好友
+							参团支付</text>
+        </view>
+      </view>
+    </view>
+    <view id='footItem' class='step_list'>
+      <view class='step_item '>
+        <view class='step_num'>4</view>
+        <view class='step_detail'>
+          <text class='step_tit'>达到人数
+							团购成功</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='lynn_more_groups'>
+    <view class='lynn_more_groups_head'>更多好团</view>
+    <view style='display:flex;justify-content:space-between;flex-wrap:wrap;'>
+      <block wx:for="{{teams}}" wx:for-index="id" wx:for-item="item" wx:key=''>
+        <navigator class='lynn_more_groups_list row li' open-type='redirect' url='/pages/groups/goods/index?id={{item.id}}'>
+            <view class='li-a'>
+              <image mode='aspectFill' src='{{item.thumb}}'></image>
+            </view>
+            <view class='li-h3'>{{item.title}}</view>
+            <view class='li-p'>
+              <text class='li-f1'>¥ {{item.groupsprice}}</text>
+              <text class='li-ff'>¥{{item.price}}</text>
+              <text class='li-fr'>{{item.fightnum}}人参团</text>
+            </view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+</view>
+
+<!-- 底部导航 -->
+<template name="item">
+  <view class="fui-navbar">
+    <navigator url="/pages/groups/index/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/home.png'></image>
+      <text class="label">拼团首页</text>
+    </navigator>
+    <navigator url="/pages/groups/category/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/list.png'></image>
+      <text class="label">活动列表</text>
+    </navigator>
+    <navigator url="/pages/groups/orders/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/cart.png'></image>
+      <text class="label">我的订单</text>
+    </navigator>
+    <navigator url="/pages/groups/team/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/group.png'></image>
+      <text class="label">我的团</text>
+    </navigator>
+  </view>
+</template>
+<template is="item" data="{{get_r: 'groups'}}" />

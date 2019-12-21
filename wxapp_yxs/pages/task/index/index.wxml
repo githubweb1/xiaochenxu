@@ -1,0 +1,59 @@
+<!--pages/task/index/index.wxml-->
+<view>
+  <view class='xj-taskheader'>
+    <image mode='aspectFit' src='{{set}}'></image>
+    <view class='xj-header-mine'>
+      <image mode='aspectFit' src='{{info.avatar}}'></image>
+      <view>{{info.nickname}}</view>
+    </view>
+  </view>
+
+  <view class='xj-choose'>
+    <navigator url='/pages/task/reward/index'>
+      <image src='/static/images/icon/order.png' mode='aspectFit'></image>
+      <text>奖励记录</text>
+    </navigator>
+    <navigator url='/pages/task/mytask/index'>
+      <image src='/static/images/icon/gifts.png'></image>
+      <text>我的任务</text>
+    </navigator>
+  </view>
+
+  <view class='xj-task-content'>
+    <view class='xj-task-allTent' wx:for="{{list}}" wx:key="" >
+      <image class='xj-content-left' src='{{item.image}}' mode='aspectFit'></image>
+      <navigator class='xj-allcontent-center' url='/pages/task/deltail/index?rid={{item.rid}}&id={{item.id}}'>
+        <view>{{item.title}}</view>
+        <view class='xj-allimage'>
+        <block wx:if="{{item.reward.credit&&item.reward.credit!=null&&item.reward.credit.length!=0}}">
+          <image class='xj-center-image' src='/static/images/icon/credit.png' mode='aspectFit'></image>
+        </block>
+        <block wx:if="{{item.reward.balance&&item.reward.balance!=null&&item.reward.balance.length!=0}}">
+          <image class='xj-center-image' src='/static/images/icon/balance.png' mode='aspectFit'></image>
+        </block>
+        <block wx:if="{{item.reward.redpacket&&item.reward.redpacket!=null&&item.reward.redpacket.length!=0}}">
+          <image class='xj-center-image' src='/static/images/icon/redpacket.png' mode='aspectFit'></image>
+        </block>
+        <block wx:if="{{item.reward.goods&&item.reward.goods!=null&&item.reward.goods.length!=0}}">
+          <image class='xj-center-image' src='/static/images/icon/goods.png' mode='aspectFit'></image>
+        </block>
+        <block wx:if="{{item.reward.coupon&&item.reward.coupon!=null&&item.reward.coupon.length!=0}}">
+          <image class='xj-center-image' src='/static/images/icon/coupon1.png' mode='aspectFit'></image>
+        </block>
+        </view>
+      </navigator>
+      <view class='xj-content-right'>
+            <view class='xj-one' bindtap='dotask' data-id='{{item.id}}' wx:if="{{!item.task_demand||item.task_demand==null}}">做任务</view>
+            <view class='xj-two' wx:if="{{item.task_demand&&item.task_demand!=null&&(item.task_demand>item.task_progress)}}">
+                <progress backgroundColor="#fff" percent='{{(item.task_progress/item.task_demand)*100}}' class='progress'></progress> 
+                <text>{{item.task_progress}}/{{item.task_demand}}</text>
+            </view> 
+            <view class='xj-success' wx:if="{{(item.task_demand&&item.task_demand!=null)&&item.task_demand==item.task_progress}}">已完成</view>
+      </view> 
+    </view>
+
+    <block wx:if="{{!list||lisk.length==0||list==''}}">
+      <view style="height: 7rem;line-height:7rem;width: 100%;text-align: center;color: #d0d0d0;font-size: 1rem">暂时没有任何任务</view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,145 @@
+/* pages/task/deltail/index.wxss */
+@import "/utils/wxParse/wxParse.wxss";
+
+page {
+  background: #f3f3f3;
+}
+
+.xj-deltail {
+  padding: 10rpx 30rpx;
+  background: #fff;
+}
+
+.xj-two {
+  display: flex;
+  align-items: center;
+}
+
+.xj-two>text {
+  margin-left: 20rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.xj-deltail-top {
+  padding: 30rpx 0;
+  display: flex;
+  background: #fff;
+  border-bottom: 1rpx solid #f3f3f3;
+}
+
+.xj-deltail-right {
+  display: flex;
+  flex-direction: column;
+  font-size: 30rpx;
+}
+
+.xj-deltail-right view {
+  margin-bottom: 10rpx;
+}
+
+.xj-deltail-leftimage {
+  margin-right: 20rpx;
+}
+
+.xj-deltail-title {
+}
+
+.xj-time {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.xj-deltail-bottom {
+  background: #fff;
+  padding: 10rpx 30rpx;
+}
+
+.xj-deltail-bottom-top {
+  font-size: 26rpx;
+  color: #666;
+  padding: 10rpx 0;
+  margin-bottom: 20rpx;
+}
+
+.xj-deltail-bottom-bottom {
+  display: flex;
+  padding: 10rpx 10rpx;
+  font-size: 28rpx;
+  align-items: center;
+  color: #666;
+}
+
+.xj-all {
+  display: flex;
+  flex-direction: column;
+}
+
+.xj-deltail-bottom-bottom>image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.xj-for-image {
+  width: 30rpx !important;
+  height: 30rpx !important;
+  transform: rotate(180deg);
+  margin-left: 10rpx;
+}
+
+.xj-taskreward {
+  color: #f55;
+  margin-left: 10rpx;
+  display: inline-block;
+}
+
+.xj-two>text {
+  color: #33bf12;
+  display: inline-block;
+}
+
+.progress {
+  border-radius: 10rpx;
+  width: 100rpx;
+  border: 1rpx solid #33bf12;
+  overflow: hidden;
+}
+
+/* 按钮 */
+
+.xj-navigator {
+  background: #ffab49;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height:100rpx;
+display:flex;
+justify-content:space-around;
+align-items:center;
+font-size:30rpx;
+}
+.xj-navigator2 {
+  background: #fff;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height:100rpx;
+display:flex;
+justify-content:space-around;
+align-items:center;
+font-size:30rpx;
+}
+.xj-navigator1 {
+  background: #ffab49;
+  color: white;
+  width: 48%;
+  display: flex;
+ justify-content:center;
+align-items:center;
+height:80rpx;
+border-radius:15rpx;
+font-size:30rpx;
+}

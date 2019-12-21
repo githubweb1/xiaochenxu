@@ -1,0 +1,58 @@
+<!--pages/IntegralMall/Record/Record.wxml-->
+
+<view style='padding-bottom:100rpx;'>
+      <view class='view-recore-header'>
+        <image mode='aspectFill' src='/static/images/tabbar/icon-8.png'style='width:30rpx;height:30rpx;'></image>
+          <view class='view-recore-integral'>我的积分： <text>{{link.credit}}</text></view>
+      </view>
+<block  wx:for-items="{{link1.list}}" wx:key="asd">
+      <navigator class='view-recore-content' url='/pages/creditshop/log/index' wx:if="{{item.type==0}}" hover-class='none'>
+            <image src='{{item.thumb}}' mode='aspectFill'></image>
+            <view class='view-recore-content-bg'>兑奖</view>
+            <view class='view-recore-center'>
+            <view>{{item.title}}</view>
+            <text class='view-recore-time'>{{item.createtime}}</text>
+            </view>
+            <view class='view-recore-right'>
+            <text>{{item.credit}}积分</text>
+            <label>已兑换</label>
+            </view>
+      </navigator>
+       <navigator class='view-recore-content'  url='/pages/creditshop/log/index' wx:if="{{item.type!=0}}" hover-class='none'>
+            <image src='{{item.thumb}}' mode='aspectFill'></image>
+            <view class='view-recore-content-bg'>抽奖</view>
+            <view class='view-recore-center'>
+            <view>{{item.title}}</view>
+            <text class='view-recore-time'>{{item.createtime}}</text>
+            </view>
+            <view class='view-recore-right'>
+            <text>{{item.credit}}积分</text>
+
+            <label>{{item.status==1?"未中奖":"已中奖"}}</label>
+            </view>
+      </navigator>
+</block>
+</view> 
+
+<!-- 未找到任何记录 -->
+   <view class='view-xiaoxi' wx:if="{{link1.list==!link1.list}}">
+    <image  src='/static/images/icon/cry-220.png' mode='aspectFill' style='width:150rpx;height:150rpx;margin-bottom:30rpx'></image>
+    <view>未找到任何消息</view>
+  </view>
+
+
+<!-- 底部tabbar -->
+<view class='view-tabbar'>
+  <navigator class='view-tabbar-content'  url='/pages/creditshop/index/index'>
+    <image class='view-tabbar-image' src='../../../static/images/icon/home.png'></image>
+    <view class='view-tabbar-text'>首页</view>
+  </navigator>
+  <navigator class='view-tabbar-content'  url='/pages/creditshop/lists/index'>
+    <image class='view-tabbar-image' src='../../../static/images/icon/cate.png'></image>
+    <view class='view-tabbar-text'>全部商品</view>
+  </navigator>
+  <navigator class='view-tabbar-content' url='/pages/creditshop/log/index'>
+    <image class='view-tabbar-image' src='../../../static/images/icon/people.png'></image>
+    <view class='view-tabbar-text'>我的</view>
+  </navigator>
+</view>

@@ -1,0 +1,53 @@
+/* pages/board/postDetail/feekback.wxss */
+@import 'postDetail.wxss';
+.oy-feekback-name{
+	padding: 20rpx;
+    font-size:28rpx;
+	background: #fff;
+	color: #333;
+}
+.oy-feekback-head-title{
+	color:#333;
+	padding: 8rpx 20rpx;
+    font-size: 24rpx;
+	background: #fff;
+}
+.oy-feekback-list{
+	
+	background: #fff;
+}
+.oy-feekback-item{
+	padding: 8rpx 16rpx;
+	width: 25%;
+	box-sizing:border-box; 
+}
+.oy-feekback-item-btn{
+	height: 48rpx;
+    font-size:24rpx;
+    color: #666;
+    -webkit-border-radius: 8rpx;
+    border-radius:8rpx;
+    border: 1px solid #cacaca;
+}
+.oy-feekback-item-btn.oy-active{
+	color: #fff;
+    background: #f60;
+    border: 1px solid #f60;
+}
+.oy-feekback-name text{
+	margin:0 10rpx;
+	color:#f60;
+}
+.oy-feekback-item{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.oy-feekback-item-btn.flex.flex-center{
+  padding: 0px 10rpx;
+  margin-left: 10px;
+}
+.oy-feekback-item-btn.flex.flex-center:first-child{
+  margin-left: 0px;
+}

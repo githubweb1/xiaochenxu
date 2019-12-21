@@ -1,0 +1,21 @@
+<!-- 底部tabbar -->
+<template name="foots">
+  <view class='view-tabbar'>
+    <navigator class='view-tabbar-content' open-type='switchTab' hover-class='none' url='/pages/index/index'>
+      <image class='view-tabbar-image' src='/static/images/icon/home.png'></image>
+      <view class='view-tabbar-text'>商城首页</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='redirectTo' hover-class='none' url='/pages/bargain/index/index'>
+      <image class='view-tabbar-image' src='{{allbargain==1?"/static/images/icon-red/cate.png":"/static/images/icon/cate.png"}}'></image>
+      <view class='view-tabbar-text  {{allbargain==1?"red":""}}'>全部砍价</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='redirectTo' hover-class='none' url='/pages/bargain/act/index'>
+      <image class='view-tabbar-image' src='{{bargain==1?"/static/images/tabbar/icon-12-active.png":"/static/images/tabbar/icon-12.png"}}'></image>
+      <view class='view-tabbar-text {{bargain==1?"red":""}}' > 砍价中</view>
+    </navigator>
+    <navigator class='view-tabbar-content' open-type='redirectTo' hover-class='none' url='/pages/bargain/purchase/index'>
+      <image class='view-tabbar-image' src='{{buy==1?"/static/images/tabbar/icon-3-active.png":"/static/images/tabbar/icon-3.png"}}'></image>
+      <view class='view-tabbar-text {{buy==1?"red":""}}' >已购买</view>
+    </navigator>
+  </view>
+</template>

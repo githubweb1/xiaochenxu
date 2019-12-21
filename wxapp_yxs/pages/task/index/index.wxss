@@ -1,0 +1,142 @@
+/* pages/task/index/index.wxss */
+
+page {
+  background: #f3f3f3;
+}
+
+.progress {
+border-radius:10rpx;
+width:100rpx;
+border:1rpx solid #33bf12;
+overflow:hidden;
+}
+
+/* 头部 */
+
+.xj-taskheader {
+  position: relative;
+  height: 260rpx;
+}
+
+.xj-taskheader>image {
+  width: 100%;
+  height: 100%;
+}
+
+.xj-header-mine {
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  top: 0;
+}
+
+.xj-header-mine>image {
+  border-radius: 50%;
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 20rpx;
+}
+
+.xj-header-mine>text {
+  margin-top: 20rpx;
+  text-shadow: 1px 2px 1px #666;
+}
+
+.xj-choose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  background: #fff;
+}
+
+.xj-choose navigator {
+  width: 50%;
+  border-right: 1rpx solid #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xj-choose navigator>image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.xj-choose navigator>text {
+  color: #666;
+}
+
+.xj-task-content {
+  background: #fff;
+  margin-top: 10rpx;
+  padding: 20rpx 40rpx;
+  font-size: 30rpx;
+}
+
+.xj-task-allTent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f3f3f3;
+}
+
+.xj-content-left {
+}
+
+.xj-allcontent-center {
+  display: flex;
+  flex-direction: column;
+  width: 400rpx;
+}
+
+.xj-allimage {
+  margin-top: 10rpx;
+}
+
+.xj-center-image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.xj-allcontent-center>image {
+}
+
+.xj-allcontent-center>view {
+}
+
+.xj-content-right {
+  width:150rpx;
+}
+
+.xj-one {
+  padding: 5rpx 20rpx;
+  border: 1rpx solid #f55;
+  color: #f55;
+  border-radius: 25rpx;
+  text-align:center;
+}
+
+.xj-two {
+  display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.xj-two>text {
+  color: #33bf12;
+  display: inline-block;
+  margin-top: 20rpx;
+}
+
+.xj-success {
+  color: #f55;
+}

@@ -1,0 +1,105 @@
+/* pages/task/mine/index.wxss */
+
+page {
+  background: #f3f3f3;
+}
+
+.view-wine-nav-bg {
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  color: #000;
+  font-size: 30rpx;
+}
+
+.view-wine-nav text {
+  width: 33.3%;
+  display: inline-block;
+  text-align: center;
+  line-height: 80rpx;
+  box-sizing: border-box;
+  color: #666;
+}
+
+.view-wine-nav {
+  background-color: #fff;
+  width: 100%;
+  height: 80rpx;
+}
+
+.hidden {
+  display: none;
+}
+
+.blue {
+  border-bottom: 2px solid #f55;
+  color: #f55;
+}
+
+
+.xj-mine-content{
+  padding:0 20rpx;
+background:#fff;
+margin-bottom:10rpx;
+}
+.xj-minetop{
+font-size:30rpx;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:40rpx 20rpx;
+border-bottom:1rpx solid #f3f3f3;
+}
+.xj-minetop-left{
+
+}
+.xj-minetop-center{
+
+}
+.xj-time{
+color:#999;
+margin-top:20rpx;
+font-size:28rpx;
+}
+
+.xj-minebottom{
+display:flex;
+padding:30rpx 20rpx;
+font-size:26rpx;
+align-items:center;
+}
+.xj-one {
+  padding: 5rpx 20rpx;
+  border: 1rpx solid #f55;
+  color: #f55;
+  border-radius: 25rpx;
+  text-align:center;
+}
+.xj-navigator-image{
+  width:30rpx;
+height:30rpx;
+transform:rotate(180deg);
+}
+
+.xj-two {
+  color: #33bf12;
+}
+
+.xj-success {
+color:#ff6600;
+height:120rpx;
+font-size:26rpx;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+}
+
+.progress {
+border-radius:10rpx;
+width:100rpx;
+border:1rpx solid #33bf12;
+overflow:hidden;
+margin-left:20rpx;
+margin-right:20rpx;
+height:12rpx;
+}

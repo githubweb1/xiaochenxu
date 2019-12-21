@@ -1,0 +1,77 @@
+  <view class='fui-page creditshop-index-page' style='padding-bottom:100rpx;'>
+    <view class='fui-content navbar order-list' style="padding-bottom:0;">
+      <!-- 搜索START -->
+      <view class="fui-searchbar">
+        <view class="searchbar">
+          <view class="search-input">
+            <image mode='aspectFit' src='/static/images/icon/search.png' class="icon icon-search"></image>
+            <input type="search" id="keyword" placeholder="输入关键字..." value="{{keyword}}" bindinput='bindKeyInput'/>
+          </view>
+          <navigator url='/pages/groups/category/index?keyword={{keyword}}' class="searchbar-cancel">搜索</navigator>
+        </view>
+      </view>
+      <!-- 搜索END -->
+      <view class='fui-content-inner' >
+        <block wx:if="{{recgoods!=''}}">
+          <view class="lynn_index_list_ul row">
+            <block wx:for="{{recgoods}}" wx:for-index="id" wx:key="item">
+              <li class="lynn_index_list_li fui-list goods-list">
+                <navigator url="groups/goods?id={{item.id}}" class="external lynn_index_list_a fui-list-media">
+                  <image mode='aspectFit' class="image" src="{{item.thumb}}" alt="{{item.title}}" />
+                </navigator>
+                <navigator class="lynn_index_list_info fui-list-inner" url="/pages/groups/goods/index?id={{item.id}}">
+                  <view class='h3'>{{item.title}}</view>
+                  <view class='p'>{{item.description}}</view>
+                  <view class='del'>原价：¥{{item.price}}</view>
+                  <view class="lynn_index_list_team">
+                    <span class="lynn_index_list_team_left">
+                      <strong>
+                        <image mode='aspectFit' class='strong_images' src='/static/images/icon-red/group.png'></image>
+                      </strong>{{item.groupnum}}人团 ¥
+                      <em>{{item.groupsprice}}</em>/{{item.goodsnum}}
+                      <block wx:if="{{item.units}}">{{item.units}}</block>
+                      <block wx:else>件</block>
+                    </span>
+                    <a href="groups/goods?id=>{{item.id}}" class="external lynn_index_list_team_a">去拼团 ></a>
+                  </view>
+                </navigator>
+              </li>
+            </block>
+          </view>
+        </block>
+        <block wx:else>
+          <view class='content-empty'>
+            <view class="fui-message fui-message-popup in">
+              <view class="icon ">
+                <image mode='aspectFll' src='/static/images/fail.png' class="icon icon-information"></image>
+              </view>
+              <view class="content">暂无任何活动</view>
+              <navigator class="btn btn-default btn-default block" open-type='redirect' url='/pages/groups/index/index'>去首页逛逛</navigator>
+					    <view class="btn btn-default btn-default block back" bindtap='back'>返回上一页</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+<template name="item">
+  <view class="fui-navbar" style="z-index: 10;">
+    <navigator url="/pages/groups/index/index" class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/home.png'></image>
+      <text class="label">拼团首页</text>
+    </navigator>
+    <navigator url="/pages/groups/category/index" class="external nav-item active">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/tabbar/icon-2-active.png'></image>
+      <text class="label">活动列表</text>
+    </navigator>
+    <navigator url="/pages/groups/orders/index" class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/cart.png'></image>
+      <text class="label">我的订单</text>
+    </navigator>
+    <navigator url="/pages/groups/team/index" class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/group.png'></image>
+      <text class="label">我的团</text>
+    </navigator>
+  </view>
+</template>
+<template is="item" data="{{get_r: 'groups'}}" />

@@ -1,0 +1,64 @@
+<view class='fui-content navbar'>
+  <view class='lynn_opengroups_head fui-list'>
+    <navigator class='lynn_index_list_a fui-list-media' url='/pages/groups/goods/index?id={{goods.id}}'>
+      <image mode='aspectFit' src='{{goods.thumb}}'></image>
+    </navigator>
+    <view class='fui-list-inner lynn_opengroups_head_goods'>
+      <view class='h2'>{{goods.title}}</view>
+      <view class='lynn_opengroups_head_goods_info'>
+        <text class='fl'>
+          {{goods.groupnum}}人团：¥ <text style='color:red;font-size:28rpx;'>{{goods.groupsprice}}</text>/{{goods.goodsnum}}{{goods.units}}
+        </text>
+        <text class='fr'>
+          已有<text style='font-weight: bold;font-size:28rpx;color:#394850;'>{{goods.fightnum}}</text>人参团
+        </text>
+      </view>
+    </view>
+  </view>
+  <view class="lynn_fightgroups">
+    <view class="lynn_fightgroups_head">以下小伙伴正在发起拼团，您可以直接参加</view>
+    <view class="lynn_fightgroups_list" wx:if="{{teams && teams.length != 0}}">
+      <block wx:for="{{teams}}" wx:key="">
+        <view style='display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:40rpx;margin-top:20rpx;'>
+          <image src="{{item.avatar}}" alt="{{item.nickname}}"></image>
+          <view class="lynn_fightgroups_span row">
+            <view  style='float: left'>
+              <view wx:if="{{item.nickname&&item.nickname!=''}}">{{item.nickname}}</view>
+              <view wx:else>匿名</view>
+              <text style='color:#959595;width:200rpx;display:inline-block;'>剩余：<text id="residualtime{{index}}" title="{{item.residualtime}}">{{item.hour}}:{{item.minite}}:{{item.second}}</text></text>
+            </view>
+            <view style='margin-left:50rpx;'>
+              还差
+              <label style='color:#ff473f'>{{item.num}}</label>人成团
+            </view>
+          </view>
+          <navigator bindtap="tapopen" data-id='{{item.goodid}}' data-teamid='{{item.teamid}}'>去参团</navigator>
+        </view>
+      </block>
+    </view>
+
+    <view wx:else class="lynn_fight_nomarl">暂无相关团购</view>
+  </view>
+</view>
+<!-- 底部导航 -->
+<template name="item">
+  <view class="fui-navbar">
+    <navigator url="/pages/groups/index/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/home.png'></image>
+      <text class="label">拼团首页</text>
+    </navigator>
+    <navigator url="/pages/groups/category/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/list.png'></image>
+      <text class="label">活动列表</text>
+    </navigator>
+    <navigator url="/pages/groups/orders/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/cart.png'></image>
+      <text class="label">我的订单</text>
+    </navigator>
+    <navigator url="/pages/groups/team/index" open-type='redirect' class="external nav-item">
+      <image mode='aspectFit' class='icon-images-home' src='/static/images/icon/group.png'></image>
+      <text class="label">我的团</text>
+    </navigator>
+  </view>
+</template>
+<template is="item" data="{{get_r: 'groups'}}" />

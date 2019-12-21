@@ -1,0 +1,7 @@
+<!--pages/board/myHome/more.wxml-->
+<import src="../index/footer.wxml"/>
+<import src="../template/detailList.wxml"/>
+<!-- 引入模板 -->
+<template is="detailist" data="{{list:list,replyTemArray:replyTemArray,id:id,isMore:isMore}}"/>
+<view class="flex flex-center oy-bottom-title" wx:if="{{noend===false}}">我是有底线的</view>
+<template is="footer" data="{{isFooter:isFooter}}"/>

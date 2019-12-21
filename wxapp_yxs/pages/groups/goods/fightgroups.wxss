@@ -1,0 +1,156 @@
+/* pages/groups/goods/fightgroups.wxss */
+
+page {
+  background: #f6f6f6;
+}
+
+.fui-content {
+  width: 100%;
+  height: 100%;
+}
+
+.lynn_opengroups_head {
+  height: 200rpx;
+  padding:20rpx;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.lynn_index_list_a {
+  width: 150rpx;
+  height: 150rpx;
+  padding: 0rpx;
+  margin: 0rpx;
+}
+
+.lynn_index_list_a image {
+  width: 100%;
+  height: 100%;
+}
+
+.fui-list-inner {
+  position: relative;
+  width: 150rpx;
+  height: 150rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-left: 10rpx
+}
+
+.h2 {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #051b28;
+  overflow: hidden;
+}
+
+.lynn_opengroups_head_goods_info {
+  font-size: 0.6rem;
+  position: relative;
+}
+
+.lynn_opengroups_head_goods_info .f1 {
+  color: #051b28;
+  font-size: 0.8rem;
+}
+
+.fr {
+  float: right;
+  color: #959595;
+  position: absolute;
+  right: 0rpx;
+  top: 0rpx;
+}
+
+.lynn_fightgroups {
+  border-top: 0.2rem solid #eee;
+  background: #fff;
+}
+
+.lynn_fightgroups_head {
+  padding:20rpx;
+ 
+  font-size: 26rpx;
+  color: #44545e;
+}
+
+.lynn_fight_nomarl {
+  padding: 20rpx;
+  background: #fff;
+  font-size: 26rpx;
+  color: #051b28;
+  text-align: center;
+}
+.lynn_fightgroups_list{
+      padding: 20rpx;
+    display: block;
+    background: #ffedf1;
+    position:relative;
+
+}
+.lynn_fightgroups_list div {
+  margin: 15rpx 0;
+    background: #fff;
+    height: 60rpx;
+    -webkit-border-radius: 20rpx;
+    border-radius:20rpx;
+    list-style: none;
+    position: relative;
+}
+.lynn_fightgroups_list  image{
+      height: 80rpx;
+    width: 80rpx;
+    display: block;
+    border-radius: 50%;
+}
+.lynn_fightgroups_span{
+ width:100%;
+padding:0 40rpx 0 110rpx;
+display:block;
+position:absolute;
+font-size:26rpx;
+display:flex;
+align-items:center;
+}
+.lynn_fightgroups_span>div{
+      width: 50%;
+    height: 60rpx;
+    display: block;
+    font-size: 26rpx;
+    font-weight: normal;
+    overflow: hidden;
+}
+.lynn_fightgroups_span>div.fr{
+      line-height: 60rpx;
+    text-align: right;
+    color: #051b28;
+    float: right
+}
+.lynn_fightgroups_list navigator{
+      height: 80rpx;
+    width:150rpx;
+    line-height: 80rpx;
+    -webkit-border-bottom-right-radius: 2rem;
+    -webkit-border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 2rem;
+    background: #ff473f;
+    color: #fff;
+    font-size: 26rpx;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    float: right
+}
+/* 底部导航 */
+
+.strong_images {
+  width: 38rpx;
+  height: 38rpx;
+  margin-bottom: 8rpx;
+}
+
+.icon-images-home {
+  width: 50rpx;
+  height: 50rpx;
+}

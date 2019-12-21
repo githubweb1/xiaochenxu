@@ -1,0 +1,37 @@
+<!--pages/task/mine/index.wxml-->
+<!-- 头部切换 -->
+<view class='view-wine-nav-bg'>
+  <view class='view-wine-nav'>
+    <text class='view-wine-nav-wait {{num==1?"blue":""}}' data-num='1' data-hidden='0' bindtap='tapleave'>进行中</text>
+    <text class='view-wine-nav-go {{num==2?"blue":""}}' data-num='2' data-hidden='1' bindtap='tapleave'>已完成</text>
+    <text class='{{num==3?"blue":""}}' data-num='3' data-hidden='2' bindtap='tapleave'>已失败</text>
+  </view>
+</view>
+
+<view>
+  <view class='xj-mine-content' wx:for="{{list}}" wx:key=''>
+        <view class='xj-minetop'>
+            <image class='xj-minetop-left' src='{{item.taskimage}}' mode='aspectFit'></image>
+            <view class='xj-minetop-center'>
+                <view>{{item.tasktitle}}</view>
+                <view class='xj-time'>
+                      <view>领取时间：{{item.picktime}}</view>
+                      <view>截至时间：{{item.stoptime=="0000-00-00 00:00:00"?"无":item.stoptime}}</view>
+                </view>
+            </view> 
+            <view class='xj-success'>
+                  <view>{{status==1?"进行中":(status==2?"已完成":"已失败")}}</view>
+                  <navigator url='/pages/task/deltail/index?rid={{item.id}}'>详情 <image class='xj-navigator-image' src='/static/images/icon/back.png'></image></navigator>
+            </view>
+        </view>  
+        <view class='xj-minebottom'>
+            <view >进度</view>
+            <progress backgroundColor="#fff" percent='{{(item.task_progress/item.task_demand)*100}}' class='progress'></progress>
+            <view class='xj-two'>{{item.task_progress}}/{{item.task_demand}}</view>
+        </view>
+  </view>
+
+  <block wx:if="{{!list||lisk.length==0||list==''}}">
+    <view style="height: 7rem;line-height:7rem;width: 100%;text-align: center;color: #d0d0d0;font-size: 1rem">暂时没有任何任务</view>
+  </block>
+</view>

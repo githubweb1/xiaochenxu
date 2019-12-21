@@ -1,0 +1,20 @@
+<template name="item">
+  <view class="fui-navbar" style="z-index: 10;">
+    <navigator url="/pages/groups/index/index" class="external nav-item {{get_r=='groups' ? 'active' :''}}">
+      <image class='icon-images-home' src='/static/images/icon-red/home.png'></image>
+      <text class="label">拼团首页</text>
+    </navigator>
+    <navigator url="/pages/groups/category/index" class="external nav-item {{get_r=='groups.category' ? 'active' :''}}">
+      <image class='icon-images-home' src='/static/images/icon/list.png'></image>
+      <text class="label">活动列表</text>
+    </navigator>
+    <navigator url="/pages/groups/orders/index" class="external nav-item {{get_r=='groups.orders' ? 'active' :''}}">
+      <image class='icon-images-home' src='/static/images/icon/cart.png'></image>
+      <text class="label">我的订单</text>
+    </navigator>
+    <navigator url="/pages/groups/team/index" class="external nav-item {{get_r=='groups.team' ? 'active' :''}}">
+      <image class='icon-images-home' src='/static/images/icon/group.png'></image>
+      <text class="label">我的团</text>
+    </navigator>
+  </view>
+</template>

@@ -1,0 +1,90 @@
+<!--pages/globonus/index/index.wxml-->
+
+<view style='font-size:30rpx;background:#fff ' class='{{list?"":"opacity"}}'>
+  <view class='xj-index-header'>
+    <image mode='aspectFit' src='{{list.member.avatar}}'></image>
+    <text>{{list.member.nickname}}</text>
+    <view>【{{list.levelname}}】</view>
+    <block wx:if="{{list.set.levelurl!=''&&list.set.levelurl}}">
+      <view>【{{list.set.levelurl}}】</view>
+    </block>
+  </view>
+  <view class='xj-index-content'>
+    <view>
+      {{list.set.paytype==2?"本周":"本月"}} {{list.set.texts.bonus_wait}}
+    </view>
+    <text>{{list.bonus_wait}}</text>
+    <view>
+      <block wx:if="{{list.member.aagenttype<1||list.member.aagenttype==1}}">
+        <label>省级:{{bonus_wait1}} </label>
+      </block>
+      <block wx:if="{{list.member.aagenttype<2||list.member.aagenttype==2}}">
+        <label>市级:{{bonus_wait2}} </label>
+      </block>
+      <label>区级:{{bonus_wait3}} </label>
+    </view>
+  </view>
+  <view class='xj-index-all-bottom'>
+    <navigator class='xj-index-bottom {{list.member.aagenttype<1||list.member.aagenttype==1?"w25":list.member.aagenttype<2||list.member.aagenttype==2?"w33":list.member.aagenttype<3||list.member.aagenttype==3?"w50":""}}' url='/pages/abonus/bonus/index?status=0'>
+      <image src='/static/images/icon-red/manage-order.png'></image>
+      <view> {{list.set.texts.bonus_total}}</view>
+      <view class='xj-bottom-money'>
+        <text>{{total}}</text>元
+      </view>
+    </navigator>
+<template is="abonus" data="{{...list,total1,total2,total3}}"/>
+    <navigator class='xj-index-bottom {{list.member.aagenttype<1||list.member.aagenttype==1?"w25":list.member.aagenttype<2||list.member.aagenttype==2?"w33":list.member.aagenttype<3||list.member.aagenttype==3?"w50":""}}' url='/pages/abonus/bonus/index?status=2'>
+      <image src='/static/images/icon/fenhong.png'></image>
+      <view> {{list.set.texts.bonus_lock}}</view>
+      <view class='xj-bottom-money'>
+        <text>{{lock}}</text>元
+      </view>
+    </navigator>
+ 
+    
+<template is="abonus" data="{{...list,lock1,lock2,lock3}}"/>
+
+    <navigator class='xj-index-bottom {{list.member.aagenttype<1||list.member.aagenttype==1?"w25":list.member.aagenttype<2||list.member.aagenttype==2?"w33":list.member.aagenttype<3||list.member.aagenttype==3?"w50":""}}' url='/pages/abonus/bonus/index?status=1'>
+      <image src='/static/images/icon-red/money.png'></image>
+      <view> {{list.set.texts.bonus_pay}}</view>
+      <view class='xj-bottom-money'>
+        <text>{{ok}}</text>元
+      </view>
+    </navigator>
+<template is="abonus" data="{{...list,ok1,ok2,ok3}}"/>
+
+
+  <template name="abonus">
+    <view class='xj-index-bottom {{member.aagenttype<1||member.aagenttype==1?"w25":member.aagenttype<2||member.aagenttype==2?"w33":member.aagenttype<3||member.aagenttype==3?"w50":""}}'wx:if="{{member.aagenttype<1||member.aagenttype==1}}">
+      <image src='/static/images/icon/pro.png'></image>
+      <view> 省级</view>
+      <view class='xj-bottom-money'>
+        <text>{{ok1}}{{total1}}{{lock1}}</text>元
+      </view>
+    </view>
+    <view class='xj-index-bottom {{member.aagenttype<1||member.aagenttype==1?"w25":member.aagenttype<2||member.aagenttype==2?"w33":member.aagenttype<3||member.aagenttype==3?"w50":""}}' wx:if="{{member.aagenttype<2||member.aagenttype==2}}">
+      <image src='/static/images/icon/city.png'></image>
+      <view>市级</view>
+      <view class='xj-bottom-money'>
+        <text>{{ok2}}{{total2}}{{lock2}}</text>元
+      </view>
+    </view>
+    <view class='xj-index-bottom {{member.aagenttype<1||member.aagenttype==1?"w25":member.aagenttype<2||member.aagenttype==2?"w33":member.aagenttype<3||member.aagenttype==3?"w50":""}}'>
+      <image src='/static/images/icon/location.png'></image>
+      <view>区级</view>
+      <view class='xj-bottom-money'>
+        <text>{{ok3}}{{total3}}{{lock3}}</text>元
+      </view>
+    </view>
+</template>
+
+  </view>
+</view>
+<block wx:if="{{list.set.centerdesc!=''&&list.set.centerdesc}}">
+  <view style='font-size:30rpx;'>
+    {{list.set.texts.partner}}须知
+  </view>
+  <view>
+    {{list.set.centerdesc}}
+  </view>
+</block>

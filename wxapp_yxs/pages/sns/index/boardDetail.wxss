@@ -1,0 +1,126 @@
+/* pages/board/boardDetail.wxss */
+@import 'footer.wxss';
+@import '../template/detailList.wxss';
+
+page{
+	background: #f3f3f3;
+}
+.oy-boardDetail-head{
+	position: relative;
+	padding-top: 50%;
+}
+.oy-boardDetail-head-img{
+	position: absolute;
+	top:0;
+	left: 0;
+	width:100%;
+	height: 100%;
+	display: block;
+}
+.oy-boardDetail-head-main{
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	left:0;
+	padding: 10rpx;
+	box-sizing: border-box;
+}
+.oy-boardDetail-left-box{
+	margin-right:20rpx;
+}
+.oy-boardDetail-left-box image{
+	display: block;
+	width: 100rpx;
+	height: 100rpx;
+}
+.oy-boardDetail-left-title{
+	color:#fff;
+	font-size: 28rpx;
+}
+.oy-boardDetail-left-title1{
+	color:#fff;
+	font-size: 26rpx;
+}
+.oy-boardDetail-left-title1 text{
+	margin:0 8rpx;
+}
+.oy-boardDetail-right-btn{
+	height: 64rpx;
+    font-size: 28rpx;
+	background: #ff8000;
+    color: #fff;
+	padding: 0 24rpx;
+	border-radius:10rpx;
+}
+.oy-boardDetail-right-btn.oy-active{
+	background: #f7f7f7;
+    color: #333;
+	
+}
+
+.oy-boardDetail-right{
+	padding-right:24rpx;
+}
+.oy-boardDetail-right-box{
+	padding-left:20rpx;
+	position: relative;
+}
+.oy-boardDetail-right-box:before{
+	content: "";
+    position: absolute;
+    top: 8rpx;
+    left: 0;
+	bottom: 8rpx;
+    border-left: 1px solid rgba(225, 225, 225, 0.8);
+}
+
+.oy-add-icon{
+	font-size: 40rpx;
+	margin-right:10rpx;
+}
+.oy-add-icon image{
+	width:24rpx;
+	height: 24rpx;
+	display: block;
+}
+.oy-nav-box{
+	height:70rpx;
+	background: #fff;
+}
+.oy-nav-item{
+	color:#999;
+	border-bottom:1px solid #e7e7e7;
+}
+.oy-nav-item.oy-active{
+	color:#f90;
+	border-bottom:1px solid #f90;
+}
+.oy-nav-item-title{
+	font-size: 30rpx;
+}
+.oy-nav-item-img{
+	width:34rpx;
+	height: 34rpx;
+	margin-right:8rpx;
+}
+.oy-edit-btn{
+	position: fixed;
+    bottom: 108rpx;
+    right: 44rpx;
+    width: 112rpx;
+    height: 112rpx;
+	background: #0290be;
+    color: #fff;
+	border-radius:50%; 
+}
+.oy-edit-btn image{
+	width:52rpx;
+	height: 52rpx;
+	display: block;
+}
+.oy-h112{
+	height:100rpx;
+}
+.wxParse-img{
+  width: 100rpx;
+}

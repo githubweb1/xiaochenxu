@@ -1,0 +1,52 @@
+<!--pages/board/borderConment/index.wxml-->
+<import src="../index/footer.wxml"/>
+<view class="oy-borderConment-head flex flex-ver">
+	<view class="oy-borderConment-head-box flex flex-1">
+		<input class="oy-board-input flex-1" placeholder='标题 3-25字' maxlength='25' value='{{title}}' data-key="title" bindinput='myInput'></input>
+	</view>
+	
+</view>
+<view class="oy-borderConment-mian flex flex-ver">
+	<textarea class="oy-textarea flex-1" auto-height placeholder="内容 10-1000个字" value='{{content}}' maxlength="1000"  bindinput='myInput' data-key='content'></textarea>
+</view>
+<view class="flex flex-ver oy-pic-box">
+	<view class="oy-pic-img">
+		<block wx:if="{{pic=='emoji'}}">
+			<image src="../myIcon/emoji_blue.png"  bindtap='chosePic' data-key="emoji"></image>
+		</block>	
+		<block wx:else>
+			<image src="../myIcon/emoji.png"  bindtap='chosePic' data-key="emoji"></image>
+		</block>	
+	</view>
+	<view class="oy-pic-img">
+		<block wx:if="{{pic=='pic'||imageList.length!=0}}">
+			<image src="../myIcon/pic_blue.png" bindtap='chosePic' data-key="pic"></image>
+		</block>	
+		<block wx:else>
+			<image src="../myIcon/pic.png" bindtap='chosePic' data-key="pic"></image>
+		</block>
+	</view>
+</view>
+<view class="oy-emoji-box" wx:if="{{pic=='emoji'}}">
+	<view class="oy-emoji-main flex flex-wrap">
+		<view class="oy-emoji-img-box" wx:for="{{75}}" wx:key="" data-face="{{index+1}}" bindtap='choseFace'>
+			<image src="{{'https://xcxvip.iiio.top/addons/ewei_shopv2/plugin/sns/static/images/face/'+(index+1)+'.gif'}}" ></image>
+		</view>
+		
+	</view>
+</view>
+<view class="oy-pic-img-box" wx:if="{{pic=='pic'||imageList.length!=0}}">
+	<view class="oy-pic-img-main flex flex-wrap">
+		<view class="oy-pic-img-item" wx:for="{{imageList}}" wx:key="">
+			<image src="{{item}}"></image>
+			<view class="oy-del-box flex flex-center" data-key="{{index}}" bindtap='myDel'>
+				X
+			</view>
+		</view>
+		<view class="oy-pic-img-item" bindtap='addImg'>
+			<image src="../myIcon/icon_add.png"></image>
+		</view>
+	</view>
+</view>
+<view class="oy-btn flex flex-center" bindtap='save'>发表</view>
+<template is="footer"/>

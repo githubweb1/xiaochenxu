@@ -1,0 +1,44 @@
+<!--pages/bargain/index/index.wxml-->
+<import src="../foots.wxml"/>
+<view style='padding-bottom:102rpx;' >
+  <!-- 搜索 -->
+  <view style='background:#f7f7f8;padding:30rpx;'>
+    <image class='view-input-image' src='../../../static/images/icon/search.png' bindtap='search'> </image>
+    <input placeholder='输入关键字...' class='view-input' bindinput='searchinput'></input>
+  </view>
+
+  <view class='xj-bar-allcontent'>
+    <navigator class='xj-bar-content' url='/pages/bargain/detail/index?id={{item.id}}&mid={{mid}}' wx:for="{{list}}" wx:for-item="item" wx:key="">
+      <view>
+        <image class='xj-bar-content-image' src='{{item.images}}' mode='aspectFit'></image>
+      </view>
+      <view class='xj-bar-content-detail'>
+        <view class='xj-bar-title' >{{item.title}}</view>
+        <block wx:if="{{item.type==1}}">
+          <view class='xj-bar-price'>底价￥{{item.end_price}}</view>
+          <view class='xj-bar-price' style='color:#BBBBBB'>原价￥{{item.start_price}}</view>
+        </block>
+        <block wx:if="{{item.type==0}}">
+        <view class='xj-bar-text'>砍多少减多少</view>
+        <view class='xj-bar-price'>原价￥{{item.start_price}}</view>
+        </block>
+      </view>
+    </navigator>
+  </view>
+
+   <!-- 未找到任何记录 -->
+   <block wx:if="{{!list[0]&&list[0].length==0}}">
+      <view style='display:flex;justify-content:space-between;width:100%;margin-top:150rpx;'>
+        <view class='view-xiaoxi'  style='display:flex;flex-direction:column;align-items:center;width:100%;'>
+          <image src='/static/images/icon/cry-220.png' mode='aspectFill' style='width:250rpx;height:250rpx;margin-bottom:50rpx'></image>
+          <view>未找到任何记录</view>
+        </view>
+      </view>
+</block>
+</view>
+
+
+<!-- 底部tabbar -->
+<template is="foots" data="{{...list,buy,bargain,allbargain}}"/>
+
+

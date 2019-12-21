@@ -1,0 +1,54 @@
+<block wx:if='{{!show}}'>
+  <loading>加载中...</loading>
+</block>
+
+<block wx:if='{{show}}'>
+    <!--pages/info/tel.wxml-->
+    <view class="oy_form_list flex flex-ver">
+        <view class="oy_form_title flex flex-ver">
+            <view class="oy_form_pointer">*</view>
+            <view>手机号</view>
+        </view>
+        <view class="flex-1 oy_form_right flex flex-ver">
+            <input type='tel' bindinput='inputChange' placeholder='请输入你的手机号' class="flex-1 oy_form_input" maxlength='11' placeholder-class="oy_placeholder" data-type='mobile' value='{{postData.mobile}}'></input>
+        </view>
+    </view>
+    <view class="oy_form_list flex flex-ver">
+        <view class="oy_form_title flex flex-ver">
+            <view class="oy_form_pointer">*</view>
+            <view>验证码</view>
+        </view>
+        <view class="flex-1 oy_form_right flex flex-ver">
+            <input type='text' bindinput='inputChange' placeholder='五位验证码' placeholder-class="oy_placeholder" class="flex-1 oy_form_input" maxlength='5' data-type='code' value='{{postData.code}}'></input>
+            <view class="oy_tel_btn {{endtime > 0?'disabled':''}}" bindtap='getCode'>
+                {{endtime > 0?endtime + "秒后重发":"获取验证码"}}
+            </view>
+        </view>
+    </view>
+    <view class="oy_form_list flex flex-ver">
+        <view class="oy_form_title flex flex-ver">
+            <view class="oy_form_pointer">*</view>
+            <view>登录密码</view>
+        </view>
+        <view class="flex-1 oy_form_right flex flex-ver">
+            <input type='password' bindinput='inputChange' placeholder-class="oy_placeholder" placeholder='请输入您的登录密码' class="flex-1 oy_form_input" data-type='password' value='{{postData.password}}'></input>
+        </view>
+    </view>
+    <view class="oy_form_list flex flex-ver">
+        <view class="oy_form_title flex flex-ver">
+            <view class="oy_form_pointer">*</view>
+            <view>确认密码</view>
+        </view>
+        <view class="flex-1 oy_form_right flex flex-ver">
+            <input type='password' bindinput='inputChange' placeholder='请输入确认登录密码' placeholder-class="oy_placeholder" class="flex-1 oy_form_input" data-type='password1' value='{{postData.password1}}'></input>
+        </view>
+    </view>
+    <view class="oy_tel_box" bindtap='submit'>
+        <view class="oy_btn flex flex-center">
+           {{subtext}}
+        </view>
+    </view>
+    <view class='fui-toast {{FoxUIToast.show?"in":"out"}}'>
+      <view class='text'>{{FoxUIToast.text}}</view>
+    </view>
+</block>

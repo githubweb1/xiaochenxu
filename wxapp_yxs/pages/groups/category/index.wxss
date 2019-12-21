@@ -1,0 +1,116 @@
+/*
+活动列表
+*/
+
+page {
+  background: #f6f6f6;
+}
+
+.lynn_index_list_ul{display: block;}
+.lynn_index_list_li{border-bottom:0.3rem solid #eee;padding:0.3rem 0.5rem;background: #fff;}
+.lynn_index_list_a{width:180rpx;height:180rpx;margin:0;}
+.lynn_index_list_a.fui-list-media image{width:100%;height:100%;}
+.lynn_index_list_info{padding:0 0 0 0.4rem;}
+.lynn_index_list_info .h3{font-weight:600;
+font-size:30rpx;color:#051b28;display: block;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;}
+.lynn_index_list_info .p{font-size:22rpx;color:#959595;overflow: hidden;display: block;margin:0.1rem 0;}
+.lynn_index_list_info .del{font-size:22rpx;color:#ff8080;display: block;text-decoration:line-through}
+.lynn_index_list_team{-webkit-border-radius: 40rpx;border-radius: 40rpx;overflow: hidden;background: #ff8080;}
+.lynn_index_list_team_left{line-height: 50rpx;font-size:24rpx;color:#fff;display:block;float:left;}
+.lynn_index_list_team_left strong{width:45rpx;
+height:45rpx;
+margin:6rpx;
+display:block;
+float:left;
+background:#fff;
+-webkit-border-radius:50%;
+border-radius:50%;
+margin-bottom:2rpx;
+margin-right:10rpx;
+text-align:center;
+font-weight:normal;
+line-height:60rpx;
+}
+.lynn_index_list_team_left i.icon{color:#ff4a65;font-size:32rpx;}
+.lynn_index_list_team_left em{font-style: normal;font-size:30rpx;font-weight:bold;}
+
+.fui-list a.lynn_index_list_team_a{float:right;
+padding:0 8rpx;
+font-size:26rpx;
+color:#fff;
+line-height:55rpx;
+background:#ff473f;
+text-align:center;
+}
+.lynn_index_list_team_a i{font-style: normal;color:#fff;}
+.fui-list:before{left:0;border:none;}
+
+.strong_images{width: 38rpx;height: 38rpx;margin-bottom: 18rpx;}
+.icon-images-home{width: 46rpx;height: 46rpx;}
+
+.searchbar {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding:20rpx;
+}
+
+.fui-searchbar .searchbar .searchbar-cancel {
+  color: #5f646e;
+}
+
+.searchbar .searchbar-cancel {
+ width:100rpx;
+text-align:center;
+font-size:28rpx;
+margin-left:20rpx;
+
+}
+
+.searchbar .search-input {
+  position: relative;
+  width: 90%;
+}
+
+.search-input .icon-search {
+position:absolute;
+height:35rpx;
+width:35rpx;
+color:#b4b4b4;
+top:8rpx;
+left:10rpx;
+}
+
+.icon {
+  font-family: "icon" !important;
+  font-style: normal;
+}
+
+.search-input input {
+ box-sizing:border-box;
+width:100%;
+display:block;
+border:0;
+border-radius:15rpx;
+font-family:inherit;
+color:#3d4145;
+font-size:28rpx;
+font-weight:normal;
+padding-left:55rpx;
+background-color:#fff;
+}
+
+.fui-message .icon-information {
+    margin-left: 39%;
+    width: 160rpx;
+    height: 160rpx;
+}
+
+.fui-message .content {
+  font-size:30rpx;
+text-align:center;
+margin:40rpx;
+color:#666;
+margin-bottom:40rpx;
+
+}

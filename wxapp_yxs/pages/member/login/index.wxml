@@ -1,0 +1,30 @@
+
+<block>
+    <!--pages/info/tel.wxml-->
+    <view class="oy_form_list flex flex-ver">
+        <view class="oy_form_title flex flex-ver">
+            <view class="oy_form_pointer">*</view>
+            <view>手机号</view>
+        </view>
+        <view class="flex-1 oy_form_right flex flex-ver">
+            <input type='tel' bindinput='inputChange' placeholder='请输入你的手机号' class="flex-1 oy_form_input" maxlength='11' placeholder-class="oy_placeholder" data-type='mobile' value='{{logindata.mobile}}'></input>
+        </view>
+    </view>
+    
+    <view class="oy_form_list flex flex-ver">
+        <view class="oy_form_title flex flex-ver">
+            <view class="oy_form_pointer">*</view>
+            <view>登录密码</view>
+        </view>
+        <view class="flex-1 oy_form_right flex flex-ver">
+            <input type='password' bindinput='inputChange' placeholder-class="oy_placeholder" placeholder='请输入您的登录密码' class="flex-1 oy_form_input" data-type='password' value='{{logindata.password}}'></input>
+        </view>
+    </view>
+    
+    <view class="oy_tel_box" bindtap='submit'>
+        <view class="oy_btn flex flex-center">
+           立即登录
+        </view>
+    </view>
+   
+</block>

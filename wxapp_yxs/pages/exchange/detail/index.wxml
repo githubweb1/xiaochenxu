@@ -1,0 +1,176 @@
+<!--pages/exchange/detail/index.wxml-->
+<view style='margin-bottom:100rpx'>
+  <block wx:if='{{list.banner != null  && list.banner != "" && list.banner}}'>
+    <view class='view-swiper'>
+      <swiper class="swiper_box" autoplay="true" interval="2000" duration="500" indicator-dots='true' indicator-color='white' indicator-active-color='#ccc' style='height:500rpx;'>
+        <block wx:for-items="{{list.banner}}" wx:key="">
+          <swiper-item>
+            <image mode='aspectFill' src="{{item}}" class="slide-image" style='width:100%;height:100%' />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </block>
+  <view style='padding:20rpx'>
+    <view class='xj-detail-top'>
+      <view>您的兑换码是
+        <text class='red' style='font-weight:600'>{{list.key}}</text>
+      </view>
+      <block wx:if="{{list.groupResult.showcount==0}}">
+        <view>已查询 {{list.codeResult.count}} 次</view>
+      </block>
+      <view>您可以凭兑换码兑换
+        <block wx:if="{{list.groupResult.type==1}}">
+          <block wx:if="{{list.groupResult.max>=0}}">
+            {{list.groupResult.max}}
+          </block>
+          <block wx:else>
+            任意
+          </block>
+          件
+        </block>
+        <block wx:else>
+          价值{{list.groupResult.value}}元的
+        </block>
+        商品 </view>
+      <view>已选 {{allnum}}件商品，需付
+        <text class='red'>{{allmeney}}</text> 元</view>
+      <block wx:if="{{list.groupResult.type==1}}">
+        <view style='color:#ff445f;font-size:26rpx'>
+          (兑换券默认兑换已选择商品中价格最高的商品)
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 选择商品 -->
+  <view class='xj-detail-contentAll'>
+    <block wx:for="{{list.goodsList}}" wx:key="">
+      <view class='xj-detail-content'>
+        <view style='background:#fff'>
+          <navigator url='/pages/goods/detail/index?id={{item.id}}'>
+            <image src='{{item.thumb}}' mode='aspectFill'></image>
+            <view class='detail-center'>
+              <view class='detail-title'> {{item.title}}</view>
+              <view class='red' style='font-size:22rpx;'>原价:￥{{item.marketprice}}
+              </view>
+            </view>
+          </navigator>
+          <view class='xj-btn {{item.is_select?"xj-btng":""}}' data-index="{{index}}" data-money="{{item.marketprice}}" data-id='{{item.id}}' bindtap='choose' data-pay='1'>
+            {{item.is_select?"已选择":"选择"}}
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:for="{{list.optionList}}" wx:key="">
+      <view class='xj-detail-content'>
+        <view style='background:#fff'>
+          <navigator url='/pages/goods/detail/index?id={{item.id}}'>
+            <image src='{{item.thumb}}' mode='aspecFill'></image>
+            <view class='detail-center'>
+              <view class='detail-title'> {{item.title}}</view>
+              <view class='red' style='font-size:22rpx;'>原价:￥{{item.marketprice}}
+              </view>
+            </view>
+          </navigator>
+          <view class='xj-btn {{item.is_select?"xj-btng":""}}' data-index="{{index}}" data-money="{{item.marketprice}}" data-id='{{item.id}}' bindtap='chooseother' data-pay='1' style='border:1rpx solid #f90;color:#f90' data-option='{{item.optionstr}}'>
+            {{item.is_select?"已选择":"选择"}}
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class='detail-bottom'>
+    <view class='bottom-choose' data-close='1' bindtap='chooseok'>查看已选</view>
+    <view class='bottom-buy' bindtap='exchange'>立即兑换</view>
+  </view>
+
+  <!-- 查看已选 -->
+
+  <view class='xj-detail-choose {{close==1?"":"hidden"}}'>
+    <scroll-view scroll-y>
+      <view style='width:100%;height:20rpx;'></view>
+      <block wx:for="{{list.goodsList}}" wx:key="">
+        <view class='xj-choose-content {{item.is_select?"":"hidden"}}'>
+          <view class='xj-choose-contentone'>
+            <image src='{{item.thumb}}' mode='aspecFill'></image>
+            <view style='width:350rpx;font-size:28rpx'>
+              <view class='xj-goddstitle'>{{item.title}}</view>
+            </view>
+            <view class='xj-detailjj'>
+              <view>￥
+                <text>{{item.marketprice}}</text>
+              </view>
+              <!-- <view>
+                <text class='xj-jian' bindtap='jian' data-goodsid='{{item.id}}' data-index='{{index}}' data-money="{{item.marketprice}}" data-id='{{item.id}}'>-</text>
+                <text class='xj-num'>{{numarray[item.id].num}}</text>
+                <text class='xj-jia' bindtap='jia' data-goodsid='{{item.id}}' data-index='{{index}}' data-money="{{item.marketprice}}" data-id='{{item.id}}'>+</text>
+              </view> -->
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:for="{{link}}" wx:for-item="linkitem" wx:key="">
+        <block wx:for="{{linkitem.option}}" wx:key="">
+          <view class='xj-choose-content {{item.is_select?"":"hidden"}}'>
+            <view class='xj-choose-contentone'>
+              <image src='{{linkitem.goods.thumb}}' mode='aspecFill'></image>
+              <view style='width:350rpx;font-size:28rpx'>
+                <view class='xj-goddstitle'>{{linkitem.goods.title}}</view>
+                <view>
+                  {{item.title}}
+                </view>
+              </view>
+              <view class='xj-detailjj'>
+                <view>￥
+                  <text>{{linkitem.goods.marketprice}}</text>
+                </view>
+                <!-- <view>
+                  <text class='xj-jian' bindtap='jian' data-opid='{{item.id}}' data-index='{{index}}' data-money="{{item.marketprice}}"  data-id='{{item.id}}'>-</text>
+                  <text class='xj-num'>{{numarray[item.id].num}}</text>
+                  <text class='xj-jia' bindtap='jia' data-opid='{{item.id}}' data-index='{{index}}' data-money="{{item.marketprice}}" data-id='{{item.id}}'>+</text>
+                </view> -->
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+      <view class='xj-closebox'>
+        <view class='xj-close' bindtap='chooseok' data-close='0'>关闭</view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 选择规格 -->
+  <view class='view-order-bg {{pay==1?"":"hidden"}}' data-pay='0' bindtap='tabLuck'>
+  </view>
+  <view class='view-order-bg-content {{pay==1?"":"hidden"}}'>
+    <view style='padding: 0 20rpx;'>
+      <view class='view-top'>
+        <view class='view-left'>
+          <image src="{{link[idshop].goods.thumb}}" style='background:red' class='view-left-image'></image>
+        </view>
+        <view class='view-center'>
+          <view>￥{{link[idshop].goods.minprice}}~{{link[idshop].goods.maxprice}}</view>
+          <view style='margin-top:10rpx'>请选择规格(可多选)</view>
+        </view>
+        <view class='view-right'>
+          <image src='/static/images/icon/close_light.png' data-pay='0' bindtap='chooseOption'></image>
+        </view>
+      </view>
+    </view>
+    <view class='view-bottom'>
+      <view>
+        <block wx:for="{{link[idshop].option}}" wx:for-item="j" wx:key="">
+          <text wx:if="{{link[idshop].option[index].exchange_stock!=0}}" class="{{j.is_select?'choose':''}}" bindtap='chooseselect' data-money="{{j.marketprice}}" data-index="{{index}}" data-cid="_{{j.id}}" data-id="{{j.id}}">{{j.title}}</text>
+        </block>
+      </view>
+    </view>
+    <view class='choosebuttom'>
+      <button disabled="{{link[idshop].goods.total==0}}" class='view-button' data-pay='0' data-order='1' bindtap='chooseOption'>
+        选好了
+      </button>
+    </view>
+
+  </view>
+
+</view>

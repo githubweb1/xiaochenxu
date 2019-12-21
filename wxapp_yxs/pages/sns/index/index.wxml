@@ -1,0 +1,29 @@
+<!--pages/board/index.wxml-->
+<import src="list.wxml"/>
+<import src="footer.wxml"/>
+<view class="oy-board-head">
+	<swiper class="oy-board-swiper"  autoplay="{{true}}" circular="{{true}}">
+			<swiper-item class="oy-board-swiper-item" wx:for="{{result.advs}}" wx:key="">
+				<image src="{{item.thumb}}" class="oy-slide-image" />
+			</swiper-item>
+	</swiper>
+</view>
+<view class="oy-board-item-box flex flex-wrap">
+	<navigator class="oy-board-item" url="{{'allList?id='+item.id}}" hover-class="none" wx:for="{{result.category}}" wx:key="">
+			<image mode='aspectFill' class="oy-board-item-img" src="{{item.thumb}}"></image>
+			<view class="oy-board-item-title">{{item.name}}</view>
+	</navigator>
+</view>
+<view class="oy-qa-head flex flex-ver">
+	<view class="oy-qa-head-left flex-1">
+			推荐版块
+	</view>
+	<navigator url="allList"  class="oy-qa-head-right flex flex-ver">
+		全部
+	</navigator>
+</view>
+<!-- 引入模板 -->
+<template is="list" data="{{list: result.recommands,url:url}}"/>
+
+<template is="footer" data="{{isFooter:isFooter}}"/>
+

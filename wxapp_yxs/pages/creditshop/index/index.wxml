@@ -1,0 +1,179 @@
+<!--pages/IntegralMall/home/home.wxml-->
+<import src="../foots.wxml" />
+
+<view style='padding-bottom:100rpx;'>
+  <!-- 轮播 -->
+  <view class='view-swiper'>
+    <swiper class="swiper_box" autoplay="true" interval="2000" duration="500" indicator-dots='true' indicator-color='white' indicator-active-color='#ccc' style='height:500rpx' >
+      <block wx:for-items="{{link.advs}}" wx:key="">
+        <swiper-item>
+          <image mode='aspectFill' src="{{item.thumb}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 积分参与 -->
+  <view class='view-integral'>
+    <view class='view-integral-content'>
+      <image mode='aspectFill' src='/static/images/tabbar/icon-8.png' style='width:30rpx;height:30rpx;margin-bottom:6rpx;'></image>
+      <view>积分{{link.credit}}</view>
+    </view>
+    <view class='nav-Record'>
+      <image mode='aspectFill' src='/static/images/icon/list.png' style='width:30rpx;height:30rpx;margin-bottom:3rpx;'></image>
+      <navigator hover-class='none' url='/pages/creditshop/creditlog/index'>参与记录</navigator>
+    </view>
+  </view>
+  <!-- 跳转导航 -->
+
+  <view class='view-nav'>
+    <block wx:for-items="{{link.category}}" wx:key="">
+      <navigator class='view-nav-content' url='/pages/creditshop/lists/index?cate={{item.id}}&index={{index}}'>
+        <image mode='aspectFill' class='view-nav-image' src='{{item.thumb}}' style='width:100rpx;height:100rpx;'></image>
+        <text class='view-nav-text'>{{item.name}}</text>
+      </navigator>
+    </block>
+  </view>
+
+
+  <!-- 抽奖专区 -->
+  <view class='view-LuckDraw' wx:if="{{link.lotterydraws.length>0}}">
+    <view class='view-LuckDraw-header'>
+      <image mode='aspectFill' src='/static/images/icon/gifts.png' style='width:30rpx;height:30rpx;margin-bottom:6rpx;'></image>
+      抽奖专区</view>
+    <view class='view-LuckDraw-allContent'>
+      <block wx:for-items="{{link.lotterydraws}}" wx:key="">
+        <navigator class='view-LuckDraw-content' hover-class='none' url='/pages/creditshop/detail/index?id={{item.id}}&nocache={{cache}}'>
+          <image class='view-LuckDraw-image' src='{{item.thumb}}' mode='aspectFill'></image>
+          <view class='view-LuckDraw-shop' style='display:flex;align-items:center;justify-content:space-around;'>
+            <label style='margin-right:20rpx'>
+              {{item.goodstype==0?"商品":item.goodstype==1?"优惠券":item.goodstype==2?"余额":item.goodstype==3?"红包":""}}
+            </label>
+            {{item.title}}</view>
+          <view class='view-footer'>
+            <view class='view-footer-integral1'>
+              <text class='red'>{{item.credit}}</text>
+              <text>积分</text>
+              <view class='view-footer-integral1 {{item.money==0?"hidden":""}}'>+￥
+                <text class='red ' style="font-size: 0.8rem;font-weight: bold;padding-right: 0.1rem;">{{item.money}}</text>
+              </view>
+            </view>
+            <label>抽奖</label>
+          </view>
+        </navigator>
+      </block>
+
+    </view>
+  </view>
+
+  <!-- 积分实物兑换 -->
+  <view class='view-exchange' wx:if="{{link.exchanges.length>0}}">
+    <view class='view-exchange-header'>
+      <image mode='aspectFill' src='/static/images/icon/gifts.png' style='width:30rpx;height:30rpx;margin-bottom:6rpx;'></image>
+      积分实物兑换
+    </view>
+     <view class='view-exchange-allContent'>
+    <block wx:for-items="{{link.exchanges}}" wx:key="zx">
+      <navigator class='view-exchange-content' hover-class='none' url='/pages/creditshop/detail/index?id={{item.id}}'>
+        <image class='view-exchange-image' src='{{item.thumb}}' mode='aspectFill'></image>
+        <view class='view-exchange-text'>{{item.title}}</view>
+        <view class='view-footer'>
+          <view class='view-footer-integral1'>
+            <text class='red'>{{item.credit}}</text>
+            <text>积分</text>
+            <view class='view-footer-integral1 {{item.money==0?"hidden":""}}'>+￥
+              <text class='red ' style="font-size: 0.8rem;font-weight: bold;padding-right: 0.1rem;">{{item.money}}</text>
+            </view>
+          </view>
+          <label>兑换</label>
+        </view>
+      </navigator>
+    </block>
+  </view>
+  </view>
+
+  <!-- 红包兑换区 -->
+  <view class='view-exchange' wx:if="{{link.redbags.length>0}}">
+    <view class='view-exchange-header'>
+      <image mode='aspectFill' src='/static/images/icon/gifts.png' style='width:30rpx;height:30rpx;margin-bottom:6rpx;'></image>
+      红包兑换区</view>
+
+    <view class='view-exchange-allContent'>
+    <block wx:for-items="{{link.redbags}}" wx:key="zx">
+      <navigator class='view-exchange-content' hover-class='none' url='/pages/creditshop/detail/index?id={{item.id}}'>
+        <image class='view-exchange-image' src='{{item.thumb}}' mode='aspectFill'></image>
+        <view class='view-exchange-text'>{{item.title}}</view>
+        <view class='view-footer'>
+          <view class='view-footer-integral1'>
+            <text class='red'>{{item.credit}}</text>
+            <text>积分</text>
+            <view class='view-footer-integral1 {{item.money==0?"hidden":""}}'>+￥
+              <text class='red ' style="font-size: 0.8rem;font-weight: bold;padding-right: 0.1rem;">{{item.money}}</text>
+            </view>
+          </view>
+          <label>兑换</label>
+        </view>
+      </navigator>
+    </block>
+  </view>
+
+  </view>
+
+
+  <!-- 兑换券 -->
+  <view class='view-exchange' wx:if="{{link.coupons.length>0}}">
+    <view class='view-exchange-header'>
+      <image mode='aspectFill' src='/static/images/icon/gifts.png' style='width:30rpx;height:30rpx;margin-bottom:6rpx;'></image>
+      兑换券</view>
+    <view class='view-exchange-allContent'>
+    <block wx:for-items="{{link.coupons}}" wx:key="zx">
+      <navigator class='view-exchange-content' hover-class='none' url='/pages/creditshop/detail/index?id={{item.id}}'>
+        <image class='view-exchange-image' src='{{item.thumb}}' mode='aspectFill'></image>
+        <view class='view-exchange-text'>{{item.title}}</view>
+        <view class='view-footer'>
+          <view class='view-footer-integral1'>
+            <text class='red'>{{item.credit}}</text>
+            <text>积分</text>
+            <view class='view-footer-integral1 {{item.money==0?"hidden":""}}'>+￥
+              <text class='red ' style="font-size: 0.8rem;font-weight: bold;padding-right: 0.1rem;">{{item.money}}</text>
+            </view>
+          </view>
+          <label>兑换</label>
+        </view>
+      </navigator>
+    </block>
+  </view>
+  </view>
+
+
+  <!-- 余额兑换区 -->
+  <view class='view-exchange' wx:if="{{link.balances.length>0}}">
+    <view class='view-exchange-header'>
+      <image mode='aspectFill' src='/static/images/icon/gifts.png' style='width:30rpx;height:30rpx;margin-bottom:6rpx;'></image>
+      余额兑换区
+    </view>
+  <view class='view-exchange-allContent'>
+    <block wx:for-items="{{link.balances}}" wx:key="zx">
+      <navigator class='view-exchange-content' hover-class='none' url='/pages/creditshop/detail/index?id={{item.id}}'>
+        <image class='view-exchange-image' src='{{item.thumb}}' mode='aspectFill'></image>
+        <view class='view-exchange-text'>{{item.title}}</view>
+        <view class='view-footer'>
+          <view class='view-footer-integral1'>
+            <text class='red'>{{item.credit}}</text>
+            <text>积分</text>
+            <view class='view-footer-integral1 {{item.money==0?"hidden":""}}'>+￥
+              <text class='red ' style="font-size: 0.8rem;font-weight: bold;padding-right: 0.1rem;">{{item.money}}</text>
+            </view>
+          </view>
+          <label>兑换</label>
+        </view>
+      </navigator>
+    </block>
+  </view>
+  </view>
+</view>
+
+
+
+
+<!-- 底部tabbar -->
+<template is="foots" data="{{...list,home,alllist,my}}" />

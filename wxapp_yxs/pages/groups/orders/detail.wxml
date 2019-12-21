@@ -1,0 +1,304 @@
+
+
+<view class='page navbar'>
+<view style='height:60rpx;background:#fff;top:0;width:100%;text-align:center;font-size:30rpx;line-height:60rpx;font-weight:400;border-bottom:1px solid #f5f5f5;padding:10rpx;'>
+<navigator open-type='redirect' style='float:right;width:80rpx;height:80rpx;' hover-class='none' url='/pages/groups/orders/index'> <image src='/static/images/icon/home.png' mode='aspectFill' style='width:35px;height:35px;margin-left:-25rpx;margin-top:-1rpx'></image></navigator>
+  订单详情
+</view>
+
+  <view class='fui-list bg'>
+    <view class='fui-list-inner'>
+      <view class='row'>
+        <block wx:if='{{order.status}}'>
+          <view wx:if='{{order.status==0}}'>等待付款</view>
+          <view wx:if='{{order.status==1}}'>买家已付款</view>
+          <view wx:if='{{order.status==2}}'>卖家已发货</view>
+          <view wx:if='{{order.status==3}}'>交易完成</view>
+          <view wx:if='{{order.status==-1}}'>交易关闭</view>
+          <block wx:if='{{order.refundstate>0}}'>
+            (
+            <view wx:if='{{order.status==1}}'>申请退款中</view>
+            <view wx:else>申请售后中</view>)
+          </block>
+        </block>
+      </view>
+      <view class='order-price'>订单金额(含运费):￥
+        <text>{{zj}}</text>
+      </view>
+    </view>
+    <view class=''>
+      <image mode='aspectFit' class='round image-88' src='/static/images/icon-white/money.png' lazy-load='true'></image>
+    </view>
+  </view>
+
+  <block wx:if='{{address!=""}}'>
+    <view class='fui-list-group' style='margin-top:5px;'>
+      <block wx:if='{{order.status > 1}}'>
+        <navigator url='/pages/groups/orders/express?id={{order.id}}&expresscom={{order.expresscom}}&expresssn={{order.expresssn}}'>
+          <view class='fui-list'>
+            <view class='fui-list-media'>
+              <image mode='aspectFit' class='fui-list-icon' src='/static/images/icon/deliver-48.png' lazy-load='true'></image>
+            </view>
+            <view class='fui-list-inner'>
+              <block wx:if='{{order.express==""}}'>
+                <view class='text'>快递公司:{{order.expresscom}}</view>
+                <view class='text'>快递单号:{{order.expresssn}}</view>
+              </block>
+              <block wx:else>
+                <view class='text'>暂无物流信息</view>
+                <view class='text'></view>
+              </block>
+            </view>
+            <view class='fui-list-angle'>
+              <text class='angle'></text>
+            </view>
+          </view>
+        </navigator>
+      </block>
+      <view class='fui-list' hoverClass='none'>
+        <view class='fui-list-media'>
+          <image mode='aspectFit' class='fui-list-icon' src='/static/images/icon/location.png' lazy-load='true'></image>
+        </view>
+        <view class='fui-list-inner'>
+          <view class=''>{{address.realname}} {{address.mobile}}</view>
+          <view class='text'>{{address.province + address.city + address.area + " " + address.address}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- <block wx:if='{{carrier || store}}'>
+      <view class='fui-list-group'>
+        <block wx:if='{{carrier}}'>
+          <view class='fui-list noclick'>
+            <view class='fui-list-media'>
+              <image class='fui-list-icon' src='/static/images/icon/people.png' lazy-load='true'></image>
+            </view>
+            <view class='fui-list-inner'>
+              <view class='title'>{{carrier.carrier_realname}} {{carrier.carrier_mobile}}</view>
+            </view>
+          </view>
+        </block>
+        <block wx:if='{{store}}'>
+          <view class='fui-list'>
+            <view class='fui-list-media'>
+              <image src='/static/images/icon/shop.png' class='fui-list-icon' lazy-load='true'></image>
+            </view>
+            <view class='fui-list-inner store-inner'>
+              <view class='title'>
+                <text class='storename'>{{store.storename}}</text>
+              </view>
+              <view class='text'>
+                <text class='realname'>{{store.realname}}</text>
+                <text class='mobile'>{{store.mobile}}</text>
+              </view>
+              <view class='text'>
+                <text class='address'>{{store.address}}</text>
+              </view>
+            </view>
+            <view class='fui-list-angle'>
+              <image class='image-48' bindtap='phone' src='/static/images/icon/tel.png' data-phone='{{store.mobile}}'></image>
+              <navigator hoverClass='none' url='/pages/order/store/map?id={{store.id}}'>
+                <image class='image-48' src='/static/images/icon/location.png' lazy-load='true'></image>
+              </navigator>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block> -->
+  <view class='fui-list-group' style='margin-top:20rpx;'>
+    <view class='fui-list-group-title'>
+      <image mode='aspectFit' src='/static/images/icon/shop.png' class='round' lazy-load='true'></image>
+      <text class='shop'>GZ一天科技</text>
+    </view>
+    <block>
+      <navigator openType='redirect' class='fui-list goods-item' url='/pages/groups/goods/index?id={{good.id}}'>
+        <view class='fui-list-media'>
+          <image mode='aspectFit' src='{{good.thumb}}' class='round goods_img' lazy-load='true'></image>
+        </view>
+        <view class='fui-list-inner'>
+          <view class='subtitle'>{{good.title}}</view>
+          <view class='text' style='font-size:0.6rem;'>{{good.description}}</view>
+        </view>
+        <view class='price text-right'>
+          <view class='text-right'>￥
+            <text>{{good.groupsprice}}</text>/
+            <text>{{good.goodsnum}}</text>
+            <text>{{good.units}}</text>
+          </view>
+          <view class='text-right'>x
+            <text>{{good.goodsnum}}</text>
+          </view>
+        </view>
+      </navigator>
+      <!-- <block wx:if='{{item.diyformfields.length > 0}}'>
+          <view class='fui-list noclick'>
+            <view class='fui-list-inner'>
+              <view class='text text-right'>
+                <view bindtap='diyshow' class='btn btn-default btn-sm look-diyinfo' data-id='{{item.id}}'>{{!diyshow.item.id?"展开":"收起"}}提交的资料</view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <block wx:if='{{item.diyformfields.length > 0}}'>
+          <view hidden='{{!diyshow.item.id}}'>
+            <template is='diyform' data='{{ diyform:item }}' />
+          </view>
+        </block> -->
+    </block>
+  </view>
+  <!-- <block wx:if='{{order.virtual > 0 && order.virtual_str != ""}}'>
+      <view class='fui-cell-group {{toggleCode?"toggleSend-group":""}}'>
+        <view class='fui-cell' bindtap='toggle' data-id='{{toggleCode}}' data-type='toggleCode'>
+          <view class='fui-cell-text'>发货信息</view>
+          <view class='fui-cell-remark'></view>
+        </view>
+        <view class='send-code send-code1'>{{order.virtual_str}}</view>
+      </view>
+    </block>
+    <block wx:if='{{order.isvirtualsend > 0 && order.virtualsend_info != ""}}'>
+      <view class='fui-cell-group {{toggleCode1?"toggleSend-group":""}}'>
+        <view class='fui-cell' bindtap='toggle' data-id='{{toggleCode1}}' data-type='toggleCode1'>
+          <view class='fui-cell-text'>发货信息</view>
+          <view class='fui-cell-remark'></view>
+        </view>
+        <view class='send-code'>{{order.virtualsend_info}}</view>
+      </view>
+    </block>
+    <block wx:if='{{order.verifyinfo}}'>
+      <view class='fui-cell-group {{toggleConsume?"toggleSend-group":""}}'>
+        <view class='fui-cell' bindtap='toggle' data-id='{{toggleConsume}}' data-type='toggleConsume'>
+          <image class='image-28' src='/static/images/icon/viewlist.png' lazy-load='true'></image>
+          <view class='fui-cell-text differ'>
+            <text class='consume'>{{order.verifytitle}}</text>
+          </view>
+          <view class='badge badge-warning'>{{order.verifyinfo.length}}</view>
+          <view class='fui-cell-remark'></view>
+        </view>
+        <block wx:if='{{order.status > 0}}'>
+          <block wx:for='{{order.verifyinfo}}' wx:for-item='item' wx:for-index='index' wx:key="*this">
+            <view class='send-code'>
+              <text>{{item.verifycode}}</text>
+              <text class='pull-right fui-label item.verified == 1 && fui-label-danger'>{{item.status}}</text>
+            </view>
+          </block>
+        </block>
+        <block wx:else>
+          <view class='send-code'>
+            <text>付款后可见!</text>
+          </view>
+        </block>
+      </view>
+    </block>
+    <block wx:if='{{stores}}'>
+      <view class='fui-cell-group {{toggleStore?"toggleSend-group":""}}'>
+        <view class='fui-cell' bindtap='toggle' data-id='{{toggleStore}}' data-type='toggleStore'>
+          <image src='/static/images/icon/shop.png' class='image-28' lazy-load='true'></image>
+          <view class='fui-cell-text differ'>
+            <text class='store'>适用门店</text>
+          </view>
+          <view class='badge badge-warning'>{{stores.length}}</view>
+          <view class='fui-cell-remark'></view>
+        </view>
+        <view class='send-code'>
+          <block wx:for='{{stores}}' wx:for-item='item' wx:for-index='index' wx:key="*this">
+            <view class='fui-list noclick'>
+              <view class='fui-list-media'>
+                <image src='/static/images/icon/shop.png' class='fui-list-icon' lazy-load='true'></image>
+              </view>
+              <view class='fui-list-inner store-inner'>
+                <view class='title'>
+                  <text class='storename'>{{item.storename}}</text>
+                </view>
+                <view class='text'>
+                  <text class='realname'>{{item.realname}}</text>
+                  <text class='mobile'>{{item.mobile}}</text>
+                </view>
+                <view class='text'>
+                  <text class='address'>{{item.address}}</text>
+                </view>
+              </view>
+              <view class='fui-list-angle'>
+                <image class='image-48' bindtap='phone' data-phone='{{item.mobile}}' src='/static/images/icon/tel.png' lazy-load='true'></image>
+                <navigator hoverClass='none' url='/pages/order/store/map?id={{item.id}}'>
+                  <image class='image-48' src='/static/images/icon/location.png' lazy-load='true'></image>
+                </navigator>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block> -->
+
+  <view class='fui-cell-group price-cell-group'>
+    <view class='fui-cell'>
+      <view class='fui-cell-label'>商品小计</view>
+      <view class='fui-cell-info'></view>
+      <view class='fui-cell-remark noremark'>¥ {{xj}}</view>
+    </view>
+    <view class='fui-cell'>
+      <view class='fui-cell-label'>运费</view>
+      <view class='fui-cell-info'></view>
+      <view class='fui-cell-remark noremark'>¥ {{order.freight}}</view>
+    </view>
+    <view class='fui-cell'>
+      <view class='fui-cell-label' style='width:auto;'>实付费(含运费)</view>
+      <view class='fui-cell-info'></view>
+      <view class='fui-cell-remark noremark'>
+        <text class='text-danger'><text style='font-size:32rpx'>¥ {{zj}}</text></text>
+      </view>
+    </view>
+  </view>
+  <view class='fui-cell-group'>
+    <view class='order-info'>
+      <view class='fui-cell-label'>订单编号：
+        <text class='fui-cell-label'>{{order.orderno}}</text>
+      </view>
+      <view class='fui-cell-label'>创建时间：
+        <text class='fui-cell-label'>{{order.createtime}}</text>
+      </view>
+      <block wx:if='{{order.status>=1}}'>
+        <view class='fui-cell-label'>支付时间：
+          <text class='fui-cell-label'>{{order.paytime}}</text>
+        </view>
+      </block>
+      <block wx:if='{{order.status>=2}}'>
+        <view class='fui-cell-label'>发货时间：
+          <text class='fui-cell-label'>{{order.sendtime}}</text>
+        </view>
+      </block>
+      <block wx:if='{{order.status==3}}'>
+        <view class='fui-cell-label'>完成时间：
+          <text class='fui-cell-label'>{{order.finishtime}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class='fui-footer'>
+    <block wx:if='{{!order.canrestore}}'>
+      <block wx:if='{{order.status == 0}}'>
+        <view class='btn btn-default btn-default-o'>
+          <picker bindchange='cancel' range='{{cancel}}' value='{{cancelindex}}' data-orderid='{{order.id}}'>取消订单</picker>
+        </view>
+        <navigator class='btn btn-danger' url='/pages/groups/pay/index?orderid={{order.id}}&teamid={{item.teamid}}'>支付订单</navigator>
+      </block>
+    </block>
+    <block wx:if='{{order.status == 3 || order.status == -1}}'>
+      <view bindtap='delete' class='btn btn-default btn-default-o' data-orderid='{{order.id}}'>删除订单</view>
+    </block>
+    <block wx:if='{{order.status == 2}}'>
+      <view bindtap='finish' class='btn btn-default btn-default-o' data-orderid='{{order.id}}'>确认收货</view>
+    </block>
+    <block wx:if='{{order.status > 0}}'>
+      <navigator style='background:#ff8000;border:#ff8000;' class='btn btn-danger' url='/pages/groups/refund/index?orderid={{order.id}}&teamid={{order.teamid}}'>
+        <block wx:if='{{order.status == 1}}'>申请退款</block>
+        <block wx:else>申请售后</block>
+        <block wx:if='{{order.refundstate!="0"}}'>中</block>
+      </navigator>
+    </block>
+    <block wx:if='{{order.refundstate>0 && order.refundstate!=5}}'>
+      <view class='btn btn-danger' id='btn-cencle' bindtap='btncancle' data-orderid='{{order.id}}' data-teamid='{{order.teamid}}'>取消申请</view>
+    </block>
+  </view>
+  <include src='/pages/order/public/verify.wxml' />
+</view>

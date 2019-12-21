@@ -1,0 +1,57 @@
+/* pages/merch/register/index.wxss */
+page{
+  background: #f8f8f8
+}
+.oy_form_pointer {
+  color: #f30;
+  margin-top: 13rpx;
+  margin-right: 5rpx;
+}
+.oy_form_title {
+  width: 120rpx;
+}
+.oy_form_list {
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.xj-input{
+  padding: 15rpx 20rpx;
+  background: #fff;
+  margin-top: 30rpx;
+  padding-bottom: 0;
+}
+.xj-btn button {
+  margin-top: 20rpx;
+  background: #ff8000;
+  width: 94%;
+  color: white;
+  font-size: 30rpx;
+   margin-bottom: 20rpx;
+   border: 1rpx solid #ff8000
+}
+
+.fui-checkbox-primary {
+  font-size: 30rpx;
+  padding: 20rpx 20rpx;
+  color: #666;
+  margin-top: 20rpx;
+  padding-bottom:40rpx;
+}
+.xj-content{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+margin-top:40rpx;
+}
+.xj-content navigator{
+ margin-top:40rpx;
+height:88rpx;
+color:white;
+background:#ff5555;
+text-align:center;
+width:94%;
+line-height:88rpx;
+border-radius:15rpx;
+}

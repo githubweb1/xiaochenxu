@@ -1,0 +1,94 @@
+<!--pages/order/pay/peerpaydetail.wxml-->
+
+<view>
+  <view style='padding:20rpx;background:#fff;margin-bottom:30rpx'>
+    <view class='xj-header'>
+      <image src='{{list.member.avatar}}' mode='aspectFit'></image>
+      <view>{{list.member.nickname}}</view>
+    </view>
+    <view class='xj-bottom'>
+      <view style='display:inline-block;'>已完成 :
+        <text>{{list.rate}}%</text>
+      </view>
+      <view style='float:right'>还差 :
+        <text> {{list.rate_price}}元</text>
+      </view>
+    </view>
+    <view class='xj-progress'>
+      <progress percent="{{list.rate}}" color="#ff4753" stroke-width="12" />
+    </view>
+  </view>
+  <!-- 头部 -->
+  <view class="xj-header">
+    <view>来自{{list.member.nickname}}的代付订单</view>
+  </view>
+  <!-- 头部内容 -->
+  <view class='xj-content'>
+    <image src='{{list.goods.thumb}}' mode='aspectFit'></image>
+    <view class='xj-content-center'>
+      <view class='xj-title'>{{list.goods.title}}</view>
+      <block wx:if="{{list.address&&list.addree!=''&&list.addree!='null'}}">
+        <view>{{list.address.realname}} {{list.address.mobile}}</view>
+        <view>{{list.address.province}} {{list.address.city}} {{list.address.area}} ****</view>
+      </block>
+      <view class='xj-orange'>￥{{list.peerpay.peerpay_realprice}}</view>
+    </view>
+    <navigator class='xj-btn' url='/pages/goods/detail/index?id={{list.goods.id}}'>查看商品</navigator>
+  </view>
+  <block wx:if="{{list.peerpay.peerpay_type==1}}">
+    <view style='padding:20rpx 40rpx;background:#f8f8f8'>
+      <block wx:for="{{list.message}}" wx:key="">
+        <view style='border-bottom:1rpx solid #ddd;'>
+          <view class='xj-message'>
+            <view>
+              <image src='{{item.headimg}}' style='background:red'></image>
+            </view>
+            <view class='xj-message-center'>
+              <view>{{item.uname}}帮他付了 ￥{{item.price}}</view>
+              <text>{{item.createtime}}</text>
+            </view>
+            <view>{{item.i}}F</view>
+          </view>
+          <view class='text'>{{item.usay}}</view>
+        </view>
+      </block>
+    </view>
+    <view>
+      <textarea bindblur="text" class='xj-textarea' placeholder='给TA留言' maxlength='200' value='支持一下,么么哒'></textarea>
+    </view>
+  </block>
+  <!-- 付款金额 -->
+  <block wx:if="{{list.rate_price>0}}">
+    <view class='xj-bottom-pay'>
+      <view style='display:flex;align-items:center;'>付款金额
+        <view class='xj-bottom-pay-orange' style='display:flex;align-items:center;' wx:if="{{list.peerpay.peerpay_type==0}}">￥
+          <input disabled="true " bindinput='moneyinput' value='{{list.price}}'></input>
+        </view>
+        <view class='xj-bottom-pay-orange' style='display:flex;align-items:center;' wx:else>￥
+          <input bindinput='moneyinput' value='{{list.price}}'></input>
+        </view>
+      </view>
+    </view>
+    <view class='xj-btn-wai'>
+      <view class='xj-bottom-btn' bindtap='next' data-type='buy'>立即支付</view>
+    </view>
+  </block>
+
+  <view class='xj-btn-wai'>
+    <view class='xj-bottom-btn-center' bindtap='next' data-type='mineplay'>我也要去玩</view>
+  </view>
+  <view class='xj-btn-wai'>
+    <view class='xj-bottom-btn-bottom' bindtap='next' data-eno='1'>找小伙伴帮TA付款</view>
+  </view>
+
+
+  <view class='view-eno {{eno==0?"hidden ":" "}}' bindtap="next " data-eno='0'>
+    <image src='http://xcxvip.iiio.top/addons/wx_shop/plugin/app/static/images/123.png' class='image1' mode='aspectFill'></image>
+    <text style="color:#fff; " bindtap="next " data-eno='0'> 快点找人帮你付款吧</text>
+  </view>
+  <view class='view-eno-bg {{eno==0?"hidden ":" "}}' bindtap="next " data-eno='0'>
+  </view>
+  <!-- <view class='bottom-oy'>
+    <navigator class='btn-oy-sub'>返回首页</navigator>
+  </view> -->
+</view>

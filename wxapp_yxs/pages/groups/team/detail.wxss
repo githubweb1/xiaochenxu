@@ -1,0 +1,573 @@
+/*
+拼团详情
+*/
+
+page {
+  background: #f6f6f6;
+}
+
+.lynn_swipe {
+  position: relative;
+}
+
+.team_img {
+  position: absolute;
+  right: 1rem;
+  bottom: 4.9rem;
+  z-index: 10;
+  width: 6rem;
+  height: 6rem;
+}
+
+.text .time {
+  color: #000;
+}
+
+.lynn_team_detail_title {
+  padding: 0 0.5rem;
+  height: 2.3rem;
+  font-size: 0.8rem;
+  text-align: center;
+  overflow: hidden;
+  margin-top: 0.3rem;
+}
+
+.lynn_team_detail_goods_info {
+  color: #959595;
+  font-size: 0.6rem;
+  height: 1.1rem;
+  line-height: 1.1rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.lynn_team_detail_goods_info text {
+  color: #fd5454;
+  padding: 0 0.2rem;
+  font-size: 0.8rem;
+}
+
+.pp {
+  padding: 0px 10px;
+  font-size: 12px;
+  background-color: white;
+}
+
+.pp_users {
+  padding: 10px 0px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.pp_users_item {
+  width: 100rpx;
+  height: 100rpx;
+  overflow: hidden;
+  margin-right: 20rpx;
+  display: inline-block;
+}
+
+:last-child.pp_users_item {
+  margin-right: 0px;
+}
+
+.pp_users_item image {
+  border-radius: 50%;
+  width:100rpx;
+  height: 100rpx;
+  overflow: hidden;
+  display: block;
+  box-shadow: 0 0 0 4rpx #fff;
+  background-clip: padding-box;
+  -webkit-border-radius: 100rpx;
+}
+
+.pp_users_normal:nth-child(1) {
+  position: relative;
+}
+
+.pp_users_normal:nth-child(1):after {
+  content: '团长';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40rpx;
+  height: 40rpx;
+  line-height:40rpx;
+  text-align: center;
+  background-color: #f0373d;
+  color: #fff;
+  font-size: 26rpx;
+  border: 4rpx solid #fff;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-clip: padding-box;
+}
+
+.pp_users_normal:nth-child(2) {
+  position: relative;
+}
+
+.pp_users_normal:nth-child(2):before {
+  content: '沙发';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background-color: #ff9910;
+  color: #fff;
+  font-size:28rpx;
+  border: 4rpx solid #fff;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-clip: padding-box;
+}
+
+.pp_users2 .pp_users_item {
+  width: 70rpx;
+  height: 70rpx;
+  margin-right: 4rpx;
+}
+
+.pp_users2 .pp_users_item image {
+  border-radius: 50%;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.groups_info {
+  color: #959595;
+  font-size:28rpx;
+}
+
+.fui-cell-text {
+text-align:center;
+padding-top:10px;
+}
+
+.fui-labeltext {
+  display: inline-block;
+}
+
+.fui-labeltext.fui-labeltext-danger {
+  border: none;
+  vertical-align: middle;
+}
+
+.fui-labeltext.fui-labeltext-danger .label {
+  background: none;
+  color: #333;
+}
+
+.fui-cell-text text {
+  color: #ef4f4f;
+}
+
+.lynn_team_list {
+  background: #fff;
+  padding: 0 0.5rem 0.5rem;
+  display: block;
+}
+
+.lynn_team_list_top {
+  height: 1.5rem;
+  line-height: 1.5rem;
+  position: relative;
+}
+
+.lynn_team_list_top text {
+  height: 1px;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0.75rem;
+  background: #f0f0f0;
+  width: 100%;
+}
+
+.lynn_team_list_top view {
+  width: 50%;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  display: block;
+  background: #fff;
+  margin: 0 auto;
+  z-index: 10;
+  position: relative;
+  text-align: center;
+  color: #051b28;
+  font-size: 0.65rem;
+}
+
+.lynn_icon {
+  vertical-align: bottom;
+}
+
+.lynn_team_list_dd {
+border-bottom:1px solid #f0f0f0;
+line-height:2.1rem;
+font-size:28rpx;
+color:#9d9d9d;
+padding:20rpx;
+
+}
+
+.lynn_team_list_dd image {
+  width: 50rpx;
+  height:50rpx;
+  -webkit-border-radius:50rpx;
+  border-radius: 50rpx;
+  margin-right:10rpx;
+}
+
+.lynn_team_list_dd text.fl {
+  max-width: 4rem;
+  overflow: hidden;
+}
+
+.lynn_team_list_dd text.fr {
+  font-weight: bold;
+}
+
+.fr {
+  float: right;
+}
+
+.step {
+  padding: 15px 10px;
+  font-size: 12px;
+  position: relative;
+  background: #fff;
+}
+
+.step::after {
+  height: 0px;
+  clear: both;
+  display: block;
+  visibility: hidden;
+  content: "";
+}
+
+.step_hd {
+  height: 18px;
+  line-height: 18px;
+  margin-bottom: 12px;
+  font-size:28rpx;
+}
+
+.step_list::after {
+  height: 0px;
+  clear: both;
+  display: block;
+  visibility: hidden;
+  content: "";
+}
+
+.step_item {
+ width:17%;
+font-size:28rpx;
+padding-left:50rpx;
+float:left;
+position:relative;
+}
+
+.step_num {
+  border-radius: 50%;
+  border: 1px dashed rgb(213, 213, 213);
+  border-image: none;
+  left: 0;
+  top: 15rpx;
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  color: rgb(102, 102, 102);
+  line-height: 40rpx;
+  position: absolute;
+  background-clip: padding-box;
+  background-color: rgb(255, 255, 255);
+}
+
+.step_tit {
+  color: rgb(102, 102, 102);
+  font-size: 28rpx;
+}
+
+.step_item_on .step_num {
+  border: 1px solid rgb(240, 55, 61);
+  border-image: none;
+  color: rgb(255, 255, 255);
+  background-color: rgb(240, 55, 61);
+}
+
+.step_item_on .step_tit {
+  color: rgb(240, 55, 61);
+}
+
+.step_more {
+  top: 30rpx;
+  height: 36rpx;
+  text-align: right;
+  right: 20rpx;
+  color: #9b9b9b;
+  line-height: 36rpx;
+  display: block;
+  position: absolute;
+}
+
+.step_more::after {
+  background-position: -303px -102px;
+  width: 12rpx;
+  height: 24rpx;
+  margin-left: 10rpx;
+  vertical-align: -1px;
+  display: inline-block;
+  content: "";
+}
+
+.step_hd text {
+  float: left;
+  height: 30rpx;
+  width: 10rpx;
+  background: #fd5454;
+  margin-right: 0.2rem;
+}
+
+i {
+  font-style: normal;
+}
+
+.order_goods_img image {
+  border: 1px solid rgb(215, 215, 215);
+  border-image: none;
+  width: 120rpx;
+  height: 120rpx;
+  display: block;
+}
+
+.order_goods_price text {
+  font-size: 28rpx;
+}
+
+#cover {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 18888;
+  background-color: #000;
+  opacity: 0.7;
+}
+
+#guide {
+  display: none;
+  position: absolute;
+  right: 36rpx;
+  top: 10rpx;
+  z-index: 19999;
+}
+
+#guide image {
+  width: 540rpx;
+  height: 360rpx;
+}
+
+.pp_tips {
+  padding: 20rpx 10rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.pp_tips text {
+  margin: 0 10rpx;
+  color: rgb(223, 33, 39);
+  font-size: 30rpx;
+}
+
+#shareit img {
+  max-width: 100%;
+}
+
+.mod_footer_lk navigator {
+  height: 24rpx;
+  color: rgb(153, 153, 153);
+  line-height: 24rpx;
+  overflow: hidden;
+  padding-right: 16rpx;
+  margin-right: 16rpx;
+  border-right-color: rgb(215, 215, 215);
+  border-right-width: 1px;
+  border-right-style: solid;
+}
+
+.mod_footer_lk a:last-child {
+  padding-right: 0px;
+  margin-right: 0px;
+  border-right-color: currentColor;
+  border-right-width: 0px;
+  border-right-style: none;
+}
+
+.address_new button {
+  border-radius: 2px;
+  border: 0px currentColor;
+  border-image: none;
+  width: 100%;
+  height: 80rpx;
+  color: rgb(255, 255, 255);
+  line-height: 80rpx;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+  display: block;
+  background-color: rgb(56, 132, 255);
+}
+
+.fui-tab.detail-tab {
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.fui-tab.detail-tab:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200%;
+  border-top: 1px solid #d0d0d0;
+  display: block;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5);
+}
+
+.fui-tab.detail-tab:after {
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.5);
+  -ms-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+
+.detail-block > view {
+  display: none;
+  background: #fff;
+  padding: 0.2rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-block .block {
+  display: block;
+}
+
+.tab-basic image {
+  max-width: 100%;
+}
+
+.fui-tab.fui-tab-danger view.active {
+  color: #f55;
+  border-color: #f55;
+  font-size: 0.7rem;
+  width: 100%;
+  height: 2rem;
+  line-height: 2rem;
+  -webkit-box-flex: 1;
+  z-index: 100;
+}
+
+.fui-tab view {
+  font-size: 0.7rem;
+  width: 100%;
+  height: 2rem;
+  line-height: 2rem;
+  -webkit-box-flex: 1;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  text-align: center;
+}
+
+.step_detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.fui-navbar {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+}
+
+.lynn_footer .other {
+  width: 80%;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #fd5454;
+  color: #fff;
+  font-size: 28rpx;
+  display: block;
+  float: left;
+}
+
+.lynn_footer .home {
+  width: 20%;
+  text-align: center;
+  height:100rpx;
+  background: #333;
+  color: #fff;
+  font-size: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+
+.icon-home {
+ width:50rpx;
+height:50rpx;
+}
+
+.home view {
+  font-size: 26rpx;
+}
+
+#basic .basic-view {
+  padding: 2rem 0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: #000;
+  opacity: 0.7;
+}
+
+.guide {
+  display: none;
+  position: absolute;
+  right: 36rpx;
+  top: 10rpx;
+  z-index: 1001;
+}
+
+view.look {
+  display: block;
+}
+
+.guide image {
+  width: 520rpx;
+  height: 360rpx;
+  margin-right:65rpx;
+}

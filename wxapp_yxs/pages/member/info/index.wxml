@@ -1,0 +1,94 @@
+<block wx:if='{{!show}}'>
+  <loading>加载中...</loading>
+</block>
+<!--pages/info/withdraw.wxml-->
+<block wx:if='{{show}}'>
+    <block wx:if='{{openbind}}'>
+        <view class="oy_form_list flex flex-ver">
+            <view class="oy_form_title flex flex-ver">
+                <view class="oy_form_pointer">*</view>
+                <view>手机号</view>
+            </view>
+            <view class="flex-1 oy_form_right flex flex-ver">
+                <view class=" flex flex-ver flex-1 oy_form_input oy_placeholder">
+                    {{member.mobile}}({{member.mobileverify == 1?"已绑定手机号":"未绑定手机号"}})
+                </view>
+            
+            </view>
+            <navigator  class="flex flex-ver oy_nav_box" hover-class='none'  url='/pages/member/bind/index'>
+                <view class="oy_nav_title">
+                    {{member.mobileverify == 1?"更换绑定":"立即绑定"}}
+                </view>
+            
+                <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+            </navigator>
+        </view>
+    </block>
+    <block wx:if='{{!diyform.template_flag}}'>
+        <block wx:if='{{!openbind}}'>
+            <view class="oy_form_list flex flex-ver">
+                  <view class="oy_form_title flex flex-ver">
+                    <view class="oy_form_pointer">*</view>
+                    <view>手机号</view>
+                </view>
+                <view class="flex-1 oy_form_right flex flex-ver">
+                    <input type='tel' placeholder='请输入手机号' class="flex-1 oy_form_input" data-type='mobile' bindinput='onChange'  value='{{postData.mobile}}' maxlength='11'  placeholder-class="oy_placeholder"></input>
+                </view>
+            </view>
+        </block>
+        <view class="oy_form_list flex flex-ver">
+            <view class="oy_form_title flex flex-ver">
+                <view class="oy_form_pointer">*</view>
+                <view>姓名</view>
+            </view>
+            <view class="flex-1 oy_form_right flex flex-ver">
+                <input type='text' placeholder='请输入姓名' class="flex-1 oy_form_input" data-type='realname' bindinput='onChange'  value='{{postData.realname}}'  placeholder-class="oy_placeholder"></input>
+            </view>
+        </view>
+        <view class="oy_form_list flex flex-ver">
+            <view class="oy_form_title flex flex-ver">
+                <view>微信号</view>
+            </view>
+            <view class="flex-1 oy_form_right flex flex-ver">
+                <input type='text' placeholder='微信号'  bindinput='onChange' data-type='weixin' class="flex-1 oy_form_input"  placeholder-class="oy_placeholder" value='{{postData.weixin}}'></input>
+            </view>
+        </view>
+        <view class="oy_form_list flex flex-ver">
+            <view class="oy_form_title flex flex-ver">
+                <view>出生日期</view>
+            </view>
+            <view class="flex-1 oy_form_right flex flex-ver">
+                <picker mode="date" bindchange='onChange' data-type='birthday' value='{{postData.birthday}}' class="flex-1 oy_h100 flex flex-ver" >
+                    <view class="oy_placeholder oy_picker oy_h100"  >
+                    {{postData.birthday || "选择出生日期"}}
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <view class="oy_form_list flex flex-ver">
+            <view class="oy_form_title flex flex-ver">
+                <view>所在城市</view>
+            </view>
+            <view class="flex-1 oy_form_right flex flex-ver">
+            
+                <view  class="oy_placeholder oy_picker flex-1" bindtap='selectArea' data-area='{{postData.city}}'>
+                    {{!postData.city?"请选择所在城市":postData.city}}
+                </view>
+                
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+      <include src='/pages/common/diyform.wxml' />
+    </block>
+    <view class="oy_tel_box">
+        <view class="oy_btn flex flex-center" bindtap='submit'>
+            确认修改
+        </view>
+    </view>
+    <include src='/pages/common/city-picker.wxml' />
+    <view class='fui-mask {{showPicker?"show":""}}'></view>
+    <view class='fui-toast {{FoxUIToast.show?"in":"out"}}'>
+      <view class='text'>{{FoxUIToast.text}}</view>
+    </view>
+</block>

@@ -1,0 +1,41 @@
+<!--pages/board/allList.wxml-->
+<import src="footer.wxml"/>
+<import src="list.wxml"/>
+<view class="oy-allList-main flex flex-col">
+	<view class="flex-1 flex">
+			<scroll-view class="oy-allList-main-left" scroll-y="true">
+					<view class="oy-allList-nav  {{cid=='all'?'oy-active':''}}" bindtap='choseNav' data-id="all">全部版块</view>
+					<view class="oy-allList-nav {{cid=='rec'?'oy-active':''}}"  bindtap='choseNav' data-id="rec">推荐版块</view>
+					<view class="oy-allList-nav {{cid==item.id?'oy-active':''}}" wx:for="{{result.category}}" wx:key="" bindtap='choseNav' data-id="{{item.id}}">{{item.name}}</view>
+			</scroll-view>
+			<view class="flex-1 oy-allList-main-right flex flex-col">
+				<view class="oy-h20"></view>
+				<view class="oy-allList-input flex flex-ver">
+					<view class="oy-search flex flex-center" bindtap='mySearch'>
+						<image mode='aspectFill' src="/pages/sns/myIcon/search.png"></image>
+					</view>
+					<input type="text" class="oy-my-input flex-1" placeholder='输入关键字...' value='{{value}}' bindinput="myInput"></input>
+					<view class="oy-times-box">
+						<view class="oy-times flex flex-center" wx:if="{{isFocus==2}}" bindtap='clearInput'>
+							<image mode='aspectFill' src="myIcon/times.png"></image>
+						</view>
+					</view>
+					
+				</view>
+				<view class="flex-1 flex flex-col">
+					<scroll-view class="oy-allList-main-right flex-1" scroll-y="true" bindscrolltolower="getRightList"> 
+				
+						<template is="list" data="{{list: list}}"/>
+					
+						
+				</scroll-view>
+				</view>
+				
+			</view>
+		
+	</view>
+	<template is="footer" data="{{isFooter:isFooter}}"/>
+	
+	
+</view>
+

@@ -1,0 +1,120 @@
+<!--pages/chat/chat.wxml-->
+<wxs module="filter" src="time.wxs"></wxs>
+<view class="news" bindtap='outbtn'>
+   <view class="chat-notice" wx:if="{{userInfo}}">系统消息: 欢迎 {{ userInfo.nickName }} 加入聊天</view>
+   <view class="historycon">
+   <scroll-view scroll-y="true" class="history">
+    
+       <block wx:for="{{newslist}}" wx:key>
+          <!-- 历史消息 -->
+          
+          <view wx:if="{{filter.numberToFixed(newslist[index].times,newslist[index+1].times)}}">
+          <text class="time-date">{{item.time}}</text>
+          </view>
+          <!--自己的消息  -->
+          <!-- <view class="chat-news" wx:if="{{item.nickName == userInfo.nickName}}"> -->
+          <view class="chat-news" wx:if="{{item.qwe=='2'}}">
+          
+              <view style="text-align: right;padding-right: 20rpx;">
+                  <text class="name">{{item.member.nickname }}</text>
+                  <image class='new_img' src="{{userInfo.avatarUrl}}"></image>
+              </view>
+              <view class='my_right'>
+                  <block wx:if="{{item.text_type=='1'}}">      
+                    <view style="background-color: #9EEA6A;"  class='new_txt'>{{item.text}}</view>
+                  </block>
+                  <block wx:if="{{item.text_type=='2'}}">
+                    <image class="selectImg" src="{{item.images}}" data-src="{{item.images}}" lazy-load="true" bindtap="previewImg"></image>  
+                  </block> 
+              </view>
+          </view> 
+          <!-- 别人的消息  -->
+            <view class="chat-news" wx:if="{{item.qwe=='1'}}">
+              <view style="text-align: left;padding-left: 20rpx;">
+                  <image class='new_img' src="{{item.shangjia.logo?item.shangjia.logo:'image/avator.png'}}"></image>
+                  <text class="name">{{item.shangjia.merchname}}</text>
+              </view>
+              <view class='you_left'>
+                  <block wx:if="{{item.text_type=='1'}}">      
+                    <view style="background-color: #ffffff;" class='new_txt'>{{item.text}}</view>
+                  </block>
+                  <block wx:if="{{item.text_type=='2'}}">
+                    <image class="selectImg" src="{{item.images}}" data-src="{{item.images}}" lazy-load="true" bindtap="previewImg"></image>  
+                  </block>
+              </view>
+          </view>  
+       </block>
+        <block wx:for="{{merchlist}}" wx:for-index='inx'  wx:if="{{merchlist.length!=='0'}}" wx:key>          
+          <view wx:if="{{filter.newDate(newslist,item.times)}}">
+          <text class="time-date">{{item.time}}</text>
+          </view>
+          <!--自己的消息  -->
+          <!-- <view class="chat-news" wx:if="{{item.nickName == userInfo.nickName}}"> -->
+          <view class="chat-news" wx:if="{{item.is_or=='2'}}">
+          
+              <view style="text-align: right;padding-right: 20rpx;">
+                  <text class="name">{{userInfo.nickName }}</text>
+                  <image class='new_img' src="{{userInfo.avatarUrl}}"></image>
+              </view>
+              <view class='my_right'>
+                  <block wx:if="{{item.text_type=='1'}}">      
+                    <view style="background-color: #9EEA6A;"  class='new_txt'>{{item.text}}</view>
+                  </block>
+                  <block wx:if="{{item.text_type=='2'}}">
+                    <image class="selectImg" src="{{item.images}}" data-src="{{item.images}}" lazy-load="true" bindtap="previewImg"></image>  
+                  </block> 
+              </view>
+          </view> 
+          <!-- 别人的消息  -->
+            <view class="chat-news" wx:if="{{item.is_or=='1'}}">
+              <view style="text-align: left;padding-left: 20rpx;">
+                  <image class='new_img' src="{{merchobj.logo?merchobj.logo:'image/avator.png'}}"></image>
+                  <text class="name">{{merchobj.merchname}}</text>
+              </view>
+              <view class='you_left'>
+                  <block wx:if="{{item.text_type=='1'}}">      
+                    <view style="background-color: #ffffff;" class='new_txt'>{{item.text}}</view>
+                  </block>
+                  <block wx:if="{{item.text_type=='2'}}">
+                    <image class="selectImg" src="{{item.images}}" data-src="{{item.images}}" lazy-load="true" bindtap="previewImg"></image>  
+                  </block>
+              </view>
+          </view>  
+       </block>
+   </scroll-view>
+  </view>  
+</view>
+<view id="flag"></view> 
+<!-- 聊天输入 -->
+<view class="message">
+    <form bindreset="cleanInput" class="sendMessage">
+        <textarea  value="{{massage}}" fixed='{{istrue}}' maxlength='-1' focus='{{istrue}}' bindinput='bindChange' bindfocus='inputfocus' show-confirm-bar='{{!istrue}}' hold-keyboard='{{istrue}}'></textarea >   
+         <view class="add" bindtap='increase'>+</view> 
+        <button type="primary" bindtap='send' formType="reset" size="small" >发送</button>
+    </form>
+    <view class='increased {{aniStyle?"slideup":"slidedown"}}' wx:if="{{increase}}">
+       <view class="image" bindtap='chooseImage'>相册 </view>  
+    </view>
+</view>
+<!-- <view class="the-input">
+<form bindreset="cleanInput" >
+   <view class="input-btn">
+     <view class="text-cont">
+       <textarea  value="{{massage}}" bindinput='bindChange' bindfocus='inputfocus'></textarea>
+     </view>
+     <view class="sends-btn">
+      <view class="add" bindtap='increase'>{{addicon}}</view> 
+     <view>
+         <button type="primary" bindtap='send' size="default" formType="reset" button-hover="blue">发送</button>
+     </view>
+     </view>
+   </view>
+</form>
+    <view class='increased {{aniStyle?"slideup":"slidedown"}}' wx:if="{{isadd}}">
+       <view class="image" bindtap='chooseImage'>相册 </view>  
+    </view>
+</view> -->
+
+
+
+

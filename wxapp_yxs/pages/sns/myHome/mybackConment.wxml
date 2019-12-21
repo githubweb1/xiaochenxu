@@ -1,0 +1,22 @@
+<!--pages/board/myHome/mybackConment.wxml-->
+<import src="../index/footer.wxml"/>
+<block wx:for="{{list}}" wx:key="">
+	<navigator url="{{'/pages/sns/postDetail/postDetail?id='+item.id+'&bid='+item.parentid}}" hover-class='none' class="oy-mybackConment-list" >
+		<view class="oy-mybackConment-head">回复{{item.rparentnickname}}: {{item.content}}</view>
+		<view class="flex flex-end1">
+			<view class="oy-del-btn flex flex-ver" catchtap='myDelete' data-id="{{item.id}}" data-index="{{index}}">
+				<image src="../myIcon/delete.png"></image>
+				<view>删除评论</view>	
+			</view>
+		</view>
+	</navigator>
+	<navigator url="{{'/pages/sns/postDetail/postDetail?id='+item.id+'&bid='+item.parentid}}" hover-class='none' class="oy-board-list flex flex-ver">
+		<image src="{{item.boardlogo}}"></image>
+		<view class="flex-1">
+			<view class="oy-parenttitle-text">{{item.parenttitle}}</view>
+			<view class="oy-boardtitle-text">{{item.boardtitle}}</view>
+		</view>
+	</navigator>	
+</block>
+
+<template is="footer" data="{{isFooter:isFooter,isMy:isMy}}"/>

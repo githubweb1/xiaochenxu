@@ -1,0 +1,8 @@
+<!--pages/board/aboutBoard/aboutBoard.wxml-->
+<import src="../index/list.wxml"/>
+<import src="../index/footer.wxml"/>
+
+<!-- 引入模板 -->
+<template is="list" data="{{list: list}}"/>
+
+<template is="footer"/>

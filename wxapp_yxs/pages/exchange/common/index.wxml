@@ -1,0 +1,247 @@
+<!--pages/exchange/index/index.wxml-->
+<view style='margin-bottom:80rpx'>
+  <!-- 轮播 -->
+  <block wx:if="{{list.banner || list.banner.lenght}}">
+    <view class='view-swiper'>
+      <swiper class="swiper_box" autoplay="true" interval="2000" duration="500" indicator-dots='true' indicator-color='white' indicator-active-color='#ccc'>
+        <block wx:for-items="{{list.banner}}" wx:key="id">
+          <swiper-item>
+            <image mode='aspectFill' src="{{item}}" class="slide-image" style='width:750rpx' />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </block>
+  <!-- 兑换次数 -->
+  <view class='content'>
+    <view class='xj-exchange-header'>
+      <block wx:if="{{!list}}">
+        <view>兑换中心</view>
+      </block>
+      <block wx:if="{{list}}">
+        <view>兑换码 : {{input}}</view>
+        <view class='xj-header-color'>此兑换码已查询
+          <text>{{list.result.count}}</text>次
+        </view>
+      </block>
+    </view>
+    <!-- input输入 -->
+    <block wx:if="{{!list}}">
+      <view style='display:flex;justify-content:center;width:80%;'>
+        <input bindinput='inputexchange' placeholder='请输入兑换码' class='xj-input-exchange'></input>
+      </view>
+    </block>
+    <!-- 兑换品 -->
+    <block wx:if="{{link.status==1}}">
+        <template is="goods" data="{{...list,exchange,datasta,colorddd}}" />
+    </block>
+
+    <!-- 兑换余额 -->
+    <block wx:if="{{link.status==2}}">
+          <template is="balance" data="{{...list,exchange,datasta,colorddd}}" />
+    </block>
+
+    <!-- 积分兑换 -->
+    <block wx:if="{{link.status==4}}">
+        <template is="score" data="{{...list,exchange,datasta,colorddd}}" />
+    </block>
+
+    <!-- 优惠券兑换 -->
+    <block wx:if="{{link.status==5}}">
+       <template is="coupon" data="{{...list,exchange,datasta,colorddd}}" />
+    </block>
+
+    <!-- 红包兑换 -->
+    <block wx:if="{{link.status==3}}">
+        <template is="red" data="{{...list,exchange,datasta,colorddd}}" />
+    </block>
+
+    <!-- 组合兑换 -->
+    <block wx:if="{{link.status==6}}">
+      <!-- 兑换品 -->
+      <block wx:if="{{list.result.goods.has==1}}">
+        <template name="goods">
+          <view class='xj-thing'>
+            <view class='xj-thing1'>
+              <image mode='aspectFit' class='xj-thing-image' src='http://xcxvip.iiio.top/addons/ewei_shopv2/plugin/exchange/static/img/icon_goods.png'></image>
+              <view class='xj-thing-center'>
+                <view>商品兑换</view>
+                <block wx:if="{{result.goods.type=='1'}}">
+                  <text>可兑换{{result.goods.max}}件商品</text>
+                </block>
+                <block wx:else>
+                  <text>可兑换价值{{result.goods.val}}元的商品</text>
+                </block>
+              </view>
+              <block wx:if="{{result.goods.sta==0}}">
+                <navigator class='xj-thint-right disabled' bindtap='exchange' data-sta='1' data-status="0">
+                  兑换中
+                </navigator>
+              </block>
+              <block wx:else>
+                <view class='xj-thint-right {{colorddd==1?"disabled":""}}' bindtap='exchange' data-status="{{datasta}}" data-sta='1'>
+                  {{exchange}}
+                </view>
+              </block>
+            </view>
+          </view>
+        </template>
+        <template is="goods" data="{{...list,exchange,exchange,datasta,colorddd}}" />
+      </block>
+
+      <!-- 兑换余额 -->
+      <block wx:if="{{list.result.balance.has==1}}">
+        <template name="balance">
+          <view class='xj-thing'>
+            <view class='xj-thing1'>
+              <image mode='aspectFit' class='xj-thing-image' src='http://xcxvip.iiio.top/addons/ewei_shopv2/plugin/exchange/static/img/icon_money.png'></image>
+              <view class='xj-thing-center'>
+                <view>兑换余额</view>
+                <block wx:if="{{result.balance.type=='1'}}">
+                  <text>面值{{result.balance.val}}元</text>
+                </block> 
+                <block wx:if="{{result.balance.type=='3'}}">
+                  <text>面值{{result.balance.val}}元</text>
+                </block>
+                <block wx:if="{{result.balance.type=='3'&&result.balance.type=='1'}}">
+                  <text>随机获得{{result.balance.rand}}元</text>
+                </block>
+              </view>
+              <block wx:if="{{result.balance.sta==0}}">
+                <view class='xj-thint-right disabled' bindtap='exchange' data-sta='2' data-status="0">
+                  兑换中
+                </view>
+              </block>
+              <block wx:else>
+                <view class='xj-thint-right {{colorddd==1?"disabled":""}}' bindtap='exchange' data-status="{{datasta}}" data-sta='2'>
+                  {{exchange}}
+                </view>
+              </block>
+            </view>
+          </view>
+        </template>
+        <template is="balance" data="{{...list,exchange,datasta,colorddd}}" />
+      </block>
+      <!-- 积分兑换 -->
+      <block wx:if="{{list.result.score.has==1}}">
+        <template name="score">
+          <view class='xj-thing'>
+            <view class='xj-thing1'>
+              <image mode='aspectFit' class='xj-thing-image' src='http://xcxvip.iiio.top/addons/ewei_shopv2/plugin/exchange/static/img/icon_credit.png'></image>
+              <view class='xj-thing-center'>
+                <view>积分兑换</view>
+                <block wx:if="{{result.score.type=='1'}}">
+                  <text>面值{{result.score.val}}积分</text>
+                </block>
+                <block wx:else>
+                  <text>随机获得{{result.score.rand}}积分</text>
+                </block>
+              </view>
+              <block wx:if="{{result.score.sta==0}}">
+                <view class='xj-thint-right disabled' bindtap='exchange' data-sta='4' data-status="0">
+                  兑换中
+                </view>
+              </block>
+              <block wx:else>
+                <view class='xj-thint-right {{colorddd==1?"disabled":""}}' bindtap='exchange' data-status="{{datasta}}" data-sta='4'>
+                  {{exchange}}
+                </view>
+              </block>
+            </view>
+          </view>
+        </template>
+        <template is="score" data="{{...list,exchange,datasta,colorddd}}" />
+      </block>
+      <!-- 优惠券兑换 -->
+      <block wx:if="{{list.result.coupon.has==1}}">
+        <template name="coupon">
+          <view class='xj-thing'>
+            <view class='xj-thing1'>
+              <image mode='aspectFit' class='xj-thing-image' src='http://xcxvip.iiio.top/addons/ewei_shopv2/plugin/exchange/static/img/icon_coupon.png'></image>
+              <view class='xj-thing-center'>
+                <view>优惠券兑换</view>
+                <block wx:if="{{result.coupon.type=='1'}}">
+                  <text>获取全部优惠价</text>
+                </block>
+                <block wx:else>
+                  <text>获得一张优惠价</text>
+                </block>
+              </view>
+              <block wx:if="{{result.coupon.sta==0}}">
+                <view class='xj-thint-right disabled' bindtap='exchange' data-sta='5' data-status="0">
+                  兑换中
+                </view>
+              </block>
+              <block wx:else>
+                <view class='xj-thint-right {{colorddd==1?"disabled":""}}' bindtap='exchange' data-status="{{datasta}}" data-sta='5'>
+                  {{exchange}}
+                </view>
+              </block>
+            </view>
+          </view>
+        </template>
+        
+        <template is="coupon" data="{{...list,exchange,datasta,colorddd}}" />
+      </block>
+      <!-- 红包兑换 -->
+      <block wx:if="{{list.result.red.has==1}}">
+        <template name="red">
+        <view class='xj-thing'>
+          <view class='xj-thing1'>
+            <image mode='aspectFit' class='xj-thing-image' src='http://xcxvip.iiio.top/addons/ewei_shopv2/plugin/exchange/static/img/icon_redbag.png'></image>
+            <view class='xj-thing-center'>
+              <view>红包兑换</view>
+              <block wx:if="{{result.red.type=='1'}}">
+                <text>面值{{result.red.val}}元微信红白</text>
+              </block>
+              <block wx:else>
+                <text>随机获得{{result.red.rand}}元红包</text>
+              </block>
+            </view>
+            <block wx:if="{{result.red.sta==0}}">
+              <view class='xj-thint-right disabled' bindtap='exchange' data-sta='3' data-status="0">
+                兑换中
+              </view>
+            </block>
+            <block wx:else>
+              <view class='xj-thint-right {{colorddd==1?"disabled":""}}' bindtap='exchange' data-status="{{datasta}}" data-sta='3'>
+                {{exchange}}
+              </view>
+            </block>
+          </view>
+        </view>
+          </template>
+        <template is="red" data="{{...list,exchange,datasta,colorddd}}" />
+      </block>
+    </block>
+    <!-- 点击兑换 -->
+    <view style='width:100%;'>
+      <block wx:if="{{!list}}">
+        <button type='warn' bindtap='fastExchange' class='fastExchange'>马上兑换</button>
+      </block>
+
+      <block wx:else>
+        <button bindtap='fastExchange1' data-num='1' class='fastExchange'>返回重新输入兑换码</button>
+      </block>
+    </view>
+  </view>
+  <!-- 兑换中心 -->
+  <view class='xj-bottom'>
+    <view>
+      <view class='line'>
+      </view>
+      <view class='center'>
+        <text class='yuan'></text>
+        <text class='xj-bottom-exchange'>兑换中心</text>
+        <text class='yuan1'></text>
+      </view>
+    </view>
+  </view>
+  <!-- 兑换规则 -->
+  <view>
+    <view class='rule'>兑换规则</view>
+  </view>
+  <view>
+    <rich-text nodes="{{list.res.rule}}"></rich-text>
+  </view>
+</view>

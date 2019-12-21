@@ -1,0 +1,102 @@
+<!--pages/IntegralMall/creadOrder/creadOrder.wxml-->
+
+<block wx:if="{{links.goods.type==0}}">
+  <navigator class='view-address-content' url='/pages/member/address/select' wx:if="{{links.goods.isverify==0&&links.goods.goodstype==0}}">
+    <view class='view-address'>收货地址</view>
+    <view style='width:400rpx'>
+      <block wx:if='{{address}}'>
+        <view>
+          <text class='name'>{{address.realname}}</text>
+          <text>{{address.mobile}}</text>
+        </view>
+      </block>
+      <block wx:if='{{address}}'>
+        <view class='adress'>{{address.province + address.city + address.area + "" + address.address}}</view>
+      </block>
+    </view>
+    <view class='view-choose'>
+      <block wx:if='{{!address}}'>
+        <view>添加收货地址</view>
+      </block>
+      <image src='../../../static/images/icon/back.png' mode='aspectFill'></image>
+    </view>
+  </navigator>
+  <!-- 兑换必填 -->
+
+  <view class='view-exchangestore' wx:if="{{links.goods.goodstype==0 && links.goods.isverify==1}}">
+    <view class='view-exchange'>兑换必填</view>
+    <view class='view-people' wx:if="{{links.set_realname==0}}">
+      <text>联系人</text>
+      <input placeholder='{{links.realname!=""?links.realname:"请输入真实姓名"}}' bindinput='bindname' ></input>
+    </view>
+    <view class='view-phone' wx:if="{{links.set_mobile==0}}">
+      <text>联系方式</text>
+      <input placeholder='{{links.mobile!=""?links.mobile:"请输入手机号码"}}' bindinput='bindiphone' type='number'></input>
+    </view>
+    <navigator class='view-choose1' url='/pages/order/store/index'>
+      <view class='text'>请选择兑换门店</view>
+      <view style='width:450rpx'>
+        <view class='shop_name' style='float:right'>{{carrierInfo.storename}}</view>
+      </view>
+      <image src='../../../static/images/icon/back.png'></image>
+    </navigator>
+  </view>
+</block>
+<view style='margin-bottom:100rpx;'>
+  <view class='view-order'>
+    <block wx:if="{{links.goods.goodstype}}">
+      <view class='order-show'>
+        <image class='view-shop-image' src='../../../static/images/icon/shop.png' mode="aspectFill"></image>
+        <text class='store-gq'>{{links.shop_name}}</text>
+      </view>
+    </block>
+    <navigator class='view-order-content' url='/pages/creditshop/detail/index?id={{links.goods.id}}'>
+      <image src='{{links.goods.thumb}}' mode='aspectFill'></image>
+      <view class='view-order-center'>
+        <view>{{links.goods.title}}</view>
+        <view style='color:#666' wx:if="{{links.goods.optiontitle}}">规格：{{links.goods.optiontitle}}</view>
+      </view>
+      <view class='view-order-integral'>{{links.goods.credit}}积分
+        <view>
+          <view style='text-align:right' wx:if="{{links.goods.money!=0}}">
+            ￥
+          </view>
+          <text style='float:right'>×1</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <view class='view-order-Calculation'>
+    <view class='view-order-Calculation-content'>
+      <text>商品小计</text>
+      <label>{{links.goods.credit}}积分+￥{{links.goods.money}}</label>
+    </view>
+    <view wx:if="{{links.goods.goodstype==0 &&links.goods.type==0&&links.goods.isverify==0 }}">
+      <text>运费</text>
+      <label wx:if="{{links.goods.dispatch==0}}">包邮</label>
+      <label wx:if="{{links.goods.dispatch!=0}}">￥{{links.goods.dispatch}}</label>
+    </view>
+  </view>
+</view>
+<!-- 未找到任何记录 -->
+<view class='view-xiaoxi' wx:if="{{links.goods==!links.goods}}">
+  <image style='background:red'></image>
+  <view>未找到任何消息</view>
+</view>
+<!-- 立即抽奖 -->
+<view class='view-bottom-LuckDraw'>
+  <text>需付{{links.goods.isverify==0&&links.goods.goodstype==0 &&links.goods.type==0 &&links.goods.dispatch>0?"(含运费)":""}}：{{links.goods.credit}}积分</text>
+  <text wx:if="{{links.goods.money>0 || links.goods.dispatch >0}}">+￥{{links.goods.dispatch+links.goods.money}}</text>
+  <view class='payBtn' bindtap='doConfirm'>
+    立即支付
+  </view>
+</view>
+<!-- 支付方式 -->
+<view class='view-order-bg {{num==1?"":"hidden"}}' bindtap='quxiao'>
+</view>
+ <view class='view-order-bg-content {{num==1?"":"hidden"}}'>
+    <view class='view-order-bg-choose'>选择支付方式</view>
+    <view class='view-order-bg-wechat' bindtap='wechat' data-pay='wechat'>微信支付</view>
+    <view class='view-order-bg-balance' bindtap='balance' data-pay='balance' >余额支付</view>
+    <view class='view-order-bg-cancel' bindtap='quxiao'>取消</view>
+  </view>

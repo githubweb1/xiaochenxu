@@ -1,0 +1,138 @@
+<!--pages/board/myHome/myHome.wxml-->
+<import src="../index/footer.wxml"/>
+<view wx:if="{{isHome==1}}">
+	<view class="oy-myHome-head">
+		<image mode='widthFix' class="oy-bg-img"  src="{{imgUrl}}"></image>
+		<view class="oy-myHome-user-box">
+			<image class="oy-myHome-user-img" src="{{ret.member.avatar}}"></image>
+		</view>
+	</view>
+	<view class="oy-myHome-main">
+		<view class="oy-myHome-name">{{ret.member.nickname}}</view>
+		<view class="oy-myHome-new-name flex flex-center">
+			<view class="oy-myHome-new-title">社区粉丝</view>
+		</view>
+		<view class="flex flex-center">
+			<view class="flex flex-baseline oy-name-title">
+				<view> 话题数:</view>
+				<view class="oy-number">{{ret.postcount}}</view>
+				<view> 关注数:</view>
+				<view class="oy-number">{{ret.followcount}}</view> 
+			</view>
+			
+		</view>
+		<view class="flex flex-center">
+			<view class="flex flex-baseline oy-name-title oy-last">
+				<view>  社区积分:</view>
+				<view class="oy-number">{{ret.member.sns_credit}}</view>
+			</view>
+		</view>
+		<view class="flex flex-center oy-user-title-box">
+			<view class="flex flex-ver" bindtap='myChose'>
+				<image class="oy-user-img" src="../myIcon/we.png"></image>
+				<block wx:if="{{ret.member.sns_sign==''}}">
+					<view class="oy-user-title" >这个家伙什么也没留下~~</view>
+				</block>
+				<block wx:else>
+					<view class="oy-user-title" >{{ret.member.sns_sign}}</view>
+				</block>
+
+				<image class="oy-user-img" src="../myIcon/edit2.png" wx:if="{{ret.isMe==1}}"></image>
+			</view>
+		</view>
+	</view>
+	<view class="oy-myHome-line-box">
+		<view class="oy-myHome-line-title flex flex-center">
+			<view class="oy-myHome-line-main">
+				<block wx:if="{{ret.isMe==1}}">
+					我的板块
+				</block>
+				<block  wx:if="{{ret.isMe==0}}">
+					TA的板块
+				</block>
+			</view>
+		</view>	
+		<view class="oy-line-box flex flex-ver">
+			<view class="oy-line"></view>
+		</view>
+	</view>
+	<view class="flex flex-wrap oy-boards-box">
+		<block wx:if="{{ret.isMe==1}}">
+			<navigator url="{{'/pages/sns/index/boardDetail?isMy=1&id='+item.id}}" class="oy-boards-item" wx:for="{{ret.boards}}" wx:key="" >
+				<view class="oy-boards-img-box">
+						<image class="oy-boards-img" src="{{item.logo}}"></image>
+				</view>
+				<view class="oy-boards-title">{{item.title}}</view>
+			</navigator>
+		</block>
+		<block wx:if="{{ret.isMe==0}}">
+			<navigator url="{{'/pages/sns/boardDetail?id='+item.id}}" class="oy-boards-item" wx:for="{{ret.boards}}" wx:key="" >
+				<view class="oy-boards-img-box">
+						<image class="oy-boards-img" src="{{item.logo}}"></image>
+				</view>
+				<view class="oy-boards-title">{{item.title}}</view>
+			</navigator>
+		</block>
+	</view>
+	<view class="oy-myHome-line-box">
+		<view class="oy-myHome-line-title flex flex-center">
+			<view class="oy-myHome-line-main">
+				<block wx:if="{{ret.isMe==1}}">
+					我的回复(仅本人可见)
+				</block>
+				<block wx:if="{{ret.isMe==0}}">
+					TA的话题
+				</block>
+					
+			</view>
+		</view>	
+		<view class="oy-line-box flex flex-ver">
+			<view class="oy-line"></view>
+		</view>
+	</view>
+	<view wx:if="{{ret.isMe==0}}">
+		<navigator class="oy-posts-list flex"  wx:for="{{ret.posts}}" wx:key="" url="{{'/pages/sns/postDetail/postDetail?id='+item.id+'&bid='+bid}}" hover-class='none'>
+			<image src="{{item.thumb}}" class="oy-posts-img"></image>
+			<view class="flex-1 oy-posts-list-middle">
+				<view class="oy-posts-list-title">
+					{{item.title}}
+				</view>
+				<view class="oy-posts-list-text flex flex-ver">
+					<text class="oy-posts-boardtitle">{{item.boardtitle}}</text> <view class="oy-posts-line">|</view> <text class="oy-posts-boardtitle">阅读{{item.views}}</text>
+				</view>
+			</view>
+			<view class="oy-qa-head-right"></view>
+		</navigator>
+		<navigator class="oy-can-more" url="{{'more?id='+id}}" hover-class='none' wx:if="{{ret.posts.length>=3}}">
+			查看更多
+		</navigator>
+	</view>
+	<view wx:if="{{ret.isMe==1}}">
+		<navigator class="oy-posts-list flex" wx:for="{{ret.replys}}" wx:key=""  url="{{'/pages/sns/postDetail/postDetail?id='+item.id+'&bid='+item.parentid}}" hover-class='none'>
+			<view class="flex-1 oy-posts-list-middle">
+				<view class="oy-posts-list-title1">
+					回复{{item.parentnickname}}:{{item.content}}
+				</view>
+				<view class="oy-posts-list-text flex flex-ver">
+					<text class="oy-posts-boardtitle">话题：{{item.parenttitle}}</text> 
+				</view>
+			</view>
+			
+		</navigator>
+		<navigator class="oy-can-more" url="{{'mybackConment?id='+ret.member.id+'&isMy='+isMy}}" hover-class='none'  wx:if="{{ret.replys.length>=3}}">
+			查看更多
+		</navigator>
+	</view>
+</view>
+<view wx:if="{{isHome==2}}" class="oy-qm-box">
+	<view class="oy-qm-head flex flex-ver">
+		<view class="oy-qm-head-left  flex flex-center" bindtap='myChose'>取消</view>
+		<view class="oy-qm-head-middle flex-1 flex flex-center">设置签名</view>
+		<view class="oy-qm-head-left oy-right-black flex flex-center" bindtap='saveSign'>提交</view>
+	</view>
+	<view class="oy-borderConment-mian flex flex-ver">
+		<textarea class="oy-textarea flex-1"  placeholder="内容 60个字以内" value='{{content}}' maxlength="60"  bindinput='myInput' data-key='content'></textarea>
+	</view>
+</view>
+
+<template is="footer" data="{{isFooter:isFooter}}"/>

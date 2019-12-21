@@ -1,0 +1,122 @@
+<!--pages/board/postDetail/postDetail.wxml-->
+<import src="/utils/wxParse/wxParse.wxml"/>
+<view wx:if='{{isShow==3}}'>
+	<view class="oy-detailist">
+		<navigator hover-class='none' class="oy-detailist-head flex" url="{{'/pages/sns/myHome/myHome?id='+ret.member.id+'&bid='+bid}}">
+			<image class="oy-detailist-img" src="{{ret.posts.avatar}}"></image>
+			<view class="flex-1 oy-detailist-head-right flex flex-ver">
+				<view class="flex-1">
+					<view class="oy-detailist-head-name flex flex-baseline">
+						<view>{{ret.posts.nickname}}</view>	
+						<view class="level-label flex" style="{{'background:'+ret.level.bg+';'+'color:'+ret.level.color}}">{{ret.level.levelname}}</view>
+					</view>
+					<view class="oy-detailist-head-title">{{ret.posts.title}}</view>
+				</view>
+				<view class="oy-qa-head-right flex flex-ver"></view>
+			</view>
+		</navigator>
+		<view class="oy-detailist-body">
+				<view class="oy-detailist-body-head flex flex-ver">
+					<view class="oy-jp-btn flex flex-ver" wx:if="{{ret.posts.isboardbest==1}}">精</view><view>{{ret.posts.title}}</view>	
+				</view>
+				<view class="flex flex-ver oy-detailist-time">
+					<view>{{ret.posts.createtime}}</view>
+					<navigator url="{{'/pages/sns/boardDetail?id='+ret.board.id}}" hover-class='none' class="oy-detailist-time-btn">
+						{{ret.board.title}}
+					</navigator> 
+				</view>
+				<view class="oy-detailist-body-main">
+					<template is='wxParse' data='{{wxParseData:article.nodes}}'/> 
+				</view>
+				<view class="oy-detailist-footer-title flex flex-end1 flex-ver">
+					<image src="../myIcon/browse.png"></image>
+					<view>{{ret.posts.views}}</view>
+				</view>
+		</view>	
+	</view>
+	<view class="oy-conment-head flex flex-ver">
+			<image mode='aspectFill' class="oy-detailist-footer-img oy-comment-img" src="/pages/sns/myIcon/comment.png" ></image>全部评论
+	</view>
+	<view class="oy-conment-no" wx:if="{{list.length==0}}">
+			<image src="/pages/sns/myIcon/comment_fill.png"></image>
+			<view class="oy-conment-no-title">暂时没有任何评论</view>
+	</view>
+	<view class="oy-conment-list" wx:for="{{replyTemArray}}" wx:key="">
+		<view class="oy-detailist-head flex">
+			<image class="oy-detailist-img" src="{{list[index].avatar}}"></image>
+			<view class="flex-1 oy-detailist-head-right flex flex-ver">
+				<view class="flex-1">
+					<view class="oy-detailist-head-name flex flex-baseline">
+						<view>{{list[index].nickname}}</view>	
+						<view class="level-label" style="{{'background:'+list[index].level.bg+';'+'color:'+list[index].level.color}}">{{list[index].level.levelname}}</view>
+						<view class="level-label oy-isAuthor" wx:if="{{list[index].isAuthor==true}}">楼主</view>
+						<view class="level-label isManager" wx:if="{{list[index].isManager==true}}">版主</view>	
+					</view>
+					<view class="oy-conment-main-title">
+						<template is='wxParse' data='{{wxParseData:item }}' />
+					</view>
+					<view class="oy-conment-main-post" wx:for="{{list[index].arr}}"   wx:key="" wx:for-index="idx" wx:for-item="itemName">
+						<text class="oy-conment-people">@{{list[index].parentNew[idx].nickname}}</text>:
+						<template is='wxParse' data="{{wxParseData:itemName.article.nodes}}"/> 
+					</view>
+					
+					<view class="oy-conment-main-footer flex flex-ver">
+						<view>{{list[index].createtime}}</view>
+						<view class="flex-1 flex flex-end1">
+							<view class="flex flex-ver" data-idx="{{list[index].id}}" data-rpid="{{list[index].id}}" data-name="{{list[index].nickname}}" data-key='backComent' bindtap="myConment">
+								<image mode='aspectFill' class="oy-detailist-footer-img oy-comment-img" src="/pages/sns/myIcon/comment.png" ></image>	
+								<view class="oy-detailist-footer-title">回复</view>		
+							</view>
+							<view class="flex flex-ver" bindtap="getGoods1" data-index="{{index}}" data-id='{{list[index].id}}' data-bid='{{list[index].bid}}'>
+								<block wx:if="{{list[index].isgood==1}}" >
+									<image mode='aspectFill'  class="oy-detailist-footer-img" src="/pages/sns/myIcon/good_yellow.png" ></image>
+									<view class="oy-detailist-footer-title">{{list[index].goodcount}}</view>		
+								</block>
+								<block wx:else>
+									<image mode='aspectFill'  class="oy-detailist-footer-img" src="/pages/sns/myIcon/good.png" ></image>
+									<view class="oy-detailist-footer-title">赞</view>		
+								</block>
+									
+							</view>
+							<view class="flex flex-ver" data-idx="{{list[index].id}}" data-name="{{list[index].nickname}}" data-key='feekback' bindtap="myConment">
+								<image mode='aspectFill' class="oy-detailist-footer-img" src="/pages/sns/myIcon/warning.png" ></image>	
+								<view class="oy-detailist-footer-title">投诉</view>		
+							</view>
+						</view>
+					</view>
+				</view>
+				
+			</view>
+		</view>
+	</view>
+	<view class="oy-h102"></view>
+	<view class="oy-detailist-footer flex">
+				<view class="flex flex-center flex-1" data-key='conment' bindtap="myConment">
+					<image mode='aspectFill' class="oy-detailist-footer-img oy-comment-img" src="/pages/sns/myIcon/comment.png" ></image>	
+					<view class="oy-detailist-footer-title">{{ret.replycount}}</view>		
+				</view>
+				<view class="flex flex-center flex-1">
+					<block wx:if="{{ret.isgood==1}}">
+						<image mode='aspectFill' bindtap="getGoods"  class="oy-detailist-footer-img" src="/pages/sns/myIcon/good_yellow.png" ></image>	
+					</block>
+					<block wx:else>
+						<image mode='aspectFill' bindtap="getGoods"  class="oy-detailist-footer-img" src="/pages/sns/myIcon/good.png" ></image>	
+					</block>
+					<view class="oy-detailist-footer-title">
+						<block wx:if="{{ret.goodcount>0}}">
+							{{ret.goodcount}}
+						</block>	
+						<block wx:else>
+							赞
+						</block>
+					</view>		
+				</view>
+				<view class="flex flex-center flex-1" data-idx="{{id}}" data-name="{{ret.posts.nickname}}" data-key='feekback' bindtap="myConment">
+					<image mode='aspectFill' class="oy-detailist-footer-img" src="/pages/sns/myIcon/warning.png" ></image>	
+					<view class="oy-detailist-footer-title">投诉</view>		
+				</view>
+	</view>
+</view>
+
+
+

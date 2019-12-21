@@ -1,0 +1,10 @@
+.xj-video{
+  width: 750rpx;
+}
+.xj-image{
+  width: 750rpx;
+}
+.xj-text{
+  font-size: 30rpx;
+  padding: 20rpx
+}

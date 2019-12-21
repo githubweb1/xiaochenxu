@@ -1,0 +1,273 @@
+<!--pages/task/deltail/index.wxml-->
+<!-- <import src="/utils/wxParse/wxParse.wxml" /> -->
+<view>
+  <view class='xj-deltail'>
+    <view class='xj-deltail-top'>
+      <image class='xj-deltail-leftimage' src='{{detail.taskimage}}{{detail.image}}' mode='aspectFit'></image>
+      <view class='xj-deltail-right'>
+        <view class='xj-deltail-title'>{{detail.tasktitle}}{{detail.title}}</view>
+        <view style='color:#ff5555;font-size:28rpx'>{{desc}}</view>
+        <view class='xj-time' wx:if="{{detail.task_demand}}">
+          <view>领取时间：{{detail.picktime}}</view>
+          <view>截至时间：{{detail.stoptime=='0000-00-00 00:00:00'?"无":detail.stoptime}}</view>
+        </view>
+        <view class='xj-time' wx:else>
+          <view>开放时间：{{detail.starttime}}</view>
+          <view>结束时间：{{detail.endtime}}</view>
+          <view wx:if="{{detail.stop_limit>0}}">
+            限时：限时{{stop_limit}}小时
+          </view>
+        </view>
+
+        <view class='xj-two' wx:if="{{detail.task_demand&&detail.task_demand!=null}}">
+          <progress backgroundColor="#fff" percent='{{(detail.task_progress/detail.task_demand)*100}}' class='progress'></progress>
+          <text>{{detail.task_progress}}/{{detail.task_demand}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='xj-deltail-bottom' wx:if="{{detail.tasktype!='poster'}}">
+    <view class='xj-deltail-bottom-top'>任务奖励</view>
+    <!-- 商城积分 -->
+    <view class='xj-all'>
+      <view class='xj-deltail-bottom-bottom' wx:if="{{reward.credit!=null&&reward.credit!=0&&reward.credit.length!=0&&reward.credit}}">
+        <image src='/static/images/icon-red/credit.png' mode='aspectFit'></image>商城积分
+        <view class='xj-taskreward'>+{{reward.credit}}</view>
+      </view>
+      <!-- 微信红包 -->
+      <view class='xj-deltail-bottom-bottom' wx:if="{{reward.redpacket!=null&&reward.redpacket!=0&&reward.redpacket.length!=0&&reward.redpacket}}">
+        <image src='/static/images/icon-red/redpacket.png' mode='aspectFit'></image>微信红包
+        <view class='xj-taskreward'>+{{reward.redpacket}}</view>
+      </view>
+      <!-- 商城余额 -->
+      <view class='xj-deltail-bottom-bottom' wx:if="{{reward.balance!=null&&reward.balance!=0&&reward.balance.length!=0&&reward.balance}}">
+        <image src='/static/images/icon-red/balance.png' mode='aspectFit'></image>商城余额
+        <view class='xj-taskreward'>+{{reward.balance}}</view>
+      </view>
+      <!-- 优惠券 -->
+      <block wx:if="{{reward.coupon!=null&&reward.coupon.length!=0&&reward.coupon}}">
+        <view class='xj-deltail-bottom-bottom' wx:for="{{reward.coupon}}" wx:key="" wx:for-item="coupon">
+          <image src='/static/images/icon-red/coupon.png' mode='aspectFit'></image>{{coupon.couponname}}
+          <view class='xj-taskreward'>×{{coupon.num}}</view>
+        </view>
+      </block>
+      <!-- 商品 -->
+      <block wx:if="{{!rid||rid==null||rid==''||rid==0}}">
+        <block wx:if="{{reward.goods!=null&&reward.goods.length!=0&&reward.goods}}">
+          <navigator class='xj-deltail-bottom-bottom' wx:for="{{reward.goods}}" wx:for-item="goods" wx:key="" url='/pages/goods/detail/index?id={{goods.id}}&taskrewardgoodsid={{item.id}}'>
+            <image src='/static/images/icon-red/goods.png' mode='aspectFit'></image>{{goods.title}}({{goods.price}}元特价购买权)
+            <view class='xj-taskreward'>×{{goods.num}}</view>
+            <image src='/static/images/icon/back.png' class='xj-for-image'></image>
+          </navigator>
+        </block>
+      </block>
+      <block wx:else>
+        <navigator class='xj-deltail-bottom-bottom' wx:for="{{reward.goods}}" wx:for-item="goods" wx:key="" url='/pages/goods/detail/index?id={{goods.id}}&taskrewardgoodsid={{item.id}}'>
+          <image src='/static/images/icon-red/goods.png' mode='aspectFit'></image>{{goods.title}}({{goods.price}}元特价购买权)
+          <view class='xj-taskreward'>×{{goods.num}}</view>
+          <image src='/static/images/icon/back.png' class='xj-for-image'></image>
+        </navigator>
+      </block>
+    </view>
+  </view>
+
+
+  <view class='xj-deltail-bottom' wx:if="{{detail.tasktype=='poster'&&detail.level1 && detail.level1!=0}}">
+    <view class='xj-deltail-bottom-top'>达到{{detail.level1}}奖励</view>
+    <!-- 商城积分 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{reward1.credit!=null&&reward1.credit!=0&&reward1.credit.length!=0&&reward1.credit}}">
+      <image src='/static/images/icon-red/credit.png' mode='aspectFit'></image>商城积分
+      <view class='xj-taskreward'>+{{reward1.credit}}</view>
+    </view>
+    <!-- 微信红包 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{reward1.redpacket!=null&&reward1.redpacket!=0&&reward1.redpacket.length!=0&&reward1.redpacket}}">
+      <image src='/static/images/icon-red/redpacket.png' mode='aspectFit'></image>微信红包
+      <view class='xj-taskreward'>+{{reward1.redpacket}}</view>
+    </view>
+    <!-- 商城余额 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{reward1.balance!=null&&reward1.balance!=0&&reward1.balance.length!=0&&reward1.balance}}">
+      <image src='/static/images/icon-red/balance.png' mode='aspectFit'></image>商城余额
+      <view class='xj-taskreward'>+{{reward1.balance}}</view>
+    </view>
+    <!-- 优惠券 -->
+    <block wx:if="{{reward1.coupon!=null&&reward1.coupon.length!=0&&reward1.coupon}}">
+      <view class='xj-deltail-bottom-bottom' wx:for="{{reward1.coupon}}" wx:key="" wx:for-item="coupon">
+        <image src='/static/images/icon-red/coupon.png' mode='aspectFit'></image>{{coupon.couponname}}
+        <view class='xj-taskreward'>×{{coupon.num}}</view>
+      </view>
+    </block>
+    <!-- 商品 -->
+    <block wx:if="{{!rid||rid==null||rid==''||rid==0}}">
+      <block wx:if="{{reward1.goods!=null&&reward1.goods.length!=0&&reward1.goods}}">
+        <navigator class='xj-deltail-bottom-bottom' wx:for="{{reward1.goods}}" wx:key="" wx:for-item="goods" url='/pages/goods/detail/index?id={{goods.id}}&taskrewardgoodsid={{item.id}}'>
+          <image src='/static/images/icon-red/goods.png' mode='aspectFit'></image>{{goods.title}}({{goods.price}}元特价购买权)
+          <view class='xj-taskreward'>×{{goods.num}}</view>
+        </navigator>
+      </block>
+    </block>
+    <block wx:else>
+      <navigator class='xj-deltail-bottom-bottom' wx:for="{{reward_goods1}}" wx:key="" wx:for-item="goods" url='/pages/goods/detail/index?id={{goods.reward_data}}&taskrewardgoodsid={{item.id}}'>
+        <image src='/static/images/icon-red/goods.png' mode='aspectFit'></image>{{goods.reward_title}}({{goods.price}}元特价购买权)
+        <view class='xj-taskreward'>×1</view>
+      </navigator>
+    </block>
+  </view>
+
+
+
+  <view class='xj-deltail-bottom' wx:if="{{detail.tasktype=='poster' && detail.level2 && detail.level2!=0}}">
+    <view class='xj-deltail-bottom-top'>达到{{detail.level2}}奖励</view>
+    <!-- 商城积分 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{reward2.credit!=null&&reward2.credit!=0&&reward2.credit.length!=0&&reward2.credit}}">
+      <image src='/static/images/icon-red/credit.png' mode='aspectFit'></image>商城积分
+      <view class='xj-taskreward'>+{{reward2.credit}}</view>
+    </view>
+    <!-- 微信红包 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{reward2.redpacket!=null&&reward2.redpacket!=0&&reward2.redpacket.length!=0&&reward2.redpacket}}">
+      <image src='/static/images/icon-red/redpacket.png' mode='aspectFit'></image>微信红包
+      <view class='xj-taskreward'>+{{reward2.redpacket}}</view>
+    </view>
+    <!-- 商城余额 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{reward2.balance!=null&&reward2.balance!=0&&reward2.balance.length!=0&&reward2.balance}}">
+      <image src='/static/images/icon-red/balance.png' mode='aspectFit'></image>商城余额
+      <view class='xj-taskreward'>+{{reward2.balance}}</view>
+    </view>
+    <!-- 优惠券 -->
+    <block wx:if="{{reward2.coupon!=null&&reward2.coupon.length!=0&&reward2.coupon}}">
+      <view class='xj-deltail-bottom-bottom' wx:for="{{reward2.coupon}}" wx:key="" wx:for-item="coupon">
+        <image src='/static/images/icon-red/coupon.png' mode='aspectFit'></image>{{coupon.couponname}}
+        <view class='xj-taskreward'>×{{coupon.num}}</view>
+      </view>
+    </block>
+    <!-- 商品 -->
+    <block wx:if="{{!rid||rid==null||rid==''||rid==0}}">
+      <block wx:if="{{reward2.goods!=null&&reward2.goods.length!=0&&reward2.goods}}">
+        <navigator class='xj-deltail-bottom-bottom' wx:for="{{reward2.goods}}" wx:key="" wx:for-item="goods" url='/pages/goods/detail/index?id={{goods.id}}&taskrewardgoodsid={{item.id}}'>
+          <image src='/static/images/icon-red/goods.png' mode='aspectFit'></image>{{goods.title}}({{goods.price}}元特价购买权)
+          <view class='xj-taskreward'>×{{goods.num}}</view>
+        </navigator>
+      </block>
+    </block>
+    <block wx:else>
+      <navigator class='xj-deltail-bottom-bottom' wx:for="{{reward_goods2}}" wx:key="" wx:for-item="goods" url='/pages/goods/detail/index?id={{goods.reward_data}}&taskrewardgoodsid={{item.id}}'>
+        <image src='/static/images/icon-red/goods.png' mode='aspectFit'></image>{{goods.reward_title}}({{goods.price}}元特价购买权)
+        <view class='xj-taskreward'>×1</view>
+      </navigator>
+    </block>
+  </view>
+
+
+  <view class='xj-deltail-bottom' wx:if="{{detail.tasktype=='poster'&&detail.level3}}">
+    <view class='xj-deltail-bottom-top'>达到{{detail.level3}}奖励</view>
+    <!-- 商城积分 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{reward3.credit!=null&&reward3.credit!=0&&reward3.credit.length!=0&&reward3.credit}}">
+      <image src='/static/images/icon-red/credit.png' mode='aspectFit'></image>商城积分
+      <view class='xj-taskreward'>+{{reward3.credit}}</view>
+    </view>
+    <!-- 微信红包 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{reward3.redpacket!=null&&reward3.redpacket!=0&&reward3.redpacket.length!=0&&reward3.redpacket}}">
+      <image src='/static/images/icon-red/redpacket.png' mode='aspectFit'></image>微信红包
+      <view class='xj-taskreward'>+{{reward3.redpacket}}</view>
+    </view>
+    <!-- 商城余额 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{reward3.balance!=null&&reward3.balance!=0&&reward3.balance.length!=0&&reward3.balance}}">
+      <image src='/static/images/icon-red/balance.png' mode='aspectFit'></image>商城余额
+      <view class='xj-taskreward'>+{{reward3.balance}}</view>
+    </view>
+    <!-- 优惠券 -->
+    <block wx:if="{{reward3.coupon!=null&&reward3.coupon.length!=0&&reward3.coupon}}">
+      <view class='xj-deltail-bottom-bottom' wx:for="{{reward3.coupon}}" wx:for-item="coupon">
+        <image src='/static/images/icon-red/coupon.png' mode='aspectFit'></image>{{coupon.couponname}}
+        <view class='xj-taskreward'>×{{coupon.num}}</view>
+      </view>
+    </block>
+    <!-- 商品 -->
+    <block wx:if="{{!rid||rid==null||rid==''||rid==0}}">
+      <block wx:if="{{reward3.goods!=null&&reward3.goods.length!=0&&reward3.goods}}">
+        <navigator class='xj-deltail-bottom-bottom' wx:for="{{reward3.goods}}" wx:key="" wx:for-item="goods" url='/pages/goods/detail/index?id={{goods.id}}&taskrewardgoodsid={{item.id}}'>
+          <image src='/static/images/icon-red/goods.png' mode='aspectFit'></image>{{goods.title}}({{goods.price}}元特价购买权)
+          <view class='xj-taskreward'>×{{goods.num}}</view>
+        </navigator>
+      </block>
+    </block>
+    <block wx:else>
+      <navigator class='xj-deltail-bottom-bottom' wx:for="{{reward_goods3}}" wx:key="" wx:for-item="goods" url='/pages/goods/detail/index?id={{goods.reward_data}}&taskrewardgoodsid={{goods.id}}'>
+        <image src='/static/images/icon-red/goods.png' mode='aspectFit'></image>{{goods.reward_title}}({{goods.price}}元特价购买权)
+        <view class='xj-taskreward'>×1</view>
+      </navigator>
+    </block>
+  </view>
+
+
+  <view class='xj-deltail-bottom' wx:if="{{(detail.tasktype=='poster'||detail.type=='poster')&&((followreward.credit!=null&&followreward.credit!=0&&followreward.credit.length!=0&&followreward.redpacket)||(followreward.redpacket!=null&&followreward.redpacket!=0&&followreward.redpacket.length!=0&&followreward.redpacket)||(followreward.balance!=null&&followreward.balance!=0&&followreward.balance.length!=0&&followreward.balance)||(followreward.coupon!=null&&followreward.coupon.length!=0&&followreward.coupon))}}">
+    <view class='xj-deltail-bottom-top'>关注奖励</view>
+    <!-- 商城积分 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{followreward.credit!=null&&followreward.credit!=0&&followreward.credit.length!=0&&followreward.credit}}">
+      <image src='/static/images/icon-red/credit.png' mode='aspectFit'></image>商城积分
+      <view class='xj-taskreward'>+{{followreward.credit}}</view>
+    </view>
+    <!-- 微信红包 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{followreward.redpacket!=null&&followreward.redpacket!=0&&followreward.redpacket.length!=0&&followreward.redpacket}}">
+      <image src='/static/images/icon-red/redpacket.png' mode='aspectFit'></image>微信红包
+      <view class='xj-taskreward'>+{{followreward.redpacket}}</view>
+    </view>
+    <!-- 商城余额 -->
+    <view class='xj-deltail-bottom-bottom' wx:if="{{followreward.balance!=null&&followreward.balance!=0&&followreward.balance.length!=0&&followreward.balance}}">
+      <image src='/static/images/icon-red/balance.png' mode='aspectFit'></image>商城余额
+      <view class='xj-taskreward'>+{{followreward.balance}}</view>
+    </view>
+    <!-- 优惠券 -->
+    <block wx:if="{{followreward.coupon!=null&&followreward.coupon.length!=0&&followreward.coupon}}">
+      <view class='xj-deltail-bottom-bottom' wx:for="{{followreward.coupon}}" wx:key="" wx:for-item="coupon">
+        <image src='/static/images/icon-red/coupon.png' mode='aspectFit'></image>{{coupon.couponname}}
+        <view class='xj-taskreward'>×{{coupon.num}}</view>
+      </view>
+    </block>
+  </view>
+  <!-- 参与记录 -->
+  <block wx:if="{{detail.task_demand && detail.tasktype=='poster'}}">
+    <view wx:if="{{joiner!=null&&joiner!=0&&joiner.length!=0&&joiner}}">
+      <view class='xj-deltail-bottom-top'>参与记录</view>
+      <view wx:for="{{joiner}}" wx:key="" wx:for-item="joiner">
+        <image src='{{joiner.headimg}}'></image>
+        <view>{{joiner.nickname}}</view>
+        <view>{{joiner.gettime}}</view>
+      </view>
+    </view>
+    <!-- 按钮 -->
+
+    <block wx:if="{{detail.finishtime=='0000-00-00 00:00:00'}}">
+      <view class="xj-navigator2">
+        <view class='xj-navigator1' bindtap='poster' data-poster='1'>查看海报</view>
+        <view style='background:#ff5555' class='xj-navigator1' bindtap='sendToWechat'>发送到微信</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="xj-navigator">
+        <navigator url='/pages/task/reward/index'>查看详情</navigator>
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <block wx:if="{{detail.type!=null&&detail.type!=0&&detail.type.length!=0&&detail.type}}">
+      <view class="xj-navigator">
+        <view style='background:#ff5555' bindtap='getreward' data-id="{{detail.id}}" class='xj-navigator'>接取任务</view>
+      </view>
+    </block>
+    <block wx:if="{{detail.finishtime!='0000-00-00 00:00:00'&&detail.finishtime!=''&&detail.finishtime!=null}}">
+      <view class="xj-navigator">
+        <navigator url='/pages/task/reward/index' class='xj-navigator'>查看详情</navigator>
+      </view>
+    </block>
+  </block>
+
+
+  <!-- 查看海报遮罩层 -->
+  <block wx:if="{{detail.task_demand&&detail.tasktype=='poster'}}">
+    <view class="mask {{poster1==0?'hidden':''}}" style="top:0;position: absolute;z-index: 9;background-color: rgba(0,0,0,.6);height: 100%;width: 100%;filter:alpha(opacity=100);">
+      <view class="qr" style="width: 560rpx;height: 882rpx;background-color: red;margin: 100rpx auto auto auto;">
+        <image src="{{poster.message.img}}" style="width: 100%;height: 100%;" bindtap='poster' data-poster='0'></image>
+      </view>
+    </view>
+  </block>
+</view>

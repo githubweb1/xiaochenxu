@@ -1,0 +1,29 @@
+.oy-qa-list{
+	  padding: 16rpx 24rpx;
+		background: #fff;
+}
+.oy-qa-list-img{
+	display: block;
+	width:100rpx;
+	height:100rpx;
+}
+.oy-qa-list-right{
+	margin-left:24rpx;
+}
+.oy-row-title{
+	width:0;
+	font-size:34rpx;
+    color: #333;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.oy-title{
+	position: relative;
+    font-size: 26rpx;
+    color: #666;
+}
+.oy-red-title{
+	color: #ff5555;
+	margin:0 8rpx;
+}

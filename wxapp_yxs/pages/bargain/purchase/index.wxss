@@ -1,0 +1,50 @@
+/* pages/bargain/purchase/index.wxss */
+
+page {
+  background: #f8f8f8;
+}
+
+/* 内容 */
+
+.xj-act-allcontent {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx;
+  margin-bottom:20rpx;
+}
+
+.xj-act-left-image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.xj-act-title {
+  color: #f60;
+  font-size:32rpx;
+}
+
+.xj-act-now {
+  color: #f55;
+  font-size: 30rpx;
+}
+
+.xj-act-old {
+  background: #0290be;
+  color: #fff;
+  border: 1px solid #0281ab;
+  padding: 5rpx 30rpx;
+  font-size: 30rpx;
+  border-radius: 18rpx;
+}
+
+.xj-act-detail {
+  width: 500rpx;
+}
+
+.xj-act-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top:20rpx;
+}
+
+@import "../foots.wxss"

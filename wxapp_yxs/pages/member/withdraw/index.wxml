@@ -1,0 +1,122 @@
+<block wx:if='{{!show}}'>
+  <loading>加载中...</loading>
+</block>
+<block wx:if='{{show}}'>   
+<view class="oy_form_list flex flex-ver">
+    <view class="oy_form_title flex flex-ver">
+        <view>提现方式</view>
+    </view>
+    <view class="flex-1 oy_form_right flex flex-ver">
+        <block wx:if='{{info.type_array.length < 1}}'>
+            <view class="flex-1 flex flex-ver oy_placeholder">未设置提现方式</view>
+          </block>
+         <block wx:if='{{checked}}'>
+            <picker class='flex-1 oy_picker' rangeKey='name' bindchange='pickerChange' range='{{objectArray}}' value='{{checkedIndex}}'><view class="oy_h110 flex flex-ver">{{checked.name}}</view></picker>
+          </block>
+    </view>
+    <view src="" class="flex flex-ver oy_nav_box">
+        <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+    </view>
+</view>
+<view class="oy_form_list flex flex-ver" wx:if='{{checked.id == 3}}'>
+    <view class="oy_form_title flex flex-ver">
+        <view>选择银行</view>
+    </view>
+    <view class="flex-1 oy_form_right flex flex-ver">
+        <picker   rangeKey='bankname' range='{{info.banklist}}' value='{{bankCheckedIndex}}' class="flex-1 oy_picker"  bindchange='bankChange'>
+           
+              <view class="flex flex-ver oy_h110">{{bankChecked.bankname}}</view>
+           
+        </picker>
+    </view>
+     <view src="" class="flex flex-ver oy_nav_box">
+        <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+    </view>
+</view>
+<view class="oy_form_list flex flex-ver"  wx:if='{{checked.id == 2 || checked.id == 3}}'>
+    <view class="oy_form_title flex flex-ver">
+        <view>姓名</view>
+    </view>
+    <view class="flex-1 oy_form_right flex flex-ver">
+        <input data-type='realname' max='25' type='text' value='{{info.last_data.realname}}' bindinput='inputChange' placeholder='请输入姓名' class="flex-1 oy_form_input" placeholder-class="oy_placeholder"></input>
+    </view>
+</view>
+<block  wx:if='{{checked.id == 3}}'>
+    <view class="oy_form_list flex flex-ver">
+        <view class="oy_form_title flex flex-ver">
+            <view>银行卡号</view>
+        </view>
+        <view class="flex-1 oy_form_right flex flex-ver">
+            <input type='tel' placeholder='请输入银行卡号' bindinput='inputChange' maxlength='25' class="flex-1 oy_form_input" placeholder-class="oy_placeholder" data-type='bankcard'  value='{{info.last_data.bankcard}}'></input>
+        </view>
+    </view>
+    <view class="oy_form_list flex flex-ver">
+        <view class="oy_form_title flex flex-ver">
+            <view>确认卡号</view>
+        </view>
+        <view class="flex-1 oy_form_right flex flex-ver">
+            <input type='tel' placeholder='请输入银行卡号' bindinput='inputChange' data-type='bankcard1' value='{{info.last_data.bankcard}}' class="flex-1 oy_form_input" placeholder-class="oy_placeholder"></input>
+        </view>
+    </view>
+
+</block>
+<block wx:if='{{checked.id == 2}}'>
+<view class="oy_form_list flex flex-ver"  >
+    <view class="oy_form_title flex flex-ver">
+        <view>支付宝账号</view>
+    </view>
+    <view class="flex-1 oy_form_right flex flex-ver">
+        <input type='text' placeholder='请输入支付宝账号' bindinput='inputChange' data-type='alipay' class="flex-1 oy_form_input" placeholder-class="oy_placeholder" value='{{info.last_data.alipay}}'></input>
+    </view>
+    
+</view>
+<view class="oy_form_list flex flex-ver"  >
+    <view class="oy_form_title flex flex-ver">
+        <view>确认账号</view>
+    </view>
+    <view class="flex-1 oy_form_right flex flex-ver">
+        <input type='text' placeholder='确认账号' bindinput='inputChange' data-type='alipay1' class="flex-1 oy_form_input" placeholder-class="oy_placeholder" value='{{info.last_data.alipay}}'></input>
+    </view>
+    
+</view>
+</block>
+<view class="oy_list_fotter">
+    <view class="oy_list_fotter_title flex flex-baseline">提现金额  <block wx:if='{{info.withdrawmoney > 0}}'>
+          <small class="oy_small_title">提现额度最小为:<span class='text-danger'>￥{{info.withdrawmoney}}</span></small>
+        </block></view>
+    <view class="flex flex-ver oy_money_list">
+        <view class="oy_money">￥</view>
+        <view class="flex-1">
+            <input type='tel'  class="flex-1 oy_money_input" value='{{money}}' bindinput='moneyChange'></input>
+        </view>
+    </view>
+    <view class="flex flex-ver">
+        <view class="oy_list_fotter_title flex-1">当前可用余额 {{info.credit}}元</view>
+        <view class="oy_money_btn" bindtap='bindAll'  >全部提现</view>
+    </view>
+     <block wx:if='{{info.withdrawcharge > 0}}'>
+          <view class='fui-cell-title oy-cell-title'>提现手续费为 {{info.withdrawcharge}}%</view>
+    </block>
+    <block wx:if='{{info.withdrawend > 0}}'>
+          <view class='fui-cell-title oy-cell-title'>手续费金额在￥{{info.withdrawbegin}}到￥{{info.withdrawend}}间免收</view>
+    </block>
+    <block wx:if='{{chargeShow}}'>
+          <view class='fui-cell-title charge-group oy-cell-title'>本次提现将扣除手续费 ￥<text class='text-danger'>{{deductionmoney}}</text></view>
+    </block>
+    <block wx:if='{{chargeShow}}'>
+          <view class='fui-cell-title charge-group oy-cell-title'>本次提现实际到账金额 ￥<span class='text-danger'>{{realmoney}}</span></view>
+    </block>
+    <view class='fui-toast {{FoxUIToast.show?"in":"out"}}'>
+        <view class='text'>{{FoxUIToast.text}}</view>
+    </view>
+</view>
+<view class="oy_tel_box">
+    <view class="oy_btn flex flex-center  {{disabled?'disabled':''}}" bindtap='submit'>
+        立即提现
+    </view>
+</view>
+<view class='fui-toast {{FoxUIToast.show?"in":"out"}}'>
+      <view class='text'>{{FoxUIToast.text}}</view>
+</view>
+
+</block>

@@ -1,0 +1,13 @@
+/* pages/board/boardBest/boardBest.wxss */
+@import '../index/footer.wxss';
+@import '../template/detailList.wxss';
+page{
+	background: #f3f3f3;
+}
+
+
+.oy-bottom-title {
+
+	padding-bottom: 40rpx;
+
+}

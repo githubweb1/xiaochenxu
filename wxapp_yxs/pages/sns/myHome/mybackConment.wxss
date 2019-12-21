@@ -1,0 +1,52 @@
+/* pages/board/myHome/mybackConment.wxss */
+@import '../index/footer.wxss';
+page{
+	background: #f3f3f3;
+}
+.oy-mybackConment-list{
+	 padding: 16rpx  24rpx 0 24rpx;
+	 background: #fff;
+	 border-bottom:1px solid #ebebeb;
+}
+.oy-mybackConment-head{
+	color: #333;
+    font-size: 30rpx;
+}
+.flex-end1 {
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+   border-top:1px solid #ebebeb;
+   margin-top:16rpx;
+}
+.oy-del-btn{
+	height:80rpx;
+	color:#1c84c6;
+	font-size:32rpx; 
+}
+.oy-del-btn image{
+	display: block;
+	width:36rpx;
+	height: 36rpx;
+	margin-right:6rpx;
+}
+.oy-board-list{
+	padding: 16rpx  24rpx;
+	background: #f8f8f8;
+	border-bottom:1px solid #ebebeb;
+	margin-bottom: 20rpx;
+}
+.oy-board-list image{
+	display: block;
+	width: 100rpx;
+	height: 100rpx;
+	margin-right:24rpx;
+}
+.oy-parenttitle-text{
+	color: #333;
+    font-size: 30rpx;
+}
+.oy-boardtitle-text{
+	font-size:26rpx;
+    color: #666;
+}
+

@@ -1,0 +1,2 @@
+/* pages/board/postDetail/conment.wxss */
+@import 'postDetail.wxss';

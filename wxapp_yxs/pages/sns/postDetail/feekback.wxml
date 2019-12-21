@@ -1,0 +1,67 @@
+<!--pages/board/postDetail/feekback.wxml-->
+<view class="oy-postDetail-head-box">
+		<view class="oy-postDetail-head-main flex flex-center">
+			投诉
+		</view>
+		<view class="flex flex-ver oy-postDetail-head-body">
+			<view class="oy-postDetail-left-box flex flex-ver" bindtap='myColse'>
+				<view class="oy-postDetail-left flex flex-ver"></view>取消
+			</view>
+		</view>
+	</view>
+	<view class="oy-feekback-name">
+		我要投诉的是<text>{{name}}</text>的评论
+	</view>
+	<view class="oy-feekback-head-title">
+		请您选择投诉类别：
+	</view>
+	<view class="flex flex-wrap oy-feekback-list">
+		<view class="oy-feekback-item">
+      <view class="oy-feekback-item-btn flex flex-center {{myType==item.id?'oy-active':''}}" wx:for='{{result}}' wx:key='' data-type="{{item.id}}" bindtap='choseType'>{{item.name}}</view>
+			<view class="oy-feekback-item-btn flex flex-center {{myType==-1?'oy-active':''}}"  data-type="-1" bindtap='choseType'>其他</view>	
+		</view>
+		
+	</view>
+	<view class="oy-borderConment-mian flex flex-ver">
+		<textarea class="oy-textarea flex-1" auto-height placeholder="内容 10-1000个字" value='{{content}}' maxlength="1000"  bindinput='myInput' ></textarea>
+	</view>
+	<view class="flex flex-ver oy-pic-box">
+		<view class="oy-pic-img">
+			<block wx:if="{{pic=='emoji'}}">
+				<image src="../myIcon/emoji_blue.png"  bindtap='chosePic' data-key="emoji" data-index="{{isShow}}"></image>
+			</block>	
+			<block wx:else>
+				<image src="../myIcon/emoji.png"  bindtap='chosePic' data-key="emoji" data-index="{{isShow}}"></image>
+			</block>	
+		</view>
+		<view class="oy-pic-img">
+			<block wx:if="{{pic=='pic'||imageList.length!=0}}">
+				<image src="../myIcon/pic_blue.png" bindtap='chosePic' data-key="pic" data-index="{{isShow}}"></image>
+			</block>	
+			<block wx:else>
+				<image src="../myIcon/pic.png" bindtap='chosePic' data-key="pic" data-index="{{isShow}}"></image>
+			</block>
+		</view>
+	</view>
+	<view class="oy-emoji-box" wx:if="{{pic=='emoji'}}">
+		<view class="oy-emoji-main flex flex-wrap">
+			<view class="oy-emoji-img-box" wx:for="{{75}}" wx:key="" data-face="{{index+1}}" bindtap='choseFace'>
+				<image src="{{'https://xcxvip.iiio.top/addons/ewei_shopv2/plugin/sns/static/images/face/'+(index+1)+'.gif'}}" ></image>
+			</view>
+			
+		</view>
+	</view>
+	<view class="oy-pic-img-box" wx:if="{{pic=='pic'||imageList.length!=0}}">
+		<view class="oy-pic-img-main flex flex-wrap">
+			<view class="oy-pic-img-item" wx:for="{{imageList}}" wx:key="">
+				<image src="{{item}}"></image>
+				<view class="oy-del-box flex flex-center" data-key="{{index}}" bindtap='myDel'>
+					X
+				</view>
+			</view>
+			<view class="oy-pic-img-item" bindtap='addImg'>
+				<image src="../myIcon/icon_add.png"></image>
+			</view>
+		</view>
+	</view>
+<view class="oy-btn flex flex-center" bindtap='save'>提交</view>

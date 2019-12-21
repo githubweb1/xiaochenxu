@@ -1,0 +1,201 @@
+/* pages/IntegralMall/home/home.wxss */
+@import "../foots.wxss";
+
+/* 积分 */
+
+page {
+  background-color: #f8f8f8;
+}
+.view-swiper image{
+  width: 100%;
+  height: 100%
+}
+.view-integral {
+  background-color: #fff;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  color: #999;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.view-integral-content {
+  text-align: center;
+  width: 50%;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.nav-Record {
+  text-align: center;
+  width: 50%;
+  height: 80rpx;
+  line-height: 80rpx;
+   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* nav导航 */
+
+.view-nav {
+  background: #fff;
+  display: flex;
+  margin-bottom: 20rpx;
+  display:flex;
+  flex-wrap:wrap;
+
+}
+
+.view-nav-content {
+  width: 25%;
+  height: 200rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-nav-image {
+  border-radius: 50%;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.view-nav-text {
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}
+
+/* 抽奖 */
+
+.view-LuckDraw {
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 20rpx;
+  margin-top:20rpx;
+}
+
+.view-LuckDraw label {
+  background: red;
+  height: 40rpx;
+  display: inline-block;
+  text-align: center;
+  font-size: 30rpx;
+  color: white;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  margin-top: 20rpx;
+  padding:0 10rpx;
+}
+
+.view-LuckDraw-header {
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+
+
+.view-LuckDraw-allContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap:wrap;
+}
+
+.view-LuckDraw-content {
+  font-size: 30rpx;
+  width: 48%;
+}
+
+.view-LuckDraw-image {
+  width: 100%;
+  height: 340rpx;
+}
+
+.view-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view-footer-integral {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom:10rpx;
+}
+.view-footer-integral1{
+  display: flex;
+  align-items:center;
+}
+.red {
+  color: red;
+  margin-right: 10rpx;
+  font-size: 30rpx;
+}
+
+/* 积分实物兑换 */
+
+.view-exchange {
+  background: #fff;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.view-exchange-header {
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
+}
+
+
+
+.view-exchange-allContent {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  flex-wrap:wrap;
+}
+
+.view-exchange-content {
+  width: 48%;
+  font-size: 30rpx;
+  margin-bottom:20rpx;
+
+}
+
+.view-exchange-image {
+  width: 338rpx;
+  height: 338rpx;
+}
+
+.view-exchange-text {
+  height: 60rpx;
+  line-height: 60rpx;
+  overflow:hidden;
+  margin-bottom:20rpx;
+}
+
+.view-exchange-content label {
+  float: right;
+  background: red;
+  height: 40rpx;
+  display: inline-block;
+  text-align: center;
+  font-size: 30rpx;
+  color: white;
+  border-radius: 10rpx;
+  line-height: 40rpx;
+  padding:0 10rpx;
+
+}
+
+/* 底部tabbar */
+

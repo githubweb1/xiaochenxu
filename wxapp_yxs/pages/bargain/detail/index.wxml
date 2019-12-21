@@ -1,0 +1,123 @@
+<!--pages/bargain/detail/index.wxml-->
+<import src="/utils/wxParse/wxParse.wxml" />
+<view style='padding-bottom:102rpx;'>
+  <view style='margin-bottom:20rpx;background:#fff' >
+    <!-- 轮播 -->
+    <view class='view-swiper'>
+      <swiper class="swiper_box" autoplay="true" interval="2000" duration="500" indicator-dots='true' indicator-color='white' indicator-active-color='#ccc'>
+        <block wx:if="{{list.ewei_detail.thumb}}" wx:key="">
+          <swiper-item>
+            <image mode='widthFix' src="{{list.ewei_detail.thumb}}" class="slide-image" style='width:750rpx' />
+          </swiper-item>
+        </block>
+        <block wx:for-items="{{list.res.images}}" wx:key="">
+          <swiper-item>
+            <image mode='widthFix' src="{{item}}" class="slide-image" style='width:750rpx' />
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class='view-header-content'>
+        <view class='xj-time'>
+           {{endtime}}
+        </view>
+        <view class='xj-absolate'></view>
+      </view>
+    </view>
+    <!-- 价格 -->
+    <view class='xj-price'>
+      <block wx:if="{{list.res.type==1}}">
+        <view class='xj-old-price'>
+          底价:￥
+          <text>{{list.res.end_price}}</text>
+          <view style='margin-left:20rpx'>
+             原价:￥
+          <text style='text-decoration:line-through'>{{list.res.start_price}}</text>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{list.res.type==0}}">
+        <view class='xj-old-price' >
+          原价:￥
+          <text>{{list.res.start_price}}<label style='color:{{list.res.custom.cutmore_color}}' >{{list.res.custom.cutmore}} </label></text>
+        </view>
+      </block>
+      <view class='xj-price-join'>{{list.res.act_times}}人参与</view>
+    </view>
+    <!-- title -->
+    <view class='xj-bottom'>
+      <view class='xj-title'>
+        <view>{{list.res.title}}</view>
+        <view>{{list.res.title2}}</view>
+      </view>
+      <navigator class='xj-title-right' url='/pages/bargain/rule/index?id={{list.id}}'>
+        <image src='/static/images/icon/list.png' mode='aspectFit'></image>
+        <text style='margin-top:10rpx;'>规则</text>
+      </navigator>
+    </view>
+  </view>
+  <!-- 砍价流程 -->
+  <view class='xj-bargin'>
+    <view class='xj-bargin-header'>
+      <label></label>
+      <text>砍价流程</text>
+    </view>
+    <view class='xj-bargin-center'>
+      <view class='xj-bargin-one'>
+        <text>1</text>
+        <view>选择心仪商品</view>
+        <image mode='aspectFit' src='/static/images/icon/back.png'></image>
+      </view>
+      <view class='xj-bargin-one'>
+        <text style='background:#a6a6a6'>2</text>
+        <view style='color:#a6a6a6;border:1px dashed #a6a6a6 '> 邀请好友砍价</view>
+        <image mode='aspectFit' src='/static/images/icon/back.png'></image>
+      </view>
+      <view class='xj-bargin-one'>
+        <text style='margin-left:-20rpx;background:#a6a6a6'>3</text>
+        <view style='color:#a6a6a6;border:1px dashed #a6a6a6 '>砍到最低价支付</view>
+      </view>
+    </view>
+  </view>
+  <!-- 图文详情 -->
+  <view style='background:#fff;padding:20rpx;'>
+    <view class='xj-phone-detail'>图文详情</view>
+    <view style='padding:20rpx'>
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+  </view>
+
+  <!-- 页面底部 -->
+  <view class='view-tabbar'>
+    <navigator class='view-tabbar-content' open-type='redirectTo' hover-class='none' url='/pages/bargain/index/index'>
+      <image class='view-tabbar-image' src='/static/images/icon/home.png'></image>
+      <view class='view-tabbar-text'>商城首页</view>
+    </navigator>
+    <navigator class='xj-pricebuy' url="/pages/order/create/index?id={{list.res.goods_id}}">
+      原价购买
+    </navigator>
+    <block wx:if="{{list.swi==0}}">
+      <view class='xj-bargainbuy' bindtap='bargain' style='background:{{list.res.custom.btn_color}};border:1rpx solid {{list.res.custom.btn_color}}'>
+        立即砍价
+      </view>
+    </block>
+     <block wx:if="{{list.swi==1}}">
+      <view class='xj-bargainbuy' style='color:#ccc;background:#ccc;border:1rpx solid #ccc'>
+        尚未开始
+      </view>
+    </block>
+     <block wx:if="{{list.swi==2}}">
+      <view class='xj-bargainbuy' style='color:#ccc;background:#ccc;border:1rpx solid #ccc'>
+        已经结束
+      </view>
+    </block>
+     <block wx:if="{{list.swi==3}}">
+      <view class='xj-bargainbuy' style='color:#fff;background:#ccc;border:1rpx solid #ccc'>
+        库存不足
+      </view>
+    </block>
+    <navigator class='view-tabbar-content' open-type='redirectTo' hover-class='none' url='/pages/bargain/act/index'>
+      <image class='view-tabbar-image' src='/static/images/icon/my.png'></image>
+      <view class='view-tabbar-text'>我的</view>
+    </navigator>
+  </view>
+</view>

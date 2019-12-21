@@ -1,0 +1,24 @@
+<!--pages/merch/category/index.wxml-->
+<!-- 搜索 -->
+<view style='background:#f7f7f8;padding:30rpx;'>
+  <image class='view-input-image' src='../../../static/images/icon/search.png' bindtap='search'> </image>
+  <input placeholder='输入关键字...' class='view-input' bindinput='searchinput'></input>
+</view>
+ 
+  <!-- 推荐分类 -->
+  <view>
+    <block wx:if="{{list.category.length>0}}">
+      <view class='xj-all-cate'  url='/pages/merch/category/index' hover-class='none'>
+        <view>全部分类</view>
+     
+      </view>
+      <view class='xj-cate-all-content'>
+        <block wx:for="{{list.category}}" wx:key="asd">
+          <navigator class='xj-cata-content' url='/pages/merch/merchuser/index?cateid={{item.id}}&catename={{item.catename}}'>
+            <image src='{{item.thumb}}' style='background:#ccc'></image>
+            <view>{{item.catename}}</view>
+          </navigator>
+        </block>
+      </view>
+    </block>
+  </view>

@@ -1,0 +1,100 @@
+<!--pages/order/pay/peerpay.wxml-->
+<view>
+  <!-- 头部 -->
+  <view class="xj-header">
+    <view>来自{{list.orderMember.nickname}}的代付订单</view>
+  </view>
+  <!-- 头部内容 -->
+  <view class='xj-content'>
+    <image src='{{list.goods.thumb}}' mode='aspectFit'></image>
+    <view class='xj-content-center'>
+      <view class='xj-title'>{{list.goods.title}}</view>
+      <block wx:if="{{list.address&&list.addree!=''&&list.addree!='null'}}">
+        <view>{{list.address.realname}}  {{list.address.mobile}}</view>
+        <view>{{list.address.province}}  {{list.address.city}}  {{list.address.area}} ****</view>
+      </block>
+      <view class='xj-orange'>￥{{list.order.price}}</view>
+    </view>
+    <navigator class='xj-btn'  url='/pages/goods/detail/index?id={{list.goods.id}}'>查看商品</navigator>
+  </view>
+  <!-- tab -->
+  <view class='view-wine-nav'>
+    <text class='view-wine-nav-wait {{num==0?"blue":""}}' data-num='0' data-type="onepay" bindtap='tapwait'>单人支付</text>
+    <text class='view-wine-nav-go {{num==1?"blue":""}}' data-num='1' data-type="morepay" bindtap='tapwait'>多人支付</text>
+  </view>
+  <view class='onepeople {{num==0?"":"hidden"}}'>
+    <view>
+      <label>1</label>
+      <text>留言并分享</text>
+    </view>
+    <view>
+      <label>2</label>
+      <text>参与并付款</text>
+    </view>
+    <view>
+      <label>3</label>
+      <text>代付成功</text>
+    </view>
+  </view>
+  <view class='morepeople {{num==1?"":"hidden"}}'>
+    <view>
+      <label>1</label>
+      <text>留言并分享</text>
+    </view>
+    <view>
+      <label>2</label>
+      <text>多人参与并付款</text>
+    </view>
+    <view>
+      <label>3</label>
+      <text>筹集完金额</text>
+    </view>
+    <view>
+      <label>4</label>
+      <text>代付成功</text>
+    </view>
+  </view>
+  <!-- 备注 -->
+  <view class='xj-textarea-wai'>
+    <textarea bindblur="text" class='xj-textarea' placeholder='请输入简介' value='{{list.PeerPay[0]}}'></textarea>
+  </view>
+  <view class='xj-btn-wai'>
+    <view class='xj-bottom-btn' bindtap='next'>下一步</view>
+  </view>
+  <view class='xj-bottom'>
+    <navigator class='xj-bottom-nav' url='/pages/order/detail/index?id={{list.orderid}}'>查看订单详情</navigator>
+    <view class='xj-bottom-bom'>
+      <view>如15天内代付没凑齐，订单将被取消</view>
+      <view style='text-align:center;'>所付款项将退还到付款人账户</view>
+    </view>
+  </view>
+</view>
+<!-- <wxs>
+    var subtype = 0;
+    $(function(){
+        var orderid = {$orderid};
+        $("#tab-plus a").off("click").on("click",function(){
+            var type = $(this).data("type");
+            subtype = type == 'onepay' ? 0 : 1;
+            if(!$(this).hasClass("active")){
+                $("#tab-plus a").removeClass("active");
+                $(this).addClass("active");
+                $(".fui-tab-content-a").hide();
+                $("#"+type+"").show();
+            }
+        });
+        $("#next").click(function (e) {
+            e.preventDefault();
+            var textarea = $("#message").val();
+            core.json('order/pay/peerpay', {type:subtype,message:textarea,id:orderid,}, function (data) {
+                if (data.status=='1'){
+                    location.href = data.result.url;
+                    return;
+                }else{
+                    tip.msgbox.err('操作失败!');
+                    location.reload();
+                }
+            }, true, true);
+        });
+    });
+</wxs> -->

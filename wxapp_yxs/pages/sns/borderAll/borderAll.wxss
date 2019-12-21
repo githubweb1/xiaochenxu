@@ -1,0 +1,6 @@
+/* pages/board/borderAll/borderAll.wxss */
+@import '../index/footer.wxss';
+@import '../template/detailList.wxss';
+page{
+	background: #f3f3f3;
+}

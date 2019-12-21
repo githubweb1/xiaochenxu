@@ -1,0 +1,72 @@
+/* pages/globonus/bonus/index.wxss */
+page{
+  background: #f3f3f3
+}
+.view-wine-nav-bg {
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  color: #000;
+  font-size: 30rpx;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.view-wine-nav text {
+  height: 80rpx;
+  width: 33.33%;
+  display: inline-block;
+  text-align: center;
+  line-height: 80rpx;
+  box-sizing: border-box;
+}
+
+.view-wine-nav {
+  background-color: #fff;
+  width: 100%;
+  height: 80rpx;
+}
+
+.hidden {
+  display: none;
+}
+
+.blue {
+  border-bottom: 3px solid orange;
+}
+
+.xj-header {
+  background: #fff;
+  display: flex;
+  padding: 30rpx;
+  font-size: 30rpx;
+  color: #666;
+  justify-content: space-between;
+}
+.xj-bottom{
+  font-size: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150rpx;
+  color: #ccc
+}
+.xj-bottom image{
+  width: 300rpx;
+  height:300rpx;
+}
+.xj-content{
+display:flex;
+justify-content:space-between;
+padding:15rpx 30rpx;
+background:#fff;
+font-size: 30rpx;
+align-items: center
+}
+.xj-content-left{
+display:flex;
+flex-direction:column;
+}
+.xj-content-right{
+color: #ff6600
+}
